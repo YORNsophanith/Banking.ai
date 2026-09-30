@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KEY Bank — Enterprise Online Banking & AI Copilot</title>
+  <title>KEY Bank — Enterprise Online Banking</title>
   
-  <!-- Modern Google Fonts: Plus Jakarta Sans & Kantumruy Pro (Khmer) -->
+  <!-- Modern Google Fonts: Kantumruy Pro (Khmer) & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* KEY Bank Enterprise Palette */
       --primary: #1e40af;
       --primary-hover: #1d4ed8;
       --primary-subtle: #eff6ff;
@@ -31,9 +30,9 @@
       --warning: #d97706;
       --warning-light: #fffbeb;
 
-      --bg-canvas: #f1f5f9;
+      --bg-canvas: #f8fafc;
       --surface: #ffffff;
-      --surface-subtle: #f8fafc;
+      --surface-subtle: #f1f5f9;
       --surface-border: #e2e8f0;
 
       --text-main: #0f172a;
@@ -69,9 +68,243 @@
       overflow: hidden;
     }
 
-    /* 1. LEFT SIDEBAR */
+    /* AUTHENTICATION GATEWAY */
+    #auth-gateway-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #091427 0%, #0f172a 50%, #1e1b4b 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .auth-card-panel {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      width: 100%;
+      max-width: 540px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: authZoom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes authZoom {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .auth-brand-header {
+      background: #091427;
+      padding: 24px 28px;
+      color: white;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .auth-lang-switch-top {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 3px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-lang-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .auth-lang-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .auth-logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      margin-bottom: 8px;
+    }
+
+    .auth-tabs-row {
+      display: flex;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      padding: 13px;
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      border-bottom: 3px solid transparent;
+    }
+
+    .auth-tab-btn.active {
+      color: var(--primary);
+      background: white;
+      border-bottom-color: var(--primary);
+    }
+
+    .auth-body-container {
+      padding: 24px 28px;
+    }
+
+    .form-group-field {
+      margin-bottom: 15px;
+    }
+
+    .form-group-field label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .input-with-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-control-styled {
+      width: 100%;
+      padding: 11px 14px 11px 40px;
+      border: 1.5px solid var(--surface-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+      background: #f8fafc;
+    }
+
+    .input-control-styled:focus {
+      background: white;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-subtle);
+    }
+
+    .input-icon-prefix {
+      position: absolute;
+      left: 12px;
+      font-size: 1.1rem;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+
+    .auth-submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+      margin-top: 8px;
+    }
+
+    .auth-submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
+    }
+
+    .auth-alert-box {
+      background: var(--danger-light);
+      border: 1px solid #fecaca;
+      color: var(--danger);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    .quick-autofill-box {
+      margin-top: 18px;
+      border-top: 1px solid var(--surface-border);
+      padding-top: 14px;
+    }
+
+    .autofill-header {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .quick-user-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .user-pill-shortcut {
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .user-pill-shortcut:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    /* SIDEBAR & LAYOUT */
     aside.sidebar {
-      width: 270px;
+      width: 260px;
       background: var(--sidebar-bg);
       display: flex;
       flex-direction: column;
@@ -82,7 +315,7 @@
     }
 
     .sidebar-header {
-      padding: 22px 20px 18px;
+      padding: 22px 20px 16px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
 
@@ -94,8 +327,8 @@
     }
 
     .brand-logo-icon {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: var(--radius-md);
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       color: white;
@@ -104,7 +337,6 @@
       justify-content: center;
       font-size: 1.35rem;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .brand-names h2 {
@@ -118,12 +350,11 @@
       font-size: 0.7rem;
       color: #38bdf8;
       font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .sidebar-menu {
-      padding: 18px 12px;
+      padding: 16px 12px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -135,9 +366,9 @@
       font-size: 0.68rem;
       font-weight: 700;
       color: #64748b;
-      text-transform: uppercase;
       letter-spacing: 0.8px;
       padding: 10px 12px 4px;
+      text-transform: uppercase;
     }
 
     .nav-item {
@@ -152,6 +383,7 @@
       font-weight: 600;
       transition: var(--transition);
       cursor: pointer;
+      user-select: none;
     }
 
     .nav-item:hover {
@@ -167,7 +399,7 @@
 
     .nav-icon {
       font-size: 1.1rem;
-      width: 22px;
+      width: 20px;
       text-align: center;
     }
 
@@ -182,7 +414,7 @@
     }
 
     .sidebar-footer {
-      padding: 16px;
+      padding: 14px 16px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(0, 0, 0, 0.25);
     }
@@ -190,30 +422,21 @@
     .user-profile-widget {
       display: flex;
       align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      padding: 6px;
-      border-radius: var(--radius-sm);
-      transition: var(--transition);
-    }
-
-    .user-profile-widget:hover {
-      background: rgba(255, 255, 255, 0.08);
+      gap: 10px;
     }
 
     .user-avatar-lg {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       color: white;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 2px solid rgba(255, 255, 255, 0.25);
       flex-shrink: 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .user-meta-info {
@@ -222,7 +445,7 @@
     }
 
     .user-name-title {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
       color: white;
       white-space: nowrap;
@@ -233,12 +456,14 @@
     .user-tier-badge {
       font-size: 0.7rem;
       color: #38bdf8;
-      font-weight: 700;
+      font-weight: 600;
       display: block;
-      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* 2. MAIN WORKSPACE */
+    /* WORKSPACE */
     .app-workspace {
       flex: 1;
       display: flex;
@@ -247,7 +472,7 @@
     }
 
     header.top-header {
-      height: 68px;
+      height: 64px;
       background: var(--surface);
       border-bottom: 1px solid var(--surface-border);
       padding: 0 28px;
@@ -265,7 +490,7 @@
     }
 
     .greeting-title {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
       color: var(--text-main);
     }
@@ -277,7 +502,7 @@
       background: #eff6ff;
       color: #1d4ed8;
       border: 1px solid #bfdbfe;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: var(--radius-full);
       font-size: 0.74rem;
       font-weight: 700;
@@ -286,31 +511,14 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .role-select-dropdown {
-      padding: 7px 12px;
-      border-radius: var(--radius-sm);
-      border: 1.5px solid var(--surface-border);
-      background: var(--surface);
-      color: var(--text-main);
-      font-size: 0.82rem;
-      font-weight: 700;
-      outline: none;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .role-select-dropdown:hover {
-      border-color: var(--primary);
-    }
-
-    .auth-btn-pill {
-      background: var(--primary-subtle);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      padding: 7px 14px;
+    .logout-btn-styled {
+      background: var(--danger-light);
+      border: 1px solid #fecaca;
+      color: var(--danger);
+      padding: 6px 14px;
       border-radius: var(--radius-sm);
       font-size: 0.8rem;
       font-weight: 700;
@@ -321,8 +529,8 @@
       transition: var(--transition);
     }
 
-    .auth-btn-pill:hover {
-      background: #dbeafe;
+    .logout-btn-styled:hover {
+      background: #fee2e2;
     }
 
     .lang-switcher-pill {
@@ -337,7 +545,7 @@
       background: transparent;
       border: none;
       color: #64748b;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: var(--radius-full);
       font-size: 0.78rem;
       font-weight: 700;
@@ -354,20 +562,30 @@
       box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
     }
 
-    /* 3. DASHBOARD TWO-COLUMN GRID */
-    .dashboard-content-split {
+    .view-content-wrapper {
       flex: 1;
+      padding: 24px 28px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .view-content-wrapper.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    /* DASHBOARD */
+    .dashboard-split-grid {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
       gap: 24px;
-      padding: 24px 28px;
-      overflow: hidden;
+      height: 100%;
     }
 
     .banking-canvas {
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
       overflow-y: auto;
       padding-right: 4px;
     }
@@ -375,22 +593,11 @@
     .net-worth-banner {
       background: linear-gradient(135deg, #1e40af 0%, #091427 100%);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 22px;
       color: white;
       position: relative;
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-    }
-
-    .net-worth-banner::before {
-      content: "";
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%);
-      border-radius: 50%;
     }
 
     .banner-top-row {
@@ -402,25 +609,23 @@
     }
 
     .banner-title-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 0.76rem;
+      letter-spacing: 0.5px;
       color: #93c5fd;
       font-weight: 700;
     }
 
     .banner-total-amount {
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 800;
-      letter-spacing: -0.5px;
       margin-top: 4px;
       color: #ffffff;
     }
 
     .quick-transfer-bar {
       display: flex;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 8px;
+      margin-top: 18px;
       position: relative;
       z-index: 2;
       flex-wrap: wrap;
@@ -431,9 +636,9 @@
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: var(--radius-full);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -457,16 +662,8 @@
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-md);
-      padding: 20px;
+      padding: 18px;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .account-summary-card:hover {
-      border-color: #cbd5e1;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
     }
 
     .acc-header {
@@ -495,50 +692,40 @@
     }
 
     .acc-balance-big {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--text-main);
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .card-management-widget {
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 18px;
       box-shadow: var(--shadow-sm);
     }
 
     .card-widget-layout {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 18px;
       align-items: center;
     }
 
     .emv-card {
       background: linear-gradient(135deg, #091427 0%, #1e293b 50%, #0f172a 100%);
       border-radius: var(--radius-md);
-      padding: 20px;
+      padding: 18px;
       color: white;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.4);
+      box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.35);
       border: 1px solid rgba(255, 255, 255, 0.15);
       aspect-ratio: 1.58 / 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-
-    .emv-card::after {
-      content: "";
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
     }
 
     .emv-top {
@@ -550,19 +737,18 @@
     }
 
     .emv-chip-gold {
-      width: 40px;
-      height: 30px;
+      width: 38px;
+      height: 28px;
       background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-      border-radius: 6px;
+      border-radius: 5px;
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .card-status-pill {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: var(--radius-full);
-      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
@@ -576,44 +762,34 @@
       background: rgba(220, 38, 38, 0.3);
       color: #fca5a5;
       border: 1px solid rgba(248, 113, 113, 0.5);
-      animation: pulse-danger 1.5s infinite;
-    }
-
-    @keyframes pulse-danger {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
     }
 
     .emv-number {
       font-family: monospace;
-      font-size: 1.15rem;
-      letter-spacing: 3px;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
       color: #f8fafc;
-      position: relative;
-      z-index: 2;
-      margin: 12px 0 6px;
+      margin: 10px 0 4px;
     }
 
     .emv-bottom {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      position: relative;
-      z-index: 2;
     }
 
     .card-quick-actions {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .card-control-btn {
       background: var(--surface-subtle);
       border: 1px solid var(--surface-border);
-      padding: 10px 14px;
+      padding: 9px 12px;
       border-radius: var(--radius-sm);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-main);
       display: flex;
@@ -625,14 +801,13 @@
 
     .card-control-btn:hover {
       background: #e2e8f0;
-      border-color: #cbd5e1;
     }
 
     .transactions-panel {
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 18px;
       box-shadow: var(--shadow-sm);
     }
 
@@ -640,7 +815,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .txn-list {
@@ -653,16 +828,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-radius: var(--radius-sm);
       border: 1px solid #f1f5f9;
       background: var(--surface);
-      transition: var(--transition);
-    }
-
-    .txn-item:hover {
-      background: var(--surface-subtle);
-      border-color: var(--surface-border);
     }
 
     .txn-item.flagged-suspect {
@@ -673,57 +842,44 @@
     .txn-left-col {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .txn-icon-box {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: #eff6ff;
       color: var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       flex-shrink: 0;
     }
 
-    .txn-icon-box.warning {
-      background: #fef3c7;
-      color: #b45309;
-    }
-
     .txn-merchant-name {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       font-weight: 700;
       color: var(--text-main);
     }
 
     .txn-subtext {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
-    .txn-amount-col {
+    .txn-amount-val {
+      font-size: 0.9rem;
+      font-weight: 700;
       text-align: right;
     }
 
-    .txn-amount-val {
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
+    .txn-amount-val.negative { color: var(--danger); }
+    .txn-amount-val.positive { color: var(--accent); }
 
-    .txn-amount-val.negative {
-      color: var(--danger);
-    }
-
-    .txn-amount-val.positive {
-      color: var(--accent);
-    }
-
-    /* 4. COPILOT STUDIO CHAT PANEL */
+    /* COPILOT AI CHAT */
     .copilot-container {
       background: var(--surface);
       border: 1px solid var(--surface-border);
@@ -732,13 +888,13 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      position: relative;
+      height: 100%;
     }
 
     .copilot-top-bar {
       background: linear-gradient(135deg, #091427 0%, #1e293b 100%);
       color: white;
-      padding: 16px 20px;
+      padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -748,32 +904,31 @@
     .copilot-brand-title {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .copilot-sparkle-logo {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: var(--radius-md);
       background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      font-size: 1.15rem;
     }
 
     .copilot-active-pill {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       color: #93c5fd;
       background: rgba(59, 130, 246, 0.2);
       border: 1px solid rgba(147, 197, 253, 0.3);
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: var(--radius-full);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .pulse-dot {
@@ -781,35 +936,22 @@
       height: 6px;
       border-radius: 50%;
       background: #34d399;
-      animation: pulse-ring 1.8s infinite;
-    }
-
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.4; }
-      100% { transform: scale(0.95); opacity: 1; }
     }
 
     .chat-messages-scroll {
       flex: 1;
       overflow-y: auto;
-      padding: 20px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       background: #f8fafc;
     }
 
     .chat-row {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       max-width: 90%;
-      animation: fadeIn 0.25s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .chat-row.user {
@@ -822,13 +964,13 @@
     }
 
     .chat-avatar {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       flex-shrink: 0;
     }
@@ -836,7 +978,6 @@
     .chat-row.bot .chat-avatar {
       background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
       color: white;
-      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
     }
 
     .chat-row.user .chat-avatar {
@@ -847,73 +988,60 @@
     .chat-bubble-card {
       background: white;
       border: 1px solid var(--surface-border);
-      padding: 14px 16px;
-      border-radius: 16px 16px 16px 4px;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      box-shadow: var(--shadow-sm);
+      padding: 12px 14px;
+      border-radius: 14px 14px 14px 4px;
+      font-size: 0.86rem;
+      line-height: 1.5;
       color: var(--text-main);
+      box-shadow: var(--shadow-sm);
     }
 
     .chat-row.user .chat-bubble-card {
       background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
       color: white;
       border: none;
-      border-radius: 16px 16px 4px 16px;
-      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
-    }
-
-    .chat-bubble-card p {
-      margin-bottom: 8px;
-    }
-
-    .chat-bubble-card p:last-child {
-      margin-bottom: 0;
+      border-radius: 14px 14px 4px 14px;
     }
 
     .reasoning-terminal {
-      margin-top: 12px;
+      margin-top: 10px;
       background: #091427;
       border: 1px solid #1e293b;
       border-radius: var(--radius-sm);
-      font-size: 0.76rem;
-      overflow: hidden;
+      font-size: 0.74rem;
       color: #cbd5e1;
+      overflow: hidden;
     }
 
     .reasoning-header-bar {
       background: #111e38;
-      padding: 7px 12px;
+      padding: 6px 10px;
       font-weight: 700;
       color: #60a5fa;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       user-select: none;
     }
 
     .reasoning-body {
-      padding: 10px 12px;
+      padding: 8px 10px;
       font-family: monospace;
-      color: #e2e8f0;
-      line-height: 1.45;
       white-space: pre-wrap;
     }
 
     .chat-embedded-action {
-      margin-top: 12px;
+      margin-top: 10px;
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-md);
       background: white;
-      padding: 14px;
-      box-shadow: var(--shadow-sm);
+      padding: 12px;
     }
 
     .action-button-group {
       display: flex;
-      gap: 8px;
-      margin-top: 12px;
+      gap: 6px;
+      margin-top: 10px;
       flex-wrap: wrap;
     }
 
@@ -921,33 +1049,22 @@
       background: var(--primary-subtle);
       color: var(--primary);
       border: 1px solid var(--primary-border);
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: var(--radius-sm);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .copilot-action-btn:hover {
-      background: #dbeafe;
-      transform: translateY(-1px);
-    }
-
-    .copilot-action-btn.danger {
-      background: var(--danger-light);
-      color: var(--danger);
-      border-color: #fecaca;
-    }
+    .copilot-action-btn:hover { background: #dbeafe; }
+    .copilot-action-btn.danger { background: var(--danger-light); color: var(--danger); border-color: #fecaca; }
 
     .quick-chips-tray {
-      padding: 10px 16px;
+      padding: 8px 14px;
       background: var(--surface-subtle);
       display: flex;
-      gap: 8px;
+      gap: 6px;
       overflow-x: auto;
       border-top: 1px solid var(--surface-border);
       flex-shrink: 0;
@@ -956,212 +1073,300 @@
     .copilot-chip {
       background: white;
       border: 1px solid var(--surface-border);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: var(--radius-full);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--primary);
       white-space: nowrap;
       cursor: pointer;
       font-weight: 700;
       transition: var(--transition);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
     }
 
-    .copilot-chip:hover {
-      background: var(--primary-subtle);
-      border-color: #93c5fd;
-      transform: translateY(-1px);
-    }
+    .copilot-chip:hover { background: var(--primary-subtle); border-color: #93c5fd; }
 
     .chat-input-dock {
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: white;
       border-top: 1px solid var(--surface-border);
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
       flex-shrink: 0;
     }
 
     .copilot-text-input {
       flex: 1;
-      padding: 12px 18px;
+      padding: 10px 16px;
       border: 1.5px solid var(--surface-border);
       border-radius: var(--radius-full);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       outline: none;
-      transition: var(--transition);
       background: #f8fafc;
     }
 
-    .copilot-text-input:focus {
-      background: white;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
-    }
+    .copilot-text-input:focus { background: white; border-color: var(--primary); }
 
     .copilot-send-button {
       background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
       color: white;
       border: none;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      transition: var(--transition);
-      box-shadow: 0 4px 10px rgba(30, 64, 175, 0.35);
+      font-size: 0.95rem;
       flex-shrink: 0;
     }
 
-    .copilot-send-button:hover {
-      transform: scale(1.05);
-    }
-
-    .dispute-live-banner {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-      display: none;
-    }
-
-    /* 5. MODAL STYLES (LOGIN & REGISTER) */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(9, 20, 39, 0.7);
-      backdrop-filter: blur(6px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-
-    .auth-modal-card {
-      background: white;
+    /* CARD PANELS & TABLES */
+    .section-card-panel {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
       border-radius: var(--radius-lg);
-      width: 90%;
-      max-width: 480px;
-      box-shadow: var(--shadow-xl);
-      border: 1px solid var(--surface-border);
-      overflow: hidden;
-      animation: modalPop 0.25s ease-out;
-    }
-
-    @keyframes modalPop {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .modal-header-tab {
-      display: flex;
-      background: #091427;
-      color: white;
-    }
-
-    .modal-tab-btn {
-      flex: 1;
-      padding: 14px;
-      border: none;
-      background: transparent;
-      color: #94a3b8;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      border-bottom: 3px solid transparent;
-    }
-
-    .modal-tab-btn.active {
-      color: white;
-      border-bottom-color: #3b82f6;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .modal-body-padding {
       padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
     }
 
-    .user-list-select {
+    .section-header-row {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 320px;
-      overflow-y: auto;
-    }
-
-    .user-select-row {
-      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: var(--transition);
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 12px;
     }
 
-    .user-select-row:hover {
-      background: var(--primary-subtle);
-      border-color: var(--primary-border);
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 6px;
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--text-main);
     }
 
-    .form-control {
+    .styled-table {
       width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .styled-table th {
+      background: var(--surface-subtle);
       padding: 10px 14px;
-      border: 1.5px solid var(--surface-border);
-      border-radius: var(--radius-sm);
-      font-size: 0.88rem;
-      outline: none;
-      transition: var(--transition);
+      text-align: left;
+      font-weight: 700;
+      color: var(--text-secondary);
+      border-bottom: 1.5px solid var(--surface-border);
     }
 
-    .form-control:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-subtle);
+    .styled-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: var(--text-main);
     }
 
-    .submit-auth-btn {
-      width: 100%;
-      background: var(--primary);
+    .styled-table tr:hover { background: #f8fafc; }
+
+    .form-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-action-primary {
+      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
       color: white;
       border: none;
-      padding: 12px;
+      padding: 10px 20px;
       border-radius: var(--radius-sm);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
-      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .submit-auth-btn:hover {
-      background: var(--primary-hover);
+    .btn-action-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3); }
+
+    .success-toast-banner {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #047857;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .user-directory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .user-profile-card {
+      background: white;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .user-profile-card:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .token-display-box {
+      background: #091427;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .token-digits {
+      font-family: monospace;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 8px;
+      color: #38bdf8;
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. LEFT SIDEBAR NAVIGATION -->
+  <!-- AUTHENTICATION GATEWAY SCREEN -->
+  <div id="auth-gateway-screen">
+    <div class="auth-card-panel">
+      <div class="auth-brand-header">
+        <div class="auth-lang-switch-top">
+          <button class="auth-lang-btn active" id="auth-btn-km" onclick="setLanguage('km')">🇰🇭 ខ្មែរ</button>
+          <button class="auth-lang-btn" id="auth-btn-en" onclick="setLanguage('en')">🇬🇧 EN</button>
+        </div>
+        <div class="auth-logo-badge">🔑</div>
+        <h2 style="font-size:1.3rem; font-weight:800; letter-spacing:-0.3px;">KEY BANK</h2>
+        <p style="font-size:0.78rem; color:#93c5fd; margin-top:4px;" id="auth-sub-title">ច្រកទ្វារសេវាធនាគារឌីជីថលសុវត្ថិភាព</p>
+      </div>
+
+      <div class="auth-tabs-row">
+        <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">🔑 ចូលគណនី</button>
+        <button class="auth-tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">➕ បង្កើតគណនីថ្មី</button>
+      </div>
+
+      <div class="auth-body-container">
+        <div class="auth-alert-box" id="auth-error-alert"></div>
+
+        <form id="signin-form" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group-field">
+            <label id="lbl-login-user">ឈ្មោះគណនី:</label>
+            <div class="input-with-icon">
+              <span class="input-icon-prefix">👤</span>
+              <input type="text" id="login-username" class="input-control-styled" placeholder="បញ្ចូលឈ្មោះគណនី" required autocomplete="username" />
+            </div>
+          </div>
+
+          <div class="form-group-field">
+            <label id="lbl-login-pass">ពាក្យសម្ងាត់:</label>
+            <div class="input-with-icon">
+              <span class="input-icon-prefix">🔒</span>
+              <input type="password" id="login-password" class="input-control-styled" placeholder="បញ្ចូលពាក្យសម្ងាត់" required autocomplete="current-password" />
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" id="btn-submit-login">
+            🔐 ចូលទៅកាន់ប្រព័ន្ធ
+          </button>
+        </form>
+
+        <form id="register-form" onsubmit="handleRegisterSubmit(event)" style="display:none;">
+          <div class="form-group-field">
+            <label id="lbl-reg-name">ឈ្មោះពេញ:</label>
+            <div class="input-with-icon">
+              <span class="input-icon-prefix">📝</span>
+              <input type="text" id="reg-fullname" class="input-control-styled" placeholder="ឧ. លោក សុខ តារា" required />
+            </div>
+          </div>
+
+          <div class="form-group-field">
+            <label id="lbl-reg-email">អ៊ីមែល:</label>
+            <div class="input-with-icon">
+              <span class="input-icon-prefix">✉️</span>
+              <input type="email" id="reg-email" class="input-control-styled" placeholder="sok.dara@keybank.com" required />
+            </div>
+          </div>
+
+          <div class="form-group-field">
+            <label id="lbl-reg-user">ឈ្មោះគណនី:</label>
+            <div class="input-with-icon">
+              <span class="input-icon-prefix">👤</span>
+              <input type="text" id="reg-username" class="input-control-styled" placeholder="sok_dara" required />
+            </div>
+          </div>
+
+          <div class="form-group-field">
+            <label id="lbl-reg-pass">ពាក្យសម្ងាត់:</label>
+            <div class="input-with-icon">
+              <span class="input-icon-prefix">🔒</span>
+              <input type="password" id="reg-password" class="input-control-styled" placeholder="បង្កើតពាក្យសម្ងាត់" required />
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" id="btn-submit-reg" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+            ✨ ចុះឈ្មោះ និងចូលគណនី
+          </button>
+        </form>
+
+        <div class="quick-autofill-box">
+          <div class="autofill-header" id="txt-demo-header">
+            ⚡ គណនីគំរូ និងពាក្យសម្ងាត់ (Password@123)
+          </div>
+
+          <div class="quick-user-grid">
+            <div class="user-pill-shortcut" onclick="autofillLogin('sophanith', 'Password@123')">
+              <span>👑</span> <span>Sophanith (Admin)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('ravith', 'Password@123')">
+              <span>💰</span> <span>Ravith (Finance)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('phirek', 'Password@123')">
+              <span>📈</span> <span>Phirek (Marketing)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('sokny', 'Password@123')">
+              <span>💻</span> <span>Sokny (IT Mgr)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('vathanakboth', 'Password@123')">
+              <span>🤝</span> <span>Vathanakboth (Sales)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('panha_n', 'Password@123')">
+              <span>📋</span> <span>N. Panha (Officer)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('panha_c', 'Password@123')">
+              <span>👥</span> <span>C. Panha (HR Mgr)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('nisa', 'Password@123')">
+              <span>📣</span> <span>Nisa (Mkt Officer)</span>
+            </div>
+            <div class="user-pill-shortcut" onclick="autofillLogin('customer', 'Password@123')" style="grid-column: span 2;">
+              <span>👤</span> <span>Alex Morgan (Customer)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div>
       <div class="sidebar-header">
@@ -1169,91 +1374,80 @@
           <div class="brand-logo-icon">🔑</div>
           <div class="brand-names">
             <h2>KEY BANK</h2>
-            <span id="txt-sub-brand">Premier Banking</span>
+            <span id="txt-sub-brand">សេវាធនាគារឌីជីថល</span>
           </div>
         </a>
       </div>
 
       <nav class="sidebar-menu">
-        <div class="menu-label" id="txt-nav-main">Main Menu</div>
-        <div class="nav-item active">
+        <div class="menu-label" id="txt-nav-main">មឺនុយចម្បង</div>
+        
+        <div class="nav-item active" id="nav-dashboard-item" onclick="switchMainView('view-dashboard')">
           <span class="nav-icon">📊</span>
-          <span id="nav-dashboard">Dashboard (ផ្ទាំងដើម)</span>
+          <span id="nav-dashboard">ផ្ទាំងគ្រប់គ្រង</span>
         </div>
-        <div class="nav-item">
+        
+        <div class="nav-item" id="nav-cards-item" onclick="switchMainView('view-cards')">
           <span class="nav-icon">💳</span>
-          <span id="nav-cards">Cards & Accounts (កាត)</span>
+          <span id="nav-cards">កាត និងគណនី</span>
         </div>
-        <div class="nav-item">
+        
+        <div class="nav-item" id="nav-transfers-item" onclick="switchMainView('view-transfers')">
           <span class="nav-icon">💸</span>
-          <span id="nav-transfers">Transfers & Pay (ផ្ទេរប្រាក់)</span>
+          <span id="nav-transfers">ផ្ទេរប្រាក់ និងទូទាត់</span>
         </div>
-        <div class="nav-item">
+        
+        <div class="nav-item" id="nav-disputes-item" onclick="switchMainView('view-disputes')">
           <span class="nav-icon">📋</span>
-          <span id="nav-disputes">Disputes & Fraud (ការតវ៉ា)</span>
+          <span id="nav-disputes">ការតវ៉ា និងករណីបន្លំ</span>
           <span class="nav-badge" id="nav-dispute-badge">1</span>
         </div>
 
-        <div class="menu-label" id="txt-nav-system">Security & Support</div>
-        <div class="nav-item" onclick="openAuthModal()">
+        <div class="menu-label" id="txt-nav-system">សុវត្ថិភាព និងការគាំទ្រ</div>
+        
+        <div class="nav-item" id="nav-directory-item" onclick="switchMainView('view-directory')">
           <span class="nav-icon">👥</span>
-          <span id="nav-users">User Directory (បុគ្គលិក)</span>
+          <span id="nav-directory">បញ្ជីឈ្មោះបុគ្គលិក</span>
         </div>
-        <div class="nav-item">
+
+        <div class="nav-item" id="nav-security-item" onclick="switchMainView('view-security')">
           <span class="nav-icon">🛡️</span>
-          <span id="nav-security">2FA & Security</span>
+          <span id="nav-security">ប្រព័ន្ធសុវត្ថិភាព 2FA</span>
         </div>
-        <div class="nav-item">
+        
+        <div class="nav-item" id="nav-settings-item" onclick="switchMainView('view-settings')">
           <span class="nav-icon">⚙️</span>
-          <span id="nav-settings">Settings (ការកំណត់)</span>
+          <span id="nav-settings">ការកំណត់</span>
         </div>
       </nav>
     </div>
 
-    <!-- Bottom User Profile Pill (Opens Switcher) -->
     <div class="sidebar-footer">
-      <div class="user-profile-widget" onclick="openAuthModal()" title="Click to Switch Profile / Login">
+      <div class="user-profile-widget">
         <div class="user-avatar-lg" id="sidebar-user-avatar" style="background: linear-gradient(135deg, #1e40af 0%, #1e1b4b 100%);">SY</div>
         <div class="user-meta-info">
           <div class="user-name-title" id="sidebar-user-name">Mr. Sophanith Yorn</div>
-          <div class="user-tier-badge" id="sidebar-user-role">Administrator</div>
+          <div class="user-tier-badge" id="sidebar-user-role">អគ្គនាយកគ្រប់គ្រងប្រព័ន្ធ</div>
         </div>
       </div>
     </div>
   </aside>
 
-  <!-- 2. MAIN WORKSPACE AREA -->
+  <!-- MAIN WORKSPACE -->
   <div class="app-workspace">
-    
-    <!-- Top Header Bar -->
     <header class="top-header">
       <div class="header-greeting">
-        <div class="greeting-title" id="txt-greeting">Good morning, Mr. Sophanith Yorn 👋</div>
+        <div class="greeting-title" id="txt-greeting">សូមជម្រាបសួរ លោក យន សុផានីត 👋</div>
         <div class="role-badge-pill" id="header-role-pill">
-          <span>👑</span> <span id="txt-active-role-label">Administrator (អគ្គនាយកគ្រប់គ្រង)</span>
+          <span>👑</span> <span id="txt-active-role-label">អគ្គនាយកគ្រប់គ្រងប្រព័ន្ធ</span>
         </div>
       </div>
 
       <div class="header-actions">
-        <!-- Quick Role Switcher -->
-        <select class="role-select-dropdown" id="quick-role-select" onchange="switchUserRole(this.value)">
-          <option value="sophanith">👑 Mr. Sophanith Yorn (Administrator)</option>
-          <option value="ravith">💰 Vn. Voeun Ravith (Finance Manager)</option>
-          <option value="phirek">📈 Vn. Hon Phirek (Marketing Manager)</option>
-          <option value="sokny">💻 Mr. San Sokny (IT Manager)</option>
-          <option value="vathanakboth">🤝 Mr. Ly Vathanakboth (Sale Manager)</option>
-          <option value="panha_n">📋 Mr. Noeun Panha (Sale Officer)</option>
-          <option value="panha_c">👥 Ms. Chea Panha (HR Manager)</option>
-          <option value="nisa">📣 Ms. Na Nisa (Marketing Officer)</option>
-          <option value="customer">👤 Alex Morgan (Retail Customer)</option>
-        </select>
-
-        <!-- Auth Button -->
-        <button class="auth-btn-pill" onclick="openAuthModal()">
-          <span>🔑</span> <span id="btn-login-modal">Login / Register</span>
+        <button class="logout-btn-styled" onclick="handleLogout()">
+          <span>🔒</span> <span id="btn-logout-txt">ចាកចេញ</span>
         </button>
 
-        <!-- Language Switcher -->
         <div class="lang-switcher-pill">
           <button class="lang-toggle-btn active" id="btn-km" onclick="setLanguage('km')">🇰🇭 ភាសាខ្មែរ</button>
           <button class="lang-toggle-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 English</button>
@@ -1261,267 +1455,388 @@
       </div>
     </header>
 
-    <!-- Split View (Dashboard + Copilot) -->
-    <div class="dashboard-content-split">
-      
-      <!-- LEFT: BANKING SERVICE DASHBOARD -->
-      <section class="banking-canvas">
-        
-        <!-- Net Worth Banner -->
-        <div class="net-worth-banner">
-          <div class="banner-top-row">
-            <div>
-              <div class="banner-title-label" id="txt-total-assets">Total Liquid Assets (ទ្រព្យសកម្មសរុប)</div>
-              <div class="banner-total-amount">$32,970.50</div>
+    <!-- VIEW 1: DASHBOARD -->
+    <div id="view-dashboard" class="view-content-wrapper active">
+      <div class="dashboard-split-grid">
+        <section class="banking-canvas">
+          <div class="net-worth-banner">
+            <div class="banner-top-row">
+              <div>
+                <div class="banner-title-label" id="txt-total-assets">ទ្រព្យសកម្មសរុប</div>
+                <div class="banner-total-amount" id="dash-total-net">$32,970.50</div>
+              </div>
+              <div>
+                <span style="background:rgba(255,255,255,0.15); font-size:0.75rem; padding:4px 10px; border-radius:20px;">
+                  ● KEY Core Live
+                </span>
+              </div>
             </div>
-            <div style="text-align: right;">
-              <span style="background:rgba(255,255,255,0.15); font-size:0.75rem; padding:4px 10px; border-radius:20px;">
-                ● KEY Core Synced
-              </span>
+
+            <div class="quick-transfer-bar">
+              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'ពិនិត្យសមតុល្យគណនី' : 'Check my balances')">
+                <span>💳</span> <span id="btn-qa-balance">ពិនិត្យសមតុល្យ</span>
+              </button>
+              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'ហេតុអ្វីមានការកាត់ប្រាក់ ៣២៩ ដុល្លារនៅឡុងដ៍?' : 'Why was I charged $329 in London?')">
+                <span>🔍</span> <span id="btn-qa-dispute">ប្រតិបត្តិការសង្ស័យ</span>
+              </button>
+              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
+                <span>🔒</span> <span id="btn-qa-freeze">គ្រប់គ្រងកាត</span>
+              </button>
+              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'តើថ្លៃផ្ទេរប្រាក់ទៅក្រៅប្រទេសប៉ុន្មាន?' : 'What are wire transfer fees?')">
+                <span>📄</span> <span id="btn-qa-fees">ថ្លៃសេវាធនាគារ</span>
+              </button>
             </div>
           </div>
 
-          <div class="quick-transfer-bar">
-            <button class="quick-action-pill" onclick="sendPrompt('Check my balances')">
-              <span>💳</span> <span id="btn-qa-balance">View Balances</span>
-            </button>
-            <button class="quick-action-pill" onclick="sendPrompt('Why was I charged $329 in London?')">
-              <span>🔍</span> <span id="btn-qa-dispute">Flagged Charge</span>
-            </button>
-            <button class="quick-action-pill" onclick="sendPrompt('Freeze my Visa card')">
-              <span>🔒</span> <span id="btn-qa-freeze">Card Controls</span>
-            </button>
-            <button class="quick-action-pill" onclick="sendPrompt('What are wire transfer fees?')">
-              <span>📄</span> <span id="btn-qa-fees">Fee Schedule</span>
-            </button>
+          <div class="accounts-overview-grid">
+            <div class="account-summary-card">
+              <div class="acc-header">
+                <span class="acc-badge checking" id="txt-chk-badge">គណនីចរន្តទូទៅ</span>
+                <span style="font-size:0.74rem; color:#64748b;">•••• 9812</span>
+              </div>
+              <div class="acc-balance-big" id="chk-bal">$4,520.50</div>
+              <div style="font-size:0.75rem; color:#64748b; margin-top:8px;" id="txt-chk-desc">
+                ⚡ អាចដកប្រាក់ ឬទូទាត់បានភ្លាមៗ
+              </div>
+            </div>
+
+            <div class="account-summary-card">
+              <div class="acc-header">
+                <span class="acc-badge savings" id="txt-sav-badge">គណនីសន្សំការប្រាក់ខ្ពស់</span>
+                <span style="font-size:0.74rem; color:#059669; font-weight:700;">+4.75% APY</span>
+              </div>
+              <div class="acc-balance-big" id="sav-bal">$28,450.00</div>
+              <div style="font-size:0.75rem; color:#059669; margin-top:8px;" id="txt-sav-desc">
+                📈 ទទួលបានការប្រាក់ជាប្រចាំ
+              </div>
+            </div>
           </div>
+
+          <div class="card-management-widget">
+            <div style="font-size:0.86rem; font-weight:800; color:#0f172a; margin-bottom:14px;" id="txt-card-sec-title">
+              កាតទូទាត់ចម្បង និងការបញ្ជាសុវត្ថិភាព
+            </div>
+
+            <div class="card-widget-layout">
+              <div class="emv-card">
+                <div class="emv-top">
+                  <div class="emv-chip-gold"></div>
+                  <div class="card-status-pill active" id="card-status-badge">● សកម្ម</div>
+                </div>
+                <div class="emv-number">•••• •••• •••• 7711</div>
+                <div class="emv-bottom">
+                  <div>
+                    <div style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase;" id="lbl-cardholder">ម្ចាស់កាត</div>
+                    <div style="font-size:0.85rem; font-weight:700;" id="cardholder-name-display">MR. SOPHANITH YORN</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-size:0.65rem; color:#94a3b8;" id="lbl-travel-status">ស្ថានភាពធ្វើដំណើរ</div>
+                    <div style="font-size:0.75rem; font-weight:700;" id="card-travel-status">ភ្ជាប់គណនី (*9812)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-quick-actions">
+                <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
+                  <span>🔒 <strong id="btn-toggle-freeze">បង្កក ឬដោះសោកាត</strong></span>
+                  <span style="color:#2563eb;">→</span>
+                </div>
+                <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'កំណត់ការជូនដំណឹងធ្វើដំណើរទៅប្រទេសជប៉ុន' : 'Set a travel notice for Japan')">
+                  <span>✈️ <strong id="btn-travel-notice">កំណត់ការធ្វើដំណើរ</strong></span>
+                  <span style="color:#2563eb;">→</span>
+                </div>
+                <div class="card-control-btn" onclick="switchMainView('view-cards')">
+                  <span>⚙️ <strong id="btn-more-card-opts">ការគ្រប់គ្រងលម្អិត</strong></span>
+                  <span style="color:#2563eb;">→</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="transactions-panel">
+            <div class="txn-header-row">
+              <span style="font-size:0.86rem; font-weight:800; color:#0f172a;" id="txt-recent-title">សកម្មភាពប្រតិបត្តិការថ្មីៗ</span>
+              <span style="font-size:0.74rem; color:#64748b;" id="txt-txn-count">ប្រតិបត្តិការ ៤ ចុងក្រោយ</span>
+            </div>
+            <div class="txn-list" id="dashboard-txn-container"></div>
+          </div>
+        </section>
+
+        <!-- COPILOT PANEL -->
+        <section class="copilot-container">
+          <div class="copilot-top-bar">
+            <div class="copilot-brand-title">
+              <div class="copilot-sparkle-logo">✨</div>
+              <div>
+                <div style="font-size:0.95rem; font-weight:800;" id="copilot-title">ជំនួយការ AI ធនាគារ KEY Bank</div>
+                <div style="font-size:0.72rem; color:#94a3b8;" id="copilot-sub">Microsoft Copilot Studio Generative Agent</div>
+              </div>
+            </div>
+            <div class="copilot-active-pill">
+              <span class="pulse-dot"></span> <span id="txt-agent-active">កំពុងដំណើរការ</span>
+            </div>
+          </div>
+
+          <div class="chat-messages-scroll" id="chat-stream">
+            <div class="chat-row bot" id="initial-welcome-msg">
+              <div class="chat-avatar">🤖</div>
+              <div class="chat-bubble-card" id="welcome-text">
+                <p><strong>សូមគោរពជម្រាបសួរ លោក យន សុផានីត!</strong></p>
+                <p style="margin-top:6px;">ខ្ញុំជា <strong>ជំនួយការ AI ស្វ័យប្រវត្តិនៃធនាគារ KEY Bank</strong>។ ខ្ញុំបានត្រៀមរួចរាល់ក្នុងការជួយលោកអ្នកលើការគ្រប់គ្រងគណនី, សវនកម្មប្រតិបត្តិការ, និងការបញ្ជាប្រព័ន្ធសុវត្ថិភាព។</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-chips-tray" id="prompts-container"></div>
+
+          <div class="chat-input-dock">
+            <input type="text" id="user-input" class="copilot-text-input" placeholder="សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់..." onkeypress="handleKey(event)" />
+            <button class="copilot-send-button" onclick="submitMessage()">➤</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- VIEW 2: CARDS & ACCOUNTS -->
+    <div id="view-cards" class="view-content-wrapper">
+      <div class="section-card-panel">
+        <div class="section-header-row">
+          <div class="section-title" id="title-cards-page">ការគ្រប់គ្រងកាត និងគណនី</div>
+          <button class="btn-action-primary" onclick="toggleCardFreeze()">
+            <span>🔒</span> <span id="btn-cards-freeze-action">បង្កក / ដោះសោកាត</span>
+          </button>
         </div>
 
-        <!-- Accounts Grid -->
-        <div class="accounts-overview-grid">
-          <div class="account-summary-card">
-            <div class="acc-header">
-              <span class="acc-badge checking" id="txt-chk-badge">Everyday Checking</span>
-              <span style="font-size:0.74rem; color:#64748b;">•••• 9812</span>
-            </div>
-            <div class="acc-balance-big" id="chk-bal">$4,520.50</div>
-            <div style="font-size:0.75rem; color:#64748b; margin-top:8px;" id="txt-chk-desc">
-              ⚡ Available for immediate withdrawal
-            </div>
-          </div>
-
-          <div class="account-summary-card">
-            <div class="acc-header">
-              <span class="acc-badge savings" id="txt-sav-badge">High-Yield Savings</span>
-              <span style="font-size:0.74rem; color:#059669; font-weight:700;">+4.75% APY</span>
-            </div>
-            <div class="acc-balance-big" id="sav-bal">$28,450.00</div>
-            <div style="font-size:0.75rem; color:#059669; margin-top:8px;" id="txt-sav-desc">
-              📈 Active interest compound
-            </div>
-          </div>
-        </div>
-
-        <!-- Virtual Card Management -->
-        <div class="card-management-widget">
-          <div style="font-size:0.86rem; font-weight:800; color:#0f172a; margin-bottom:14px;" id="txt-card-sec-title">
-            Primary Payment Card & Controls (ការគ្រប់គ្រងកាត)
-          </div>
-
-          <div class="card-widget-layout">
-            <div class="emv-card">
+        <div class="form-grid-2col" style="margin-bottom:24px;">
+          <div>
+            <h4 style="margin-bottom:12px;" id="lbl-card-info">ព័ត៌មានកាតទូទាត់</h4>
+            <div class="emv-card" style="max-width:340px;">
               <div class="emv-top">
                 <div class="emv-chip-gold"></div>
-                <div class="card-status-pill active" id="card-status-badge">● ACTIVE</div>
+                <div class="card-status-pill active" id="page-card-status">● សកម្ម</div>
               </div>
               <div class="emv-number">•••• •••• •••• 7711</div>
               <div class="emv-bottom">
                 <div>
-                  <div style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase;">Cardholder</div>
-                  <div style="font-size:0.85rem; font-weight:700;" id="cardholder-name-display">MR. SOPHANITH YORN</div>
+                  <div style="font-size:0.65rem; color:#94a3b8;">CARDHOLDER</div>
+                  <div style="font-size:0.85rem; font-weight:700;" id="page-cardholder-name">MR. SOPHANITH YORN</div>
                 </div>
                 <div style="text-align: right;">
-                  <div style="font-size:0.65rem; color:#94a3b8;">TRAVEL STATUS</div>
-                  <div style="font-size:0.75rem; font-weight:700;" id="card-travel-status">Linked (...9812)</div>
+                  <div style="font-size:0.65rem; color:#94a3b8;">EXPIRY</div>
+                  <div style="font-size:0.85rem; font-weight:700;">08/29</div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="card-quick-actions">
-              <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
-                <span>🔒 <strong id="btn-toggle-freeze">Freeze / Lock Card</strong></span>
-                <span style="color:#2563eb;">→</span>
-              </div>
-              <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'កំណត់ការជូនដំណឹងធ្វើដំណើរទៅប្រទេសជប៉ុន' : 'Set a travel notice for Japan')">
-                <span>✈️ <strong id="btn-travel-notice">Set Travel Notice</strong></span>
-                <span style="color:#2563eb;">→</span>
-              </div>
-              <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'តើថ្លៃផ្ទេរប្រាក់ទៅក្រៅប្រទេសប៉ុន្មាន?' : 'What is the international wire transfer fee?')">
-                <span>📄 <strong id="btn-card-limits">Card & ATM Limits</strong></span>
-                <span style="color:#2563eb;">→</span>
-              </div>
+          <div>
+            <h4 style="margin-bottom:12px;" id="lbl-travel-notice-form">កំណត់ការធ្វើដំណើរទៅក្រៅប្រទេស</h4>
+            <div class="form-group-field">
+              <label id="lbl-dest-country">ប្រទេសគោលដៅ:</label>
+              <input type="text" id="travel-country" class="input-control-styled" value="Japan" style="padding-left:14px;" />
             </div>
+            <div class="form-group-field">
+              <label id="lbl-travel-duration">កាលបរិច្ឆេទ:</label>
+              <input type="text" id="travel-dates" class="input-control-styled" value="10 Oct 2026 - 25 Oct 2026" style="padding-left:14px;" />
+            </div>
+            <button class="btn-action-primary" onclick="submitTravelNotice()">
+              <span>✈️</span> <span id="btn-save-travel">រក្សាទុកការជូនដំណឹងធ្វើដំណើរ</span>
+            </button>
+            <div id="travel-saved-msg" class="success-toast-banner" style="margin-top:10px;"></div>
           </div>
         </div>
 
-        <!-- Live Dispute Notification Box -->
-        <div id="dispute-box" class="dispute-live-banner">
-          <div style="font-size:0.85rem; font-weight:800; color:#1e40af; display:flex; align-items:center; gap:6px;">
-            <span>📋</span> <span id="dispute-title">Active Fraud Dispute Under Review</span>
-          </div>
-          <div id="dispute-info" style="font-size:0.8rem; color:#0f172a; margin-top:4px;"></div>
-        </div>
-
-        <!-- Recent Transactions -->
-        <div class="transactions-panel">
-          <div class="txn-header-row">
-            <span style="font-size:0.86rem; font-weight:800; color:#0f172a;" id="txt-recent-title">Recent Activity (ប្រតិបត្តិការថ្មីៗ)</span>
-            <span style="font-size:0.74rem; color:#64748b;" id="txt-txn-count">Last 4 Transactions</span>
-          </div>
-
-          <div class="txn-list">
-            <div class="txn-item">
-              <div class="txn-left-col">
-                <div class="txn-icon-box">🛒</div>
-                <div>
-                  <div class="txn-merchant-name">Whole Foods Market #102</div>
-                  <div class="txn-subtext" id="txn-sub1">Today • Groceries</div>
-                </div>
-              </div>
-              <div class="txn-amount-col">
-                <div class="txn-amount-val negative">-$84.32</div>
-                <div class="txn-subtext">Completed</div>
-              </div>
-            </div>
-
-            <div class="txn-item">
-              <div class="txn-left-col">
-                <div class="txn-icon-box">🚗</div>
-                <div>
-                  <div class="txn-merchant-name">Uber Technologies Inc</div>
-                  <div class="txn-subtext" id="txn-sub2">Yesterday • Transport</div>
-                </div>
-              </div>
-              <div class="txn-amount-col">
-                <div class="txn-amount-val negative">-$24.50</div>
-                <div class="txn-subtext">Completed</div>
-              </div>
-            </div>
-
-            <div class="txn-item flagged-suspect">
-              <div class="txn-left-col">
-                <div class="txn-icon-box warning">⚠️</div>
-                <div>
-                  <div class="txn-merchant-name">Unknown Online Retailer - London UK</div>
-                  <div class="txn-subtext" style="color:#b45309;" id="txn-sub3">2 days ago • Cross-Border Flagged</div>
-                </div>
-              </div>
-              <div class="txn-amount-col">
-                <div class="txn-amount-val negative" style="color:#dc2626;">-$329.99</div>
-                <div class="txn-subtext" style="color:#b45309; font-weight:700;">Needs Review</div>
-              </div>
-            </div>
-
-            <div class="txn-item">
-              <div class="txn-left-col">
-                <div class="txn-icon-box" style="background:#ecfdf5; color:#059669;">💼</div>
-                <div>
-                  <div class="txn-merchant-name">Direct Deposit - KEY Payroll Disburse</div>
-                  <div class="txn-subtext" id="txn-sub4">Sep 26 • Executive Payroll</div>
-                </div>
-              </div>
-              <div class="txn-amount-col">
-                <div class="txn-amount-val positive">+$3,200.00</div>
-                <div class="txn-subtext">Settled</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- RIGHT: COPILOT STUDIO AI SPECIALIST -->
-      <section class="copilot-container">
-        
-        <div class="copilot-top-bar">
-          <div class="copilot-brand-title">
-            <div class="copilot-sparkle-logo">✨</div>
-            <div>
-              <div style="font-size:0.95rem; font-weight:800;" id="copilot-title">KEY Bank Copilot</div>
-              <div style="font-size:0.72rem; color:#94a3b8;">Microsoft Copilot Studio Generative Agent</div>
-            </div>
-          </div>
-          <div class="copilot-active-pill">
-            <span class="pulse-dot"></span> Agent Active
-          </div>
-        </div>
-
-        <div class="chat-messages-scroll" id="chat-stream">
-          <div class="chat-row bot" id="initial-welcome-msg">
-            <div class="chat-avatar">🤖</div>
-            <div class="chat-bubble-card" id="welcome-text">
-              <p><strong>សូមគោរពជម្រាបសួរ លោក យន សុផានីត (Administrator)!</strong></p>
-              <p style="margin-top:6px;">ខ្ញុំជា <strong>ជំនួយការ AI ស្វ័យប្រវត្តិនៃធនាគារ KEY Bank</strong>។ ខ្ញុំបានត្រៀមរួចរាល់ក្នុងការជួយលោកអ្នកលើការគ្រប់គ្រងគណនី, សវនកម្មប្រតិបត្តិការ, និងការបញ្ជាប្រព័ន្ធសុវត្ថិភាព។</p>
-              <p style="margin-top:6px; font-size:0.8rem; color:#64748b;">សូមជ្រើសរើសសំណួរគំរូខាងក្រោមដើម្បីសាកល្បង Demo:</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="quick-chips-tray" id="prompts-container"></div>
-
-        <div class="chat-input-dock">
-          <input type="text" id="user-input" class="copilot-text-input" placeholder="សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់..." onkeypress="handleKey(event)" />
-          <button class="copilot-send-button" onclick="submitMessage()">➤</button>
-        </div>
-
-      </section>
-
+        <h4 style="margin-bottom:12px;" id="title-all-accounts">បញ្ជីគណនីទាំងអស់</h4>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th id="th-acc-id">លេខសម្គាល់គណនី</th>
+              <th id="th-acc-type">ប្រភេទគណនី</th>
+              <th id="th-acc-num">លេខគណនី</th>
+              <th id="th-acc-bal">សមតុល្យប្រើប្រាស់បាន</th>
+              <th id="th-acc-status">ស្ថានភាព</th>
+            </tr>
+          </thead>
+          <tbody id="page-accounts-table-body"></tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <!-- 5. LOGIN & REGISTER MODAL -->
-  <div class="modal-overlay" id="auth-modal" onclick="closeAuthModal(event)">
-    <div class="auth-modal-card" onclick="event.stopPropagation()">
-      <div class="modal-header-tab">
-        <button class="modal-tab-btn active" id="tab-login-btn" onclick="switchModalTab('login')">🔑 User Login (ចូលប្រើប្រាស់)</button>
-        <button class="modal-tab-btn" id="tab-register-btn" onclick="switchModalTab('register')">➕ Register (ចុះឈ្មោះថ្មី)</button>
-      </div>
-
-      <!-- Tab 1: Login List -->
-      <div class="modal-body-padding" id="modal-login-body">
-        <div style="font-size:0.85rem; font-weight:700; margin-bottom:12px; color:#475569;">
-          ជ្រើសរើសគណនីបុគ្គលិក ឬអតិថិជនដើម្បី Login:
+    <!-- VIEW 3: TRANSFERS -->
+    <div id="view-transfers" class="view-content-wrapper">
+      <div class="section-card-panel">
+        <div class="section-header-row">
+          <div class="section-title" id="title-transfer-page">សេវាផ្ទេរប្រាក់ និងទូទាត់រហ័ស</div>
+          <span style="font-size:0.8rem; color:#059669; font-weight:700;">⚡ ផ្ទេរប្រាក់ផ្ទៃក្នុងឥតគិតថ្លៃ (Fee: $0.00)</span>
         </div>
-        <div class="user-list-select" id="login-users-list">
-          <!-- Populated dynamically via JS -->
+
+        <div id="transfer-success-box" class="success-toast-banner"></div>
+
+        <div class="form-grid-2col">
+          <form onsubmit="handleTransferSubmit(event)">
+            <div class="form-group-field">
+              <label id="lbl-source-acc">ពីគណនីប្រភព:</label>
+              <select id="transfer-source" class="input-control-styled" style="padding-left:14px;">
+                <option value="ACC-CHK-9812">Everyday Checking (*9812) - $4,520.50</option>
+                <option value="ACC-SAV-4109">High-Yield Savings (*4109) - $28,450.00</option>
+              </select>
+            </div>
+
+            <div class="form-group-field">
+              <label id="lbl-dest-recipient">អ្នកទទួលប្រាក់ (សមាជិក ឬលេខគណនី):</label>
+              <select id="transfer-recipient" class="input-control-styled" style="padding-left:14px;">
+                <option value="Vn. Voeun Ravith (Finance Mgr)">Vn. Voeun Ravith (Finance Manager)</option>
+                <option value="Mr. San Sokny (IT Mgr)">Mr. San Sokny (IT Manager)</option>
+                <option value="Vn. Hon Phirek (Marketing Mgr)">Vn. Hon Phirek (Marketing Manager)</option>
+                <option value="Mr. Ly Vathanakboth (Sale Mgr)">Mr. Ly Vathanakboth (Sale Manager)</option>
+                <option value="Ms. Chea Panha (HR Mgr)">Ms. Chea Panha (HR Manager)</option>
+                <option value="External Bank / Bakong KHQR">External Bank / Bakong KHQR</option>
+              </select>
+            </div>
+
+            <div class="form-group-field">
+              <label id="lbl-transfer-amount">ចំនួនទឹកប្រាក់ ($ USD):</label>
+              <input type="number" id="transfer-amount" class="input-control-styled" min="1" max="5000" step="0.01" placeholder="100.00" required style="padding-left:14px;" />
+            </div>
+
+            <div class="form-group-field">
+              <label id="lbl-transfer-memo">សម្គាល់ / មូលហេតុ:</label>
+              <input type="text" id="transfer-memo" class="input-control-styled" placeholder="ឧ. ទូទាត់ថ្លៃគម្រោង ឬផ្ទេរប្រាក់បៀវត្សរ៍" style="padding-left:14px;" />
+            </div>
+
+            <button type="submit" class="btn-action-primary" style="width:100%; justify-content:center; padding:12px;">
+              <span>💸</span> <span id="btn-submit-transfer-action">ផ្ទេរប្រាក់ភ្លាមៗ</span>
+            </button>
+          </form>
+
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:var(--radius-md); padding:20px;">
+            <h4 style="margin-bottom:10px; color:#0f172a;" id="title-transfer-policy">គោលការណ៍ផ្ទេរប្រាក់ KEY Bank</h4>
+            <ul style="font-size:0.84rem; line-height:1.7; color:#475569; padding-left:18px;" id="list-transfer-policy">
+              <li>ការផ្ទេរប្រាក់ក្នុងធនាគារ KEY Bank ទទួលបានភ្លាមៗ ២៤/៧ ដោយឥតគិតថ្លៃ។</li>
+              <li>ដែនកំណត់ផ្ទេរប្រាក់ប្រចាំថ្ងៃ: $5,000.00 USD សម្រាប់គណនីធម្មតា។</li>
+              <li>រាល់ការផ្ទេរលើសពី $500.00 នឹងតម្រូវឱ្យមានការបញ្ជាក់ OTP សុវត្ថិភាព។</li>
+            </ul>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Tab 2: Register Form -->
-      <div class="modal-body-padding" id="modal-register-body" style="display:none;">
-        <form onsubmit="handleRegisterSubmit(event)">
-          <div class="form-group">
-            <label>Full Name (ឈ្មោះពេញ):</label>
-            <input type="text" id="reg-name" class="form-control" placeholder="e.g. Mr. Sok Chan" required />
+    <!-- VIEW 4: DISPUTES -->
+    <div id="view-disputes" class="view-content-wrapper">
+      <div class="section-card-panel">
+        <div class="section-header-row">
+          <div class="section-title" id="title-dispute-page">ការគ្រប់គ្រងពាក្យបណ្តឹងតវ៉ា និងករណីបន្លំ</div>
+          <button class="btn-action-primary" onclick="showDisputeModal()">
+            <span>➕</span> <span id="btn-file-dispute-action">ដាក់ពាក្យតវ៉ាថ្មី</span>
+          </button>
+        </div>
+
+        <div id="dispute-create-toast" class="success-toast-banner"></div>
+
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th id="th-dsp-case">លេខសំណុំរឿង</th>
+              <th id="th-dsp-merchant">ហាង / ទីតាំងប្រតិបត្តិការ</th>
+              <th id="th-dsp-amount">ចំនួនទឹកប្រាក់</th>
+              <th id="th-dsp-reason">មូលហេតុនៃការតវ៉ា</th>
+              <th id="th-dsp-credit">ឥណទានបណ្តោះអាសន្ន</th>
+              <th id="th-dsp-status">ស្ថានភាព</th>
+            </tr>
+          </thead>
+          <tbody id="page-disputes-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW 5: USER DIRECTORY -->
+    <div id="view-directory" class="view-content-wrapper">
+      <div class="section-card-panel">
+        <div class="section-header-row">
+          <div>
+            <div class="section-title" id="title-directory-page">បញ្ជីឈ្មោះថ្នាក់ដឹកនាំ និងបុគ្គលិក KEY Bank</div>
+            <p style="font-size:0.8rem; color:#64748b; margin-top:2px;" id="sub-directory-page">គណនីផ្លូវការទាំងអស់ត្រូវបានកំណត់ពាក្យសម្ងាត់សុវត្ថិភាព Password@123</p>
           </div>
-          <div class="form-group">
-            <label>Email Address (អ៊ីមែល):</label>
-            <input type="email" id="reg-email" class="form-control" placeholder="user@keybank.com" required />
+          <span style="font-size:0.8rem; font-weight:700; background:#eff6ff; color:#1d4ed8; padding:4px 10px; border-radius:20px;">
+            9 Accounts Configured
+          </span>
+        </div>
+
+        <div class="user-directory-grid" id="directory-grid-container"></div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: 2FA & SECURITY -->
+    <div id="view-security" class="view-content-wrapper">
+      <div class="section-card-panel">
+        <div class="section-header-row">
+          <div class="section-title" id="title-security-page">ប្រព័ន្ធសុវត្ថិភាព និងការផ្ទៀងផ្ទាត់ 2FA</div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div>
+            <h4 style="margin-bottom:12px;" id="title-totp-token">លេខកូដសុវត្ថិភាពផ្ទាល់ (Live Authenticator Token)</h4>
+            <div class="token-display-box">
+              <div style="font-size:0.75rem; color:#93c5fd; text-transform:uppercase;" id="lbl-totp-sub">KEY Secure Time-Based OTP (TOTP)</div>
+              <div class="token-digits" id="totp-code-display">849 201</div>
+              <div style="font-size:0.75rem; color:#cbd5e1;">
+                <span id="txt-token-refresh">ផ្លាស់ប្តូរលេខកូដក្នុងរយៈពេល</span> <strong id="token-timer" style="color:#38bdf8;">25s</strong>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Username (ឈ្មោះគណនី):</label>
-            <input type="text" id="reg-username" class="form-control" placeholder="sok_chan" required />
+
+          <div>
+            <h4 style="margin-bottom:12px;" id="title-change-password">ផ្លាស់ប្តូរពាក្យសម្ងាត់</h4>
+            <div id="pwd-change-msg" class="success-toast-banner"></div>
+            <form onsubmit="handleChangePasswordSubmit(event)">
+              <div class="form-group-field">
+                <label id="lbl-old-pass">ពាក្យសម្ងាត់បច្ចុប្បន្ន:</label>
+                <input type="password" id="sec-old-pass" class="input-control-styled" placeholder="បញ្ចូលពាក្យសម្ងាត់បច្ចុប្បន្ន" required style="padding-left:14px;" />
+              </div>
+              <div class="form-group-field">
+                <label id="lbl-new-pass">ពាក្យសម្ងាត់ថ្មី:</label>
+                <input type="password" id="sec-new-pass" class="input-control-styled" placeholder="បញ្ចូលពាក្យសម្ងាត់ថ្មី" required style="padding-left:14px;" />
+              </div>
+              <button type="submit" class="btn-action-primary">
+                <span>🔒</span> <span id="btn-save-pwd">រក្សាទុកពាក្យសម្ងាត់ថ្មី</span>
+              </button>
+            </form>
           </div>
-          <button type="submit" class="submit-auth-btn">✨ Create Account & Login</button>
-        </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 7: SETTINGS -->
+    <div id="view-settings" class="view-content-wrapper">
+      <div class="section-card-panel">
+        <div class="section-header-row">
+          <div class="section-title" id="title-settings-page">ការកំណត់ប្រព័ន្ធទូទៅ</div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div>
+            <h4 style="margin-bottom:12px;" id="title-pref-lang">ភាសាលំនាំដើម</h4>
+            <div style="display:flex; gap:10px; margin-bottom:16px;">
+              <button class="btn-action-primary" onclick="setLanguage('km')" style="flex:1; justify-content:center;">🇰🇭 ភាសាខ្មែរ (Khmer)</button>
+              <button class="btn-action-primary" onclick="setLanguage('en')" style="flex:1; justify-content:center; background:#0284c7;">🇬🇧 English</button>
+            </div>
+
+            <h4 style="margin-bottom:12px;" id="title-api-status">ស្ថានភាពតភ្ជាប់ Core Banking & AI Agent</h4>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:var(--radius-sm); padding:14px; font-size:0.84rem; line-height:1.8;">
+              <div>● <strong>Core Banking REST Gateway:</strong> <span style="color:#059669; font-weight:700;">ONLINE (HTTP 200)</span></div>
+              <div>● <strong>Copilot Studio AI Engine:</strong> <span style="color:#059669; font-weight:700;">ACTIVE</span></div>
+              <div>● <strong>Database Connection:</strong> <span style="color:#059669; font-weight:700;">SYNCED</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
     let currentLang = 'km';
-    let currentUserKey = 'sophanith';
-    let usersList = [];
+    let activeAuthUser = null;
+    let serverUsersList = [];
 
     const chatStream = document.getElementById('chat-stream');
     const userInput = document.getElementById('user-input');
@@ -1543,122 +1858,137 @@
       ]
     };
 
-    async function loadUsers() {
-      try {
-        const res = await fetch('/api/users');
-        usersList = await res.json();
-        renderLoginModalList();
-      } catch (err) {
-        console.error('Failed to load users list:', err);
+    function switchMainView(viewId) {
+      document.querySelectorAll('.view-content-wrapper').forEach(v => v.classList.remove('active'));
+      const activeView = document.getElementById(viewId);
+      if (activeView) activeView.classList.add('active');
+
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      const mapping = {
+        'view-dashboard': 'nav-dashboard-item',
+        'view-cards': 'nav-cards-item',
+        'view-transfers': 'nav-transfers-item',
+        'view-disputes': 'nav-disputes-item',
+        'view-directory': 'nav-directory-item',
+        'view-security': 'nav-security-item',
+        'view-settings': 'nav-settings-item'
+      };
+      const activeNav = document.getElementById(mapping[viewId]);
+      if (activeNav) activeNav.classList.add('active');
+    }
+
+    function switchAuthTab(tab) {
+      document.getElementById('auth-error-alert').style.display = 'none';
+      if (tab === 'login') {
+        document.getElementById('tab-login-btn').className = 'auth-tab-btn active';
+        document.getElementById('tab-register-btn').className = 'auth-tab-btn';
+        document.getElementById('signin-form').style.display = 'block';
+        document.getElementById('register-form').style.display = 'none';
+      } else {
+        document.getElementById('tab-login-btn').className = 'auth-tab-btn';
+        document.getElementById('tab-register-btn').className = 'auth-tab-btn active';
+        document.getElementById('signin-form').style.display = 'none';
+        document.getElementById('register-form').style.display = 'block';
       }
     }
 
-    function renderLoginModalList() {
-      const container = document.getElementById('login-users-list');
-      container.innerHTML = '';
-      usersList.forEach(u => {
-        const row = document.createElement('div');
-        row.className = 'user-select-row';
-        row.onclick = () => selectUser(u.username);
-        row.innerHTML = `
-          <div class="user-avatar-lg" style="width:34px; height:34px; font-size:0.75rem; background:${u.avatarBg};">${u.avatar}</div>
-          <div style="flex:1;">
-            <div style="font-size:0.86rem; font-weight:700;">${u.name}</div>
-            <div style="font-size:0.72rem; color:#64748b;">${u.role} • ${u.department}</div>
-          </div>
-          <span style="font-size:0.75rem; color:#2563eb; font-weight:700;">Login →</span>
-        `;
-        container.appendChild(row);
-      });
+    function autofillLogin(username, password) {
+      document.getElementById('login-username').value = username;
+      document.getElementById('login-password').value = password;
+      switchAuthTab('login');
+      handleLoginSubmit(new Event('submit'));
     }
 
-    async function selectUser(username) {
+    async function handleLoginSubmit(e) {
+      if (e) e.preventDefault();
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const errBox = document.getElementById('auth-error-alert');
+      errBox.style.display = 'none';
+
       try {
         const res = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username })
+          body: JSON.stringify({ username, password })
         });
         const data = await res.json();
+        
         if (data.status === 'SUCCESS') {
-          currentUserKey = username;
-          document.getElementById('quick-role-select').value = username;
-          updateActiveUserUI(data.user);
-          closeAuthModal();
+          activeAuthUser = data.user;
+          sessionStorage.setItem('key_bank_user', JSON.stringify(data.user));
+          unlockDashboard(data.user);
+        } else {
+          errBox.textContent = currentLang === 'km' 
+            ? 'ឈ្មោះគណនី ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវទេ។ សូមពិនិត្យម្តងទៀត។' 
+            : 'Invalid username or password. Please check your credentials.';
+          errBox.style.display = 'block';
         }
       } catch (err) {
-        console.error('Login error:', err);
+        errBox.textContent = currentLang === 'km' ? 'កំហុសតភ្ជាប់ប្រព័ន្ធ។' : 'Server connection error.';
+        errBox.style.display = 'block';
       }
     }
 
-    function switchUserRole(username) {
-      selectUser(username);
+    async function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-fullname').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const username = document.getElementById('reg-username').value.trim();
+      const password = document.getElementById('reg-password').value.trim();
+      const errBox = document.getElementById('auth-error-alert');
+      errBox.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, username, password })
+        });
+        const data = await res.json();
+        
+        if (data.status === 'SUCCESS') {
+          activeAuthUser = data.user;
+          sessionStorage.setItem('key_bank_user', JSON.stringify(data.user));
+          unlockDashboard(data.user);
+        } else {
+          errBox.textContent = data.message || "Registration failed.";
+          errBox.style.display = 'block';
+        }
+      } catch (err) {
+        errBox.textContent = "Server connection error.";
+        errBox.style.display = 'block';
+      }
     }
 
-    function updateActiveUserUI(user) {
+    function unlockDashboard(user) {
+      document.getElementById('auth-gateway-screen').style.display = 'none';
+      
       document.getElementById('sidebar-user-avatar').textContent = user.avatar;
       document.getElementById('sidebar-user-avatar').style.background = user.avatarBg;
       document.getElementById('sidebar-user-name').textContent = user.name;
-      document.getElementById('sidebar-user-role').textContent = user.role;
       document.getElementById('cardholder-name-display').textContent = user.name.toUpperCase();
+      document.getElementById('page-cardholder-name').textContent = user.name.toUpperCase();
+      
+      const roleText = currentLang === 'km' ? (user.roleKh || user.role) : user.role;
+      document.getElementById('sidebar-user-role').textContent = roleText;
+      document.getElementById('txt-active-role-label').textContent = roleText;
       
       const greeting = currentLang === 'km' 
         ? `សូមជម្រាបសួរ ${user.nameKh || user.name} 👋` 
         : `Good morning, ${user.name} 👋`;
       document.getElementById('txt-greeting').textContent = greeting;
       
-      const roleText = currentLang === 'km' ? (user.roleKh || user.role) : user.role;
-      document.getElementById('txt-active-role-label').textContent = `${roleText}`;
-      
-      const welcomeMsg = currentLang === 'km'
-        ? `សូមគោរពជម្រាបសួរ **${user.nameKh || user.name}** (${user.roleKh || user.role})! តើខ្ញុំអាចជួយអ្វីលើសេវាកម្ម KEY Bank នៅថ្ងៃនេះ?`
-        : `Welcome **${user.name}** (${user.role})! How can I assist you with KEY Bank services today?`;
-      appendBotMessage(welcomeMsg);
+      refreshDashboardState();
+      fetchUsersDirectory();
     }
 
-    async function handleRegisterSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('reg-name').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const username = document.getElementById('reg-username').value.trim();
-      
-      try {
-        const res = await fetch('/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, username })
-        });
-        const data = await res.json();
-        if (data.status === 'SUCCESS') {
-          await loadUsers();
-          updateActiveUserUI(data.user);
-          closeAuthModal();
-        }
-      } catch (err) {
-        console.error('Registration failed:', err);
-      }
-    }
-
-    function openAuthModal() {
-      document.getElementById('auth-modal').style.display = 'flex';
-    }
-
-    function closeAuthModal(e) {
-      document.getElementById('auth-modal').style.display = 'none';
-    }
-
-    function switchModalTab(tab) {
-      if (tab === 'login') {
-        document.getElementById('tab-login-btn').className = 'modal-tab-btn active';
-        document.getElementById('tab-register-btn').className = 'modal-tab-btn';
-        document.getElementById('modal-login-body').style.display = 'block';
-        document.getElementById('modal-register-body').style.display = 'none';
-      } else {
-        document.getElementById('tab-login-btn').className = 'modal-tab-btn';
-        document.getElementById('tab-register-btn').className = 'modal-tab-btn active';
-        document.getElementById('modal-login-body').style.display = 'none';
-        document.getElementById('modal-register-body').style.display = 'block';
-      }
+    function handleLogout() {
+      sessionStorage.removeItem('key_bank_user');
+      activeAuthUser = null;
+      document.getElementById('login-password').value = '';
+      document.getElementById('auth-gateway-screen').style.display = 'flex';
+      switchAuthTab('login');
     }
 
     function renderPrompts() {
@@ -1675,11 +2005,42 @@
 
     function setLanguage(lang) {
       currentLang = lang;
+      
       document.getElementById('btn-en').className = lang === 'en' ? 'lang-toggle-btn active' : 'lang-toggle-btn';
       document.getElementById('btn-km').className = lang === 'km' ? 'lang-toggle-btn active' : 'lang-toggle-btn';
 
+      document.getElementById('auth-btn-en').className = lang === 'en' ? 'auth-lang-btn active' : 'auth-lang-btn';
+      document.getElementById('auth-btn-km').className = lang === 'km' ? 'auth-lang-btn active' : 'auth-lang-btn';
+
       if (lang === 'km') {
-        document.getElementById('txt-total-assets').textContent = 'ទ្រព្យសកម្មសរុប (Total Liquid Assets)';
+        document.getElementById('auth-sub-title').textContent = 'ច្រកទ្វារសេវាធនាគារឌីជីថលសុវត្ថិភាព';
+        document.getElementById('tab-login-btn').textContent = '🔑 ចូលគណនី';
+        document.getElementById('tab-register-btn').textContent = '➕ បង្កើតគណនីថ្មី';
+        document.getElementById('lbl-login-user').textContent = 'ឈ្មោះគណនី:';
+        document.getElementById('login-username').placeholder = 'បញ្ចូលឈ្មោះគណនី';
+        document.getElementById('lbl-login-pass').textContent = 'ពាក្យសម្ងាត់:';
+        document.getElementById('login-password').placeholder = 'បញ្ចូលពាក្យសម្ងាត់';
+        document.getElementById('btn-submit-login').textContent = '🔐 ចូលទៅកាន់ប្រព័ន្ធ';
+        document.getElementById('lbl-reg-name').textContent = 'ឈ្មោះពេញ:';
+        document.getElementById('lbl-reg-email').textContent = 'អ៊ីមែល:';
+        document.getElementById('lbl-reg-user').textContent = 'ឈ្មោះគណនី:';
+        document.getElementById('lbl-reg-pass').textContent = 'ពាក្យសម្ងាត់:';
+        document.getElementById('btn-submit-reg').textContent = '✨ ចុះឈ្មោះ និងចូលគណនី';
+        document.getElementById('txt-demo-header').textContent = '⚡ គណនីគំរូ និងពាក្យសម្ងាត់ (Password@123)';
+
+        document.getElementById('txt-sub-brand').textContent = 'សេវាធនាគារឌីជីថល';
+        document.getElementById('txt-nav-main').textContent = 'មឺនុយចម្បង';
+        document.getElementById('nav-dashboard').textContent = 'ផ្ទាំងគ្រប់គ្រង';
+        document.getElementById('nav-cards').textContent = 'កាត និងគណនី';
+        document.getElementById('nav-transfers').textContent = 'ផ្ទេរប្រាក់ និងទូទាត់';
+        document.getElementById('nav-disputes').textContent = 'ការតវ៉ា និងករណីបន្លំ';
+        document.getElementById('txt-nav-system').textContent = 'សុវត្ថិភាព និងការគាំទ្រ';
+        document.getElementById('nav-directory').textContent = 'បញ្ជីឈ្មោះបុគ្គលិក';
+        document.getElementById('nav-security').textContent = 'ប្រព័ន្ធសុវត្ថិភាព 2FA';
+        document.getElementById('nav-settings').textContent = 'ការកំណត់';
+        document.getElementById('btn-logout-txt').textContent = 'ចាកចេញ';
+
+        document.getElementById('txt-total-assets').textContent = 'ទ្រព្យសកម្មសរុប';
         document.getElementById('btn-qa-balance').textContent = 'ពិនិត្យសមតុល្យ';
         document.getElementById('btn-qa-dispute').textContent = 'ប្រតិបត្តិការសង្ស័យ';
         document.getElementById('btn-qa-freeze').textContent = 'គ្រប់គ្រងកាត';
@@ -1687,15 +2048,100 @@
         document.getElementById('txt-chk-badge').textContent = 'គណនីចរន្តទូទៅ';
         document.getElementById('txt-chk-desc').textContent = '⚡ អាចដកប្រាក់ ឬទូទាត់បានភ្លាមៗ';
         document.getElementById('txt-sav-badge').textContent = 'គណនីសន្សំការប្រាក់ខ្ពស់';
-        document.getElementById('txt-sav-desc').textContent = '📈 ទទួលបានការប្រាក់ ៤.៧៥% ក្នុងមួយឆ្នាំ';
-        document.getElementById('txt-card-sec-title').textContent = 'កាតទូទាត់ចម្បង និងការបញ្ជាសុវត្ថិភាព (Payment Cards)';
-        document.getElementById('btn-toggle-freeze').textContent = 'បង្កក ឬដោះសោកាត (Freeze Card)';
-        document.getElementById('btn-travel-notice').textContent = 'កំណត់ការធ្វើដំណើរ (Travel Notice)';
-        document.getElementById('btn-card-limits').textContent = 'ដែនកំណត់ដកប្រាក់ (ATM & Limits)';
-        document.getElementById('txt-recent-title').textContent = 'សកម្មភាពប្រតិបត្តិការថ្មីៗ (Recent Activity)';
+        document.getElementById('txt-sav-desc').textContent = '📈 ទទួលបានការប្រាក់ជាប្រចាំ';
+        document.getElementById('txt-card-sec-title').textContent = 'កាតទូទាត់ចម្បង និងការបញ្ជាសុវត្ថិភាព';
+        document.getElementById('lbl-cardholder').textContent = 'ម្ចាស់កាត';
+        document.getElementById('lbl-travel-status').textContent = 'ស្ថានភាពធ្វើដំណើរ';
+        document.getElementById('btn-toggle-freeze').textContent = 'បង្កក ឬដោះសោកាត';
+        document.getElementById('btn-travel-notice').textContent = 'កំណត់ការធ្វើដំណើរ';
+        document.getElementById('btn-more-card-opts').textContent = 'ការគ្រប់គ្រងលម្អិត';
+        document.getElementById('txt-recent-title').textContent = 'សកម្មភាពប្រតិបត្តិការថ្មីៗ';
         document.getElementById('txt-txn-count').textContent = 'ប្រតិបត្តិការ ៤ ចុងក្រោយ';
-        document.getElementById('user-input').placeholder = 'សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់ (ភាសាខ្មែរ ឬ English)...';
+        document.getElementById('copilot-title').textContent = 'ជំនួយការ AI ធនាគារ KEY Bank';
+        document.getElementById('copilot-sub').textContent = 'Microsoft Copilot Studio Generative Agent';
+        document.getElementById('txt-agent-active').textContent = 'កំពុងដំណើរការ';
+        document.getElementById('user-input').placeholder = 'សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់...';
+
+        document.getElementById('title-cards-page').textContent = 'ការគ្រប់គ្រងកាត និងគណនី';
+        document.getElementById('btn-cards-freeze-action').textContent = 'បង្កក / ដោះសោកាត';
+        document.getElementById('lbl-card-info').textContent = 'ព័ត៌មានកាតទូទាត់';
+        document.getElementById('lbl-travel-notice-form').textContent = 'កំណត់ការធ្វើដំណើរទៅក្រៅប្រទេស';
+        document.getElementById('lbl-dest-country').textContent = 'ប្រទេសគោលដៅ:';
+        document.getElementById('lbl-travel-duration').textContent = 'កាលបរិច្ឆេទ:';
+        document.getElementById('btn-save-travel').textContent = 'រក្សាទុកការជូនដំណឹងធ្វើដំណើរ';
+        document.getElementById('title-all-accounts').textContent = 'បញ្ជីគណនីទាំងអស់';
+        document.getElementById('th-acc-id').textContent = 'លេខសម្គាល់គណនី';
+        document.getElementById('th-acc-type').textContent = 'ប្រភេទគណនី';
+        document.getElementById('th-acc-num').textContent = 'លេខគណនី';
+        document.getElementById('th-acc-bal').textContent = 'សមតុល្យប្រើប្រាស់បាន';
+        document.getElementById('th-acc-status').textContent = 'ស្ថានភាព';
+
+        document.getElementById('title-transfer-page').textContent = 'សេវាផ្ទេរប្រាក់ និងទូទាត់រហ័ស';
+        document.getElementById('lbl-source-acc').textContent = 'ពីគណនីប្រភព:';
+        document.getElementById('lbl-dest-recipient').textContent = 'អ្នកទទួលប្រាក់ (សមាជិក ឬលេខគណនី):';
+        document.getElementById('lbl-transfer-amount').textContent = 'ចំនួនទឹកប្រាក់ ($ USD):';
+        document.getElementById('lbl-transfer-memo').textContent = 'សម្គាល់ / មូលហេតុ:';
+        document.getElementById('btn-submit-transfer-action').textContent = 'ផ្ទេរប្រាក់ភ្លាមៗ';
+        document.getElementById('title-transfer-policy').textContent = 'គោលការណ៍ផ្ទេរប្រាក់ KEY Bank';
+        document.getElementById('list-transfer-policy').innerHTML = `
+          <li>ការផ្ទេរប្រាក់ក្នុងធនាគារ KEY Bank ទទួលបានភ្លាមៗ ២៤/៧ ដោយឥតគិតថ្លៃ។</li>
+          <li>ដែនកំណត់ផ្ទេរប្រាក់ប្រចាំថ្ងៃ: $5,000.00 USD សម្រាប់គណនីធម្មតា។</li>
+          <li>រាល់ការផ្ទេរលើសពី $500.00 នឹងតម្រូវឱ្យមានការបញ្ជាក់ OTP សុវត្ថិភាព។</li>
+        `;
+
+        document.getElementById('title-dispute-page').textContent = 'ការគ្រប់គ្រងពាក្យបណ្តឹងតវ៉ា និងករណីបន្លំ';
+        document.getElementById('btn-file-dispute-action').textContent = 'ដាក់ពាក្យតវ៉ាថ្មី';
+        document.getElementById('th-dsp-case').textContent = 'លេខសំណុំរឿង';
+        document.getElementById('th-dsp-merchant').textContent = 'ហាង / ទីតាំងប្រតិបត្តិការ';
+        document.getElementById('th-dsp-amount').textContent = 'ចំនួនទឹកប្រាក់';
+        document.getElementById('th-dsp-reason').textContent = 'មូលហេតុនៃការតវ៉ា';
+        document.getElementById('th-dsp-credit').textContent = 'ឥណទានបណ្តោះអាសន្ន';
+        document.getElementById('th-dsp-status').textContent = 'ស្ថានភាព';
+
+        document.getElementById('title-directory-page').textContent = 'បញ្ជីឈ្មោះថ្នាក់ដឹកនាំ និងបុគ្គលិក KEY Bank';
+        document.getElementById('sub-directory-page').textContent = 'គណនីផ្លូវការទាំងអស់ត្រូវបានកំណត់ពាក្យសម្ងាត់សុវត្ថិភាព Password@123';
+
+        document.getElementById('title-security-page').textContent = 'ប្រព័ន្ធសុវត្ថិភាព និងការផ្ទៀងផ្ទាត់ 2FA';
+        document.getElementById('title-totp-token').textContent = 'លេខកូដសុវត្ថិភាពផ្ទាល់ (Live Authenticator Token)';
+        document.getElementById('lbl-totp-sub').textContent = 'KEY Secure Time-Based OTP (TOTP)';
+        document.getElementById('txt-token-refresh').textContent = 'ផ្លាស់ប្តូរលេខកូដក្នុងរយៈពេល';
+        document.getElementById('title-change-password').textContent = 'ផ្លាស់ប្តូរពាក្យសម្ងាត់';
+        document.getElementById('lbl-old-pass').textContent = 'ពាក្យសម្ងាត់បច្ចុប្បន្ន:';
+        document.getElementById('lbl-new-pass').textContent = 'ពាក្យសម្ងាត់ថ្មី:';
+        document.getElementById('btn-save-pwd').textContent = 'រក្សាទុកពាក្យសម្ងាត់ថ្មី';
+
+        document.getElementById('title-settings-page').textContent = 'ការកំណត់ប្រព័ន្ធទូទៅ';
+        document.getElementById('title-pref-lang').textContent = 'ភាសាលំនាំដើម';
+        document.getElementById('title-api-status').textContent = 'ស្ថានភាពតភ្ជាប់ Core Banking & AI Agent';
+
       } else {
+        document.getElementById('auth-sub-title').textContent = 'Enterprise Online Banking Gateway';
+        document.getElementById('tab-login-btn').textContent = '🔑 Sign In';
+        document.getElementById('tab-register-btn').textContent = '➕ Create Account';
+        document.getElementById('lbl-login-user').textContent = 'Username:';
+        document.getElementById('login-username').placeholder = 'Enter username';
+        document.getElementById('lbl-login-pass').textContent = 'Password:';
+        document.getElementById('login-password').placeholder = 'Enter password';
+        document.getElementById('btn-submit-login').textContent = '🔐 Sign In to KEY Bank';
+        document.getElementById('lbl-reg-name').textContent = 'Full Name:';
+        document.getElementById('lbl-reg-email').textContent = 'Email:';
+        document.getElementById('lbl-reg-user').textContent = 'Username:';
+        document.getElementById('lbl-reg-pass').textContent = 'Password:';
+        document.getElementById('btn-submit-reg').textContent = '✨ Register & Sign In';
+        document.getElementById('txt-demo-header').textContent = '⚡ Demo Users & Passwords (Password@123)';
+
+        document.getElementById('txt-sub-brand').textContent = 'Enterprise Banking';
+        document.getElementById('txt-nav-main').textContent = 'Main Menu';
+        document.getElementById('nav-dashboard').textContent = 'Dashboard';
+        document.getElementById('nav-cards').textContent = 'Cards & Accounts';
+        document.getElementById('nav-transfers').textContent = 'Transfers & Pay';
+        document.getElementById('nav-disputes').textContent = 'Disputes & Fraud';
+        document.getElementById('txt-nav-system').textContent = 'Security & Support';
+        document.getElementById('nav-directory').textContent = 'User Directory';
+        document.getElementById('nav-security').textContent = '2FA & Security';
+        document.getElementById('nav-settings').textContent = 'Settings';
+        document.getElementById('btn-logout-txt').textContent = 'Sign Out';
+
         document.getElementById('txt-total-assets').textContent = 'Total Liquid Assets';
         document.getElementById('btn-qa-balance').textContent = 'View Balances';
         document.getElementById('btn-qa-dispute').textContent = 'Flagged Charge';
@@ -1704,18 +2150,83 @@
         document.getElementById('txt-chk-badge').textContent = 'Everyday Checking';
         document.getElementById('txt-chk-desc').textContent = '⚡ Available for immediate withdrawal';
         document.getElementById('txt-sav-badge').textContent = 'High-Yield Savings';
-        document.getElementById('txt-sav-desc').textContent = '📈 +4.75% APY Active compound';
+        document.getElementById('txt-sav-desc').textContent = '📈 Active interest compound';
         document.getElementById('txt-card-sec-title').textContent = 'Primary Payment Card & Controls';
+        document.getElementById('lbl-cardholder').textContent = 'Cardholder';
+        document.getElementById('lbl-travel-status').textContent = 'Travel Status';
         document.getElementById('btn-toggle-freeze').textContent = 'Freeze / Lock Card';
         document.getElementById('btn-travel-notice').textContent = 'Set Travel Notice';
-        document.getElementById('btn-card-limits').textContent = 'Card & ATM Limits';
+        document.getElementById('btn-more-card-opts').textContent = 'Detailed Controls';
         document.getElementById('txt-recent-title').textContent = 'Recent Activity';
         document.getElementById('txt-txn-count').textContent = 'Last 4 Transactions';
+        document.getElementById('copilot-title').textContent = 'KEY Bank AI Copilot';
+        document.getElementById('copilot-sub').textContent = 'Microsoft Copilot Studio Generative Agent';
+        document.getElementById('txt-agent-active').textContent = 'Agent Active';
         document.getElementById('user-input').placeholder = 'Ask about balances, freeze card, dispute a charge...';
+
+        document.getElementById('title-cards-page').textContent = 'Cards & Accounts Management';
+        document.getElementById('btn-cards-freeze-action').textContent = 'Freeze / Unfreeze Card';
+        document.getElementById('lbl-card-info').textContent = 'Primary Payment Card';
+        document.getElementById('lbl-travel-notice-form').textContent = 'Set International Travel Notice';
+        document.getElementById('lbl-dest-country').textContent = 'Destination Country:';
+        document.getElementById('lbl-travel-duration').textContent = 'Travel Dates:';
+        document.getElementById('btn-save-travel').textContent = 'Save Travel Notice';
+        document.getElementById('title-all-accounts').textContent = 'All Linked Accounts';
+        document.getElementById('th-acc-id').textContent = 'Account ID';
+        document.getElementById('th-acc-type').textContent = 'Account Type';
+        document.getElementById('th-acc-num').textContent = 'Account Number';
+        document.getElementById('th-acc-bal').textContent = 'Available Balance';
+        document.getElementById('th-acc-status').textContent = 'Status';
+
+        document.getElementById('title-transfer-page').textContent = 'Instant Funds Transfer & Pay';
+        document.getElementById('lbl-source-acc').textContent = 'Source Account:';
+        document.getElementById('lbl-dest-recipient').textContent = 'Recipient (Colleague or Account):';
+        document.getElementById('lbl-transfer-amount').textContent = 'Transfer Amount ($ USD):';
+        document.getElementById('lbl-transfer-memo').textContent = 'Memo / Reference:';
+        document.getElementById('btn-submit-transfer-action').textContent = 'Execute Instant Transfer';
+        document.getElementById('title-transfer-policy').textContent = 'KEY Bank Transfer Policy';
+        document.getElementById('list-transfer-policy').innerHTML = `
+          <li>Internal KEY Bank transfers are instant 24/7 with zero fees.</li>
+          <li>Daily standard transfer limit: $5,000.00 USD.</li>
+          <li>Transfers exceeding $500.00 require Step-Up OTP authorization.</li>
+        `;
+
+        document.getElementById('title-dispute-page').textContent = 'Disputes & Fraud Claims';
+        document.getElementById('btn-file-dispute-action').textContent = 'File New Dispute';
+        document.getElementById('th-dsp-case').textContent = 'Case Number';
+        document.getElementById('th-dsp-merchant').textContent = 'Merchant / Description';
+        document.getElementById('th-dsp-amount').textContent = 'Amount';
+        document.getElementById('th-dsp-reason').textContent = 'Dispute Reason';
+        document.getElementById('th-dsp-credit').textContent = 'Provisional Credit';
+        document.getElementById('th-dsp-status').textContent = 'Status';
+
+        document.getElementById('title-directory-page').textContent = 'KEY Bank Executive & Staff Directory';
+        document.getElementById('sub-directory-page').textContent = 'All official demo accounts configured with password Password@123';
+
+        document.getElementById('title-security-page').textContent = '2FA & Account Security Center';
+        document.getElementById('title-totp-token').textContent = 'Live Authenticator Token';
+        document.getElementById('lbl-totp-sub').textContent = 'KEY Secure Time-Based OTP (TOTP)';
+        document.getElementById('txt-token-refresh').textContent = 'Code expires in';
+        document.getElementById('title-change-password').textContent = 'Change Account Password';
+        document.getElementById('lbl-old-pass').textContent = 'Current Password:';
+        document.getElementById('lbl-new-pass').textContent = 'New Password:';
+        document.getElementById('btn-save-pwd').textContent = 'Save New Password';
+
+        document.getElementById('title-settings-page').textContent = 'General System Settings';
+        document.getElementById('title-pref-lang').textContent = 'System Language';
+        document.getElementById('title-api-status').textContent = 'Core Banking & AI Agent Health';
+      }
+
+      if (activeAuthUser) {
+        const greeting = currentLang === 'km' 
+          ? `សូមជម្រាបសួរ ${activeAuthUser.nameKh || activeAuthUser.name} 👋` 
+          : `Good morning, ${activeAuthUser.name} 👋`;
+        document.getElementById('txt-greeting').textContent = greeting;
       }
 
       renderPrompts();
       refreshDashboardState();
+      fetchUsersDirectory();
     }
 
     function handleKey(e) {
@@ -1732,14 +2243,26 @@
         const res = await fetch('/api/state');
         const data = await res.json();
 
+        const chk = data.accounts[0];
+        const sav = data.accounts[1];
+        document.getElementById('chk-bal').textContent = `$${chk.availableBalance.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+        document.getElementById('sav-bal').textContent = `$${sav.availableBalance.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+        const total = chk.availableBalance + sav.availableBalance;
+        document.getElementById('dash-total-net').textContent = `$${total.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+
         const card = data.cards[0];
         const badge = document.getElementById('card-status-badge');
+        const pageBadge = document.getElementById('page-card-status');
         if (card.status === 'FROZEN') {
           badge.className = 'card-status-pill frozen';
-          badge.innerHTML = '🔒 FROZEN';
+          badge.innerHTML = currentLang === 'km' ? '🔒 បានបង្កក' : '🔒 FROZEN';
+          pageBadge.className = 'card-status-pill frozen';
+          pageBadge.innerHTML = currentLang === 'km' ? '🔒 បានបង្កក' : '🔒 FROZEN';
         } else {
           badge.className = 'card-status-pill active';
-          badge.innerHTML = '● ACTIVE';
+          badge.innerHTML = currentLang === 'km' ? '● សកម្ម' : '● ACTIVE';
+          pageBadge.className = 'card-status-pill active';
+          pageBadge.innerHTML = currentLang === 'km' ? '● សកម្ម' : '● ACTIVE';
         }
 
         const travelText = document.getElementById('card-travel-status');
@@ -1747,39 +2270,266 @@
           travelText.textContent = `✈️ ${card.travelNotice}`;
           travelText.style.color = '#34d399';
         } else {
-          travelText.textContent = currentLang === 'km' ? 'ភ្ជាប់: គណនីចរន្ត (...9812)' : 'Linked: Checking (...9812)';
+          travelText.textContent = currentLang === 'km' ? 'ភ្ជាប់គណនី (*9812)' : 'Linked (*9812)';
           travelText.style.color = '#94a3b8';
         }
 
-        if (data.disputes.length > 0) {
-          const dBox = document.getElementById('dispute-box');
-          const dInfo = document.getElementById('dispute-info');
-          dBox.style.display = 'block';
-          const last = data.disputes[data.disputes.length - 1];
-          dInfo.innerHTML = currentLang === 'km' 
-            ? `សំណុំរឿង <strong>${last.caseId}</strong> កំពុងស្ថិតក្រោមការស៊ើបអង្កេតសម្រាប់ Unknown Online Retailer ($329.99)។ ឥណទានបណ្តោះអាសន្នកំពុងដំណើរការ។`
-            : `Case <strong>${last.caseId}</strong> under review for Unknown Online Retailer ($329.99). Provisional credit pending.`;
-        } else {
-          document.getElementById('dispute-box').style.display = 'none';
-        }
+        const txnContainer = document.getElementById('dashboard-txn-container');
+        txnContainer.innerHTML = '';
+        data.transactions.slice(0, 4).forEach(t => {
+          const isNeg = t.amount < 0;
+          const amtFormatted = isNeg 
+            ? `-$${Math.abs(t.amount).toFixed(2)}` 
+            : `+$${t.amount.toFixed(2)}`;
+          const dateTxt = currentLang === 'km' ? (t.postedDateKh || t.postedDate) : t.postedDate;
+          const catTxt = currentLang === 'km' ? (t.categoryKh || t.category) : t.category;
+          const statusTxt = currentLang === 'km' ? (t.statusKh || t.status) : t.status;
+          const isFlagged = t.status === 'FLAGGED';
+
+          const item = document.createElement('div');
+          item.className = isFlagged ? 'txn-item flagged-suspect' : 'txn-item';
+          item.innerHTML = `
+            <div class="txn-left-col">
+              <div class="txn-icon-box" style="${isFlagged ? 'background:#fef3c7;color:#b45309;' : (!isNeg ? 'background:#ecfdf5;color:#059669;' : '')}">
+                ${isFlagged ? '⚠️' : (!isNeg ? '💼' : '🛒')}
+              </div>
+              <div>
+                <div class="txn-merchant-name">${t.merchant}</div>
+                <div class="txn-subtext" style="${isFlagged ? 'color:#b45309;font-weight:700;' : ''}">${dateTxt} • ${catTxt}</div>
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div class="txn-amount-val ${isNeg ? 'negative' : 'positive'}">${amtFormatted}</div>
+              <div class="txn-subtext" style="${isFlagged ? 'color:#dc2626;font-weight:700;' : ''}">${statusTxt}</div>
+            </div>
+          `;
+          txnContainer.appendChild(item);
+        });
+
+        const accTableBody = document.getElementById('page-accounts-table-body');
+        accTableBody.innerHTML = '';
+        data.accounts.forEach(a => {
+          const tr = document.createElement('tr');
+          const typeTxt = currentLang === 'km' ? a.accountTypeKh : a.accountType;
+          const statTxt = currentLang === 'km' ? a.statusKh : a.status;
+          tr.innerHTML = `
+            <td><code>${a.accountId}</code></td>
+            <td><strong>${typeTxt}</strong></td>
+            <td>${a.accountNumberMasked}</td>
+            <td style="font-weight:700; color:#0f172a;">$${a.availableBalance.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+            <td><span class="acc-badge checking">${statTxt}</span></td>
+          `;
+          accTableBody.appendChild(tr);
+        });
+
+        const dspTableBody = document.getElementById('page-disputes-table-body');
+        dspTableBody.innerHTML = '';
+        document.getElementById('nav-dispute-badge').textContent = data.disputes.length;
+        
+        data.disputes.forEach(d => {
+          const tr = document.createElement('tr');
+          const reasonTxt = currentLang === 'km' ? (d.reasonKh || d.reason) : d.reason;
+          const statusTxt = currentLang === 'km' ? (d.statusKh || d.status) : d.status;
+          const creditTxt = currentLang === 'km' ? (d.provisionalCreditStatusKh || d.provisionalCreditStatus) : d.provisionalCreditStatus;
+          tr.innerHTML = `
+            <td><code>${d.caseId}</code></td>
+            <td><strong>${d.merchant}</strong></td>
+            <td style="color:#dc2626; font-weight:700;">$${d.amount.toFixed(2)}</td>
+            <td>${reasonTxt}</td>
+            <td><span style="color:#059669; font-weight:700;">+$${d.provisionalCredit.toFixed(2)} (${creditTxt})</span></td>
+            <td><span class="acc-badge savings" style="background:#fef3c7;color:#b45309;border-color:#fde68a;">${statusTxt}</span></td>
+          `;
+          dspTableBody.appendChild(tr);
+        });
+
       } catch (err) {
         console.error('State sync error:', err);
       }
     }
 
-    async function resetDemoState() {
-      await fetch('/api/reset');
-      await refreshDashboardState();
-      appendBotMessage(currentLang === 'km' 
-        ? "🔄 **ទិន្នន័យ Demo ត្រូវបានកំណត់ឡើងវិញ (Reset) ជោគជ័យ។**"
-        : "🔄 **Demo state has been reset to default.**");
+    async function fetchUsersDirectory() {
+      try {
+        const res = await fetch('/api/users');
+        const data = await res.json();
+        if (data.status === 'SUCCESS') {
+          serverUsersList = data.users;
+          const grid = document.getElementById('directory-grid-container');
+          grid.innerHTML = '';
+
+          serverUsersList.forEach(u => {
+            const card = document.createElement('div');
+            card.className = 'user-profile-card';
+            const roleTxt = currentLang === 'km' ? (u.roleKh || u.role) : u.role;
+            const deptTxt = currentLang === 'km' ? (u.departmentKh || u.department) : u.department;
+            const btnTxt = currentLang === 'km' ? 'ចូលគណនីនេះ' : 'Switch / Sign In';
+
+            card.innerHTML = `
+              <div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                  <div class="user-avatar-lg" style="background:${u.avatarBg};">${u.avatar}</div>
+                  <div>
+                    <div style="font-weight:800; font-size:0.95rem; color:#0f172a;">${u.name}</div>
+                    <div style="font-size:0.75rem; color:${u.badgeColor}; font-weight:700;">${roleTxt}</div>
+                  </div>
+                </div>
+                <div style="font-size:0.8rem; color:#475569; margin-bottom:6px;">
+                  🏢 <strong>${deptTxt}</strong>
+                </div>
+                <div style="font-size:0.78rem; color:#64748b; margin-bottom:12px;">
+                  ✉️ ${u.email}
+                </div>
+              </div>
+              <button class="btn-action-primary" onclick="autofillLogin('${u.username}', 'Password@123')" style="width:100%; justify-content:center; padding:8px; font-size:0.8rem;">
+                🔑 ${btnTxt}
+              </button>
+            `;
+            grid.appendChild(card);
+          });
+        }
+      } catch (e) {
+        console.error(e);
+      }
     }
+
+    async function toggleCardFreeze() {
+      try {
+        await fetch('/api/card/freeze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'toggle' })
+        });
+        await refreshDashboardState();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function submitTravelNotice() {
+      const destination = document.getElementById('travel-country').value.trim();
+      const dates = document.getElementById('travel-dates').value.trim();
+      try {
+        await fetch('/api/card/travel', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ destination, dates })
+        });
+        const msg = document.getElementById('travel-saved-msg');
+        msg.textContent = currentLang === 'km' 
+          ? `✅ បានកំណត់ការជូនដំណឹងធ្វើដំណើរទៅកាន់ ${destination} ដោយជោគជ័យ!` 
+          : `✅ Travel notice for ${destination} saved successfully!`;
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 4000);
+        await refreshDashboardState();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function handleTransferSubmit(e) {
+      e.preventDefault();
+      const source = document.getElementById('transfer-source').value;
+      const recipient = document.getElementById('transfer-recipient').value;
+      const amount = parseFloat(document.getElementById('transfer-amount').value);
+      const memo = document.getElementById('transfer-memo').value || "KEY Funds Transfer";
+
+      try {
+        const res = await fetch('/api/transfer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sourceAccountId: source, recipient, amount, memo })
+        });
+        const data = await res.json();
+        
+        const box = document.getElementById('transfer-success-box');
+        if (data.status === 'SUCCESS') {
+          box.textContent = currentLang === 'km'
+            ? `✅ ផ្ទេរប្រាក់ចំនួន $${amount.toFixed(2)} ទៅកាន់ ${recipient} បានជោគជ័យ! (TXN: ${data.transactionId})`
+            : `✅ Transfer of $${amount.toFixed(2)} to ${recipient} completed successfully! (TXN: ${data.transactionId})`;
+          box.style.display = 'block';
+          document.getElementById('transfer-amount').value = '';
+          document.getElementById('transfer-memo').value = '';
+          setTimeout(() => box.style.display = 'none', 5000);
+          await refreshDashboardState();
+        } else {
+          alert(data.message || 'Transfer failed');
+        }
+      } catch (err) {
+        alert('Transfer failed');
+      }
+    }
+
+    async function showDisputeModal() {
+      const reason = prompt(
+        currentLang === 'km' 
+          ? 'សូមបញ្ចូលមូលហេតុនៃការតវ៉ាប្រតិបត្តិការ:' 
+          : 'Please enter the reason for this dispute:'
+      );
+      if (!reason) return;
+
+      try {
+        await fetch('/api/disputes/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ merchant: 'Unknown Online Merchant', amount: 95.00, reason })
+        });
+        const toast = document.getElementById('dispute-create-toast');
+        toast.textContent = currentLang === 'km' 
+          ? '✅ ពាក្យបណ្តឹងតវ៉ាត្រូវបានបង្កើតដោយជោគជ័យ!' 
+          : '✅ New dispute filed successfully!';
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 4000);
+        await refreshDashboardState();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function handleChangePasswordSubmit(e) {
+      e.preventDefault();
+      const oldPassword = document.getElementById('sec-old-pass').value.trim();
+      const newPassword = document.getElementById('sec-new-pass').value.trim();
+      const username = activeAuthUser ? activeAuthUser.username : 'sophanith';
+
+      try {
+        const res = await fetch('/api/security/password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, oldPassword, newPassword })
+        });
+        const data = await res.json();
+        const msg = document.getElementById('pwd-change-msg');
+        if (data.status === 'SUCCESS') {
+          msg.textContent = currentLang === 'km' ? '✅ ពាក្យសម្ងាត់ត្រូវបានផ្លាស់ប្តូរដោយជោគជ័យ!' : '✅ Password updated successfully!';
+          msg.style.display = 'block';
+          document.getElementById('sec-old-pass').value = '';
+          document.getElementById('sec-new-pass').value = '';
+          setTimeout(() => msg.style.display = 'none', 4000);
+        } else {
+          alert(data.message);
+        }
+      } catch (err) {
+        alert('Password update failed');
+      }
+    }
+
+    let totpTime = 30;
+    setInterval(() => {
+      totpTime--;
+      if (totpTime <= 0) {
+        totpTime = 30;
+        const code = Math.floor(100000 + Math.random() * 900000);
+        const str = code.toString();
+        document.getElementById('totp-code-display').textContent = `${str.slice(0,3)} ${str.slice(3)}`;
+      }
+      document.getElementById('token-timer').textContent = `${totpTime}s`;
+    }, 1000);
 
     function appendUserMessage(text) {
       const row = document.createElement('div');
       row.className = 'chat-row user';
+      const avatarTxt = activeAuthUser ? activeAuthUser.avatar : 'US';
       row.innerHTML = `
-        <div class="chat-avatar">${currentUserKey === 'sophanith' ? 'SY' : 'AM'}</div>
+        <div class="chat-avatar">${avatarTxt}</div>
         <div class="chat-bubble-card">${escapeHtml(text)}</div>
       `;
       chatStream.appendChild(row);
@@ -1839,13 +2589,12 @@
               </div>
               <div class="action-button-group">
                 <button class="copilot-action-btn danger" onclick="sendPrompt(currentLang === 'km' ? 'បាទ ដាក់ពាក្យតវ៉ា និងបង្កកកាត Visa' : 'Yes, file dispute and freeze my card')">
-                  🚨 ${currentLang === 'km' ? 'ដាក់ពាក្យតវ៉ា និងបង្កកកាត' : 'File Dispute & Freeze Card'}
+                  ${cardData.btnText}
                 </button>
               </div>
             </div>
           `;
         } else if (cardData.type === 'CardStatus') {
-          const unfreezeLabel = cardData.unfreezeBtn || (currentLang === 'km' ? '🔓 ដោះសោកាតវិញ (ត្រូវការ OTP)' : '🔓 Unfreeze Card (Requires OTP)');
           cardHtml = `
             <div class="chat-embedded-action" style="border-left: 4px solid #dc2626;">
               <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1857,7 +2606,7 @@
               </div>
               <div class="action-button-group">
                 <button class="copilot-action-btn" onclick="sendPrompt(currentLang === 'km' ? 'សូមដោះសោកាតរបស់ខ្ញុំវិញ' : 'Unfreeze my card please')">
-                  ${unfreezeLabel}
+                  ${cardData.unfreezeBtn}
                 </button>
               </div>
             </div>
@@ -1893,10 +2642,11 @@
       chatStream.scrollTop = chatStream.scrollHeight;
 
       try {
+        const username = activeAuthUser ? activeAuthUser.username : 'sophanith';
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, sessionId: 'demo-session-1', lang: currentLang, username: currentUserKey })
+          body: JSON.stringify({ message: text, sessionId: 'demo-session-1', lang: currentLang, username })
         });
         const data = await res.json();
         
@@ -1917,8 +2667,18 @@
       return text.replace(/[&<>"']/g, m => map[m]);
     }
 
-    // Initialize
-    loadUsers();
+    const savedUser = sessionStorage.getItem('key_bank_user');
+    if (savedUser) {
+      try {
+        activeAuthUser = JSON.parse(savedUser);
+        unlockDashboard(activeAuthUser);
+      } catch (e) {
+        handleLogout();
+      }
+    } else {
+      document.getElementById('auth-gateway-screen').style.display = 'flex';
+    }
+
     setLanguage('km');
   </script>
 </body>
