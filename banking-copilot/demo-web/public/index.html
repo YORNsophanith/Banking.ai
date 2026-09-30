@@ -71,7 +71,7 @@
 
     /* 1. LEFT SIDEBAR */
     aside.sidebar {
-      width: 260px;
+      width: 270px;
       background: var(--sidebar-bg);
       display: flex;
       flex-direction: column;
@@ -82,7 +82,7 @@
     }
 
     .sidebar-header {
-      padding: 24px 20px 18px;
+      padding: 22px 20px 18px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
 
@@ -94,26 +94,21 @@
     }
 
     .brand-logo-icon {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: var(--radius-md);
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .brand-names {
-      display: flex;
-      flex-direction: column;
-    }
-
     .brand-names h2 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 800;
       color: var(--sidebar-text-bright);
       letter-spacing: -0.3px;
@@ -122,7 +117,7 @@
     .brand-names span {
       font-size: 0.7rem;
       color: #38bdf8;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -189,28 +184,36 @@
     .sidebar-footer {
       padding: 16px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.25);
     }
 
     .user-profile-widget {
       display: flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .user-profile-widget:hover {
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .user-avatar-lg {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
       color: white;
-      font-weight: 700;
-      font-size: 0.85rem;
+      font-weight: 800;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.25);
       flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .user-meta-info {
@@ -219,7 +222,7 @@
     }
 
     .user-name-title {
-      font-size: 0.84rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: white;
       white-space: nowrap;
@@ -228,9 +231,11 @@
     }
 
     .user-tier-badge {
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       color: #38bdf8;
-      font-weight: 600;
+      font-weight: 700;
+      display: block;
+      margin-top: 1px;
     }
 
     /* 2. MAIN WORKSPACE */
@@ -256,32 +261,68 @@
     .header-greeting {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .greeting-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--text-main);
     }
 
-    .security-status-tag {
+    .role-badge-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #ecfdf5;
-      color: #059669;
-      border: 1px solid #a7f3d0;
-      padding: 3px 10px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 4px 12px;
       border-radius: var(--radius-full);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+    }
+
+    .role-select-dropdown {
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--surface-border);
+      background: var(--surface);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .role-select-dropdown:hover {
+      border-color: var(--primary);
+    }
+
+    .auth-btn-pill {
+      background: var(--primary-subtle);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .auth-btn-pill:hover {
+      background: #dbeafe;
     }
 
     .lang-switcher-pill {
@@ -296,41 +337,21 @@
       background: transparent;
       border: none;
       color: #64748b;
-      padding: 5px 14px;
+      padding: 5px 12px;
       border-radius: var(--radius-full);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .lang-toggle-btn.active {
       background: var(--primary);
       color: white;
       box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
-    }
-
-    .top-action-btn {
-      background: var(--surface-subtle);
-      border: 1px solid var(--surface-border);
-      color: var(--text-secondary);
-      padding: 7px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: var(--transition);
-    }
-
-    .top-action-btn:hover {
-      background: #e2e8f0;
-      color: var(--text-main);
     }
 
     /* 3. DASHBOARD TWO-COLUMN GRID */
@@ -1007,11 +1028,140 @@
       padding: 14px 16px;
       display: none;
     }
+
+    /* 5. MODAL STYLES (LOGIN & REGISTER) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(9, 20, 39, 0.7);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .auth-modal-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 480px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--surface-border);
+      overflow: hidden;
+      animation: modalPop 0.25s ease-out;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header-tab {
+      display: flex;
+      background: #091427;
+      color: white;
+    }
+
+    .modal-tab-btn {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      border-bottom: 3px solid transparent;
+    }
+
+    .modal-tab-btn.active {
+      color: white;
+      border-bottom-color: #3b82f6;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .modal-body-padding {
+      padding: 24px;
+    }
+
+    .user-list-select {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .user-select-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .user-select-row:hover {
+      background: var(--primary-subtle);
+      border-color: var(--primary-border);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--surface-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-subtle);
+    }
+
+    .submit-auth-btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    .submit-auth-btn:hover {
+      background: var(--primary-hover);
+    }
   </style>
 </head>
 <body>
 
-  <!-- 1. LEFT SIDEBAR -->
+  <!-- 1. LEFT SIDEBAR NAVIGATION -->
   <aside class="sidebar">
     <div>
       <div class="sidebar-header">
@@ -1045,6 +1195,10 @@
         </div>
 
         <div class="menu-label" id="txt-nav-system">Security & Support</div>
+        <div class="nav-item" onclick="openAuthModal()">
+          <span class="nav-icon">👥</span>
+          <span id="nav-users">User Directory (បុគ្គលិក)</span>
+        </div>
         <div class="nav-item">
           <span class="nav-icon">🛡️</span>
           <span id="nav-security">2FA & Security</span>
@@ -1056,39 +1210,54 @@
       </nav>
     </div>
 
+    <!-- Bottom User Profile Pill (Opens Switcher) -->
     <div class="sidebar-footer">
-      <div class="user-profile-widget">
-        <div class="user-avatar-lg">AM</div>
+      <div class="user-profile-widget" onclick="openAuthModal()" title="Click to Switch Profile / Login">
+        <div class="user-avatar-lg" id="sidebar-user-avatar" style="background: linear-gradient(135deg, #1e40af 0%, #1e1b4b 100%);">SY</div>
         <div class="user-meta-info">
-          <div class="user-name-title">Alex Morgan</div>
-          <div class="user-tier-badge" id="txt-user-tier">Platinum Tier • CUST-10029</div>
+          <div class="user-name-title" id="sidebar-user-name">Mr. Sophanith Yorn</div>
+          <div class="user-tier-badge" id="sidebar-user-role">Administrator</div>
         </div>
       </div>
     </div>
   </aside>
 
-  <!-- 2. MAIN WORKSPACE -->
+  <!-- 2. MAIN WORKSPACE AREA -->
   <div class="app-workspace">
     
     <!-- Top Header Bar -->
     <header class="top-header">
       <div class="header-greeting">
-        <div class="greeting-title" id="txt-greeting">Good morning, Alex 👋 (អរុណសួស្តី)</div>
-        <div class="security-status-tag">
-          <span>🔒</span> <span id="txt-sec-tag">KEY Bank 256-bit Secure</span>
+        <div class="greeting-title" id="txt-greeting">Good morning, Mr. Sophanith Yorn 👋</div>
+        <div class="role-badge-pill" id="header-role-pill">
+          <span>👑</span> <span id="txt-active-role-label">Administrator (អគ្គនាយកគ្រប់គ្រង)</span>
         </div>
       </div>
 
       <div class="header-actions">
+        <!-- Quick Role Switcher -->
+        <select class="role-select-dropdown" id="quick-role-select" onchange="switchUserRole(this.value)">
+          <option value="sophanith">👑 Mr. Sophanith Yorn (Administrator)</option>
+          <option value="ravith">💰 Vn. Voeun Ravith (Finance Manager)</option>
+          <option value="phirek">📈 Vn. Hon Phirek (Marketing Manager)</option>
+          <option value="sokny">💻 Mr. San Sokny (IT Manager)</option>
+          <option value="vathanakboth">🤝 Mr. Ly Vathanakboth (Sale Manager)</option>
+          <option value="panha_n">📋 Mr. Noeun Panha (Sale Officer)</option>
+          <option value="panha_c">👥 Ms. Chea Panha (HR Manager)</option>
+          <option value="nisa">📣 Ms. Na Nisa (Marketing Officer)</option>
+          <option value="customer">👤 Alex Morgan (Retail Customer)</option>
+        </select>
+
+        <!-- Auth Button -->
+        <button class="auth-btn-pill" onclick="openAuthModal()">
+          <span>🔑</span> <span id="btn-login-modal">Login / Register</span>
+        </button>
+
         <!-- Language Switcher -->
         <div class="lang-switcher-pill">
           <button class="lang-toggle-btn active" id="btn-km" onclick="setLanguage('km')">🇰🇭 ភាសាខ្មែរ</button>
           <button class="lang-toggle-btn" id="btn-en" onclick="setLanguage('en')">🇬🇧 English</button>
         </div>
-
-        <button class="top-action-btn" onclick="resetDemoState()" id="txt-reset-btn">
-          <span>🔄</span> <span>Reset State</span>
-        </button>
       </div>
     </header>
 
@@ -1130,7 +1299,6 @@
 
         <!-- Accounts Grid -->
         <div class="accounts-overview-grid">
-          <!-- Checking -->
           <div class="account-summary-card">
             <div class="acc-header">
               <span class="acc-badge checking" id="txt-chk-badge">Everyday Checking</span>
@@ -1142,7 +1310,6 @@
             </div>
           </div>
 
-          <!-- Savings -->
           <div class="account-summary-card">
             <div class="acc-header">
               <span class="acc-badge savings" id="txt-sav-badge">High-Yield Savings</span>
@@ -1162,7 +1329,6 @@
           </div>
 
           <div class="card-widget-layout">
-            <!-- Virtual Card -->
             <div class="emv-card">
               <div class="emv-top">
                 <div class="emv-chip-gold"></div>
@@ -1172,7 +1338,7 @@
               <div class="emv-bottom">
                 <div>
                   <div style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase;">Cardholder</div>
-                  <div style="font-size:0.85rem; font-weight:700;">ALEX MORGAN</div>
+                  <div style="font-size:0.85rem; font-weight:700;" id="cardholder-name-display">MR. SOPHANITH YORN</div>
                 </div>
                 <div style="text-align: right;">
                   <div style="font-size:0.65rem; color:#94a3b8;">TRAVEL STATUS</div>
@@ -1181,7 +1347,6 @@
               </div>
             </div>
 
-            <!-- Quick Controls -->
             <div class="card-quick-actions">
               <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
                 <span>🔒 <strong id="btn-toggle-freeze">Freeze / Lock Card</strong></span>
@@ -1215,7 +1380,6 @@
           </div>
 
           <div class="txn-list">
-            <!-- Txn 1 -->
             <div class="txn-item">
               <div class="txn-left-col">
                 <div class="txn-icon-box">🛒</div>
@@ -1230,7 +1394,6 @@
               </div>
             </div>
 
-            <!-- Txn 2 -->
             <div class="txn-item">
               <div class="txn-left-col">
                 <div class="txn-icon-box">🚗</div>
@@ -1245,7 +1408,6 @@
               </div>
             </div>
 
-            <!-- Txn 3 (Flagged) -->
             <div class="txn-item flagged-suspect">
               <div class="txn-left-col">
                 <div class="txn-icon-box warning">⚠️</div>
@@ -1260,13 +1422,12 @@
               </div>
             </div>
 
-            <!-- Txn 4 -->
             <div class="txn-item">
               <div class="txn-left-col">
                 <div class="txn-icon-box" style="background:#ecfdf5; color:#059669;">💼</div>
                 <div>
-                  <div class="txn-merchant-name">Direct Deposit - ACME Global Payroll</div>
-                  <div class="txn-subtext" id="txn-sub4">Sep 26 • Salary Income</div>
+                  <div class="txn-merchant-name">Direct Deposit - KEY Payroll Disburse</div>
+                  <div class="txn-subtext" id="txn-sub4">Sep 26 • Executive Payroll</div>
                 </div>
               </div>
               <div class="txn-amount-col">
@@ -1295,23 +1456,19 @@
           </div>
         </div>
 
-        <!-- Chat Stream -->
         <div class="chat-messages-scroll" id="chat-stream">
           <div class="chat-row bot" id="initial-welcome-msg">
             <div class="chat-avatar">🤖</div>
             <div class="chat-bubble-card" id="welcome-text">
-              <p><strong>សួស្តី Alex!</strong> ខ្ញុំជា <strong>ជំនួយការ AI ស្វ័យប្រវត្តិនៃធនាគារ KEY Bank</strong> (KEY Bank Copilot)។</p>
-              <p style="margin-top:6px;">ខ្ញុំអាចជួយដោះស្រាយបញ្ហាគណនី គ្រប់គ្រងកាត Visa ដាក់ពាក្យតវ៉ាលើការកាត់លុយ និងឆ្លើយសំណួរអំពីគោលការណ៍ធនាគារដោយស្វ័យប្រវត្តិ។</p>
+              <p><strong>សូមគោរពជម្រាបសួរ លោក យន សុផានីត (Administrator)!</strong></p>
+              <p style="margin-top:6px;">ខ្ញុំជា <strong>ជំនួយការ AI ស្វ័យប្រវត្តិនៃធនាគារ KEY Bank</strong>។ ខ្ញុំបានត្រៀមរួចរាល់ក្នុងការជួយលោកអ្នកលើការគ្រប់គ្រងគណនី, សវនកម្មប្រតិបត្តិការ, និងការបញ្ជាប្រព័ន្ធសុវត្ថិភាព។</p>
               <p style="margin-top:6px; font-size:0.8rem; color:#64748b;">សូមជ្រើសរើសសំណួរគំរូខាងក្រោមដើម្បីសាកល្បង Demo:</p>
             </div>
           </div>
         </div>
 
-        <!-- Quick Prompts Tray -->
-        <div class="quick-chips-tray" id="prompts-container">
-        </div>
+        <div class="quick-chips-tray" id="prompts-container"></div>
 
-        <!-- Chat Input Dock -->
         <div class="chat-input-dock">
           <input type="text" id="user-input" class="copilot-text-input" placeholder="សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់..." onkeypress="handleKey(event)" />
           <button class="copilot-send-button" onclick="submitMessage()">➤</button>
@@ -1322,8 +1479,50 @@
     </div>
   </div>
 
+  <!-- 5. LOGIN & REGISTER MODAL -->
+  <div class="modal-overlay" id="auth-modal" onclick="closeAuthModal(event)">
+    <div class="auth-modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header-tab">
+        <button class="modal-tab-btn active" id="tab-login-btn" onclick="switchModalTab('login')">🔑 User Login (ចូលប្រើប្រាស់)</button>
+        <button class="modal-tab-btn" id="tab-register-btn" onclick="switchModalTab('register')">➕ Register (ចុះឈ្មោះថ្មី)</button>
+      </div>
+
+      <!-- Tab 1: Login List -->
+      <div class="modal-body-padding" id="modal-login-body">
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:12px; color:#475569;">
+          ជ្រើសរើសគណនីបុគ្គលិក ឬអតិថិជនដើម្បី Login:
+        </div>
+        <div class="user-list-select" id="login-users-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Register Form -->
+      <div class="modal-body-padding" id="modal-register-body" style="display:none;">
+        <form onsubmit="handleRegisterSubmit(event)">
+          <div class="form-group">
+            <label>Full Name (ឈ្មោះពេញ):</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="e.g. Mr. Sok Chan" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address (អ៊ីមែល):</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="user@keybank.com" required />
+          </div>
+          <div class="form-group">
+            <label>Username (ឈ្មោះគណនី):</label>
+            <input type="text" id="reg-username" class="form-control" placeholder="sok_chan" required />
+          </div>
+          <button type="submit" class="submit-auth-btn">✨ Create Account & Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
     let currentLang = 'km';
+    let currentUserKey = 'sophanith';
+    let usersList = [];
+
     const chatStream = document.getElementById('chat-stream');
     const userInput = document.getElementById('user-input');
 
@@ -1344,6 +1543,124 @@
       ]
     };
 
+    async function loadUsers() {
+      try {
+        const res = await fetch('/api/users');
+        usersList = await res.json();
+        renderLoginModalList();
+      } catch (err) {
+        console.error('Failed to load users list:', err);
+      }
+    }
+
+    function renderLoginModalList() {
+      const container = document.getElementById('login-users-list');
+      container.innerHTML = '';
+      usersList.forEach(u => {
+        const row = document.createElement('div');
+        row.className = 'user-select-row';
+        row.onclick = () => selectUser(u.username);
+        row.innerHTML = `
+          <div class="user-avatar-lg" style="width:34px; height:34px; font-size:0.75rem; background:${u.avatarBg};">${u.avatar}</div>
+          <div style="flex:1;">
+            <div style="font-size:0.86rem; font-weight:700;">${u.name}</div>
+            <div style="font-size:0.72rem; color:#64748b;">${u.role} • ${u.department}</div>
+          </div>
+          <span style="font-size:0.75rem; color:#2563eb; font-weight:700;">Login →</span>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    async function selectUser(username) {
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username })
+        });
+        const data = await res.json();
+        if (data.status === 'SUCCESS') {
+          currentUserKey = username;
+          document.getElementById('quick-role-select').value = username;
+          updateActiveUserUI(data.user);
+          closeAuthModal();
+        }
+      } catch (err) {
+        console.error('Login error:', err);
+      }
+    }
+
+    function switchUserRole(username) {
+      selectUser(username);
+    }
+
+    function updateActiveUserUI(user) {
+      document.getElementById('sidebar-user-avatar').textContent = user.avatar;
+      document.getElementById('sidebar-user-avatar').style.background = user.avatarBg;
+      document.getElementById('sidebar-user-name').textContent = user.name;
+      document.getElementById('sidebar-user-role').textContent = user.role;
+      document.getElementById('cardholder-name-display').textContent = user.name.toUpperCase();
+      
+      const greeting = currentLang === 'km' 
+        ? `សូមជម្រាបសួរ ${user.nameKh || user.name} 👋` 
+        : `Good morning, ${user.name} 👋`;
+      document.getElementById('txt-greeting').textContent = greeting;
+      
+      const roleText = currentLang === 'km' ? (user.roleKh || user.role) : user.role;
+      document.getElementById('txt-active-role-label').textContent = `${roleText}`;
+      
+      const welcomeMsg = currentLang === 'km'
+        ? `សូមគោរពជម្រាបសួរ **${user.nameKh || user.name}** (${user.roleKh || user.role})! តើខ្ញុំអាចជួយអ្វីលើសេវាកម្ម KEY Bank នៅថ្ងៃនេះ?`
+        : `Welcome **${user.name}** (${user.role})! How can I assist you with KEY Bank services today?`;
+      appendBotMessage(welcomeMsg);
+    }
+
+    async function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const username = document.getElementById('reg-username').value.trim();
+      
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, username })
+        });
+        const data = await res.json();
+        if (data.status === 'SUCCESS') {
+          await loadUsers();
+          updateActiveUserUI(data.user);
+          closeAuthModal();
+        }
+      } catch (err) {
+        console.error('Registration failed:', err);
+      }
+    }
+
+    function openAuthModal() {
+      document.getElementById('auth-modal').style.display = 'flex';
+    }
+
+    function closeAuthModal(e) {
+      document.getElementById('auth-modal').style.display = 'none';
+    }
+
+    function switchModalTab(tab) {
+      if (tab === 'login') {
+        document.getElementById('tab-login-btn').className = 'modal-tab-btn active';
+        document.getElementById('tab-register-btn').className = 'modal-tab-btn';
+        document.getElementById('modal-login-body').style.display = 'block';
+        document.getElementById('modal-register-body').style.display = 'none';
+      } else {
+        document.getElementById('tab-login-btn').className = 'modal-tab-btn';
+        document.getElementById('tab-register-btn').className = 'modal-tab-btn active';
+        document.getElementById('modal-login-body').style.display = 'none';
+        document.getElementById('modal-register-body').style.display = 'block';
+      }
+    }
+
     function renderPrompts() {
       const container = document.getElementById('prompts-container');
       container.innerHTML = '';
@@ -1362,46 +1679,36 @@
       document.getElementById('btn-km').className = lang === 'km' ? 'lang-toggle-btn active' : 'lang-toggle-btn';
 
       if (lang === 'km') {
-        document.getElementById('txt-greeting').textContent = 'អរុណសួស្តី Alex 👋';
-        document.getElementById('txt-sec-tag').textContent = 'KEY Bank 256-bit Secure';
         document.getElementById('txt-total-assets').textContent = 'ទ្រព្យសកម្មសរុប (Total Liquid Assets)';
         document.getElementById('btn-qa-balance').textContent = 'ពិនិត្យសមតុល្យ';
         document.getElementById('btn-qa-dispute').textContent = 'ប្រតិបត្តិការសង្ស័យ';
         document.getElementById('btn-qa-freeze').textContent = 'គ្រប់គ្រងកាត';
         document.getElementById('btn-qa-fees').textContent = 'ថ្លៃសេវាធនាគារ';
-        
         document.getElementById('txt-chk-badge').textContent = 'គណនីចរន្តទូទៅ';
         document.getElementById('txt-chk-desc').textContent = '⚡ អាចដកប្រាក់ ឬទូទាត់បានភ្លាមៗ';
         document.getElementById('txt-sav-badge').textContent = 'គណនីសន្សំការប្រាក់ខ្ពស់';
         document.getElementById('txt-sav-desc').textContent = '📈 ទទួលបានការប្រាក់ ៤.៧៥% ក្នុងមួយឆ្នាំ';
-        
         document.getElementById('txt-card-sec-title').textContent = 'កាតទូទាត់ចម្បង និងការបញ្ជាសុវត្ថិភាព (Payment Cards)';
         document.getElementById('btn-toggle-freeze').textContent = 'បង្កក ឬដោះសោកាត (Freeze Card)';
         document.getElementById('btn-travel-notice').textContent = 'កំណត់ការធ្វើដំណើរ (Travel Notice)';
         document.getElementById('btn-card-limits').textContent = 'ដែនកំណត់ដកប្រាក់ (ATM & Limits)';
-        
         document.getElementById('txt-recent-title').textContent = 'សកម្មភាពប្រតិបត្តិការថ្មីៗ (Recent Activity)';
         document.getElementById('txt-txn-count').textContent = 'ប្រតិបត្តិការ ៤ ចុងក្រោយ';
         document.getElementById('user-input').placeholder = 'សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់ (ភាសាខ្មែរ ឬ English)...';
       } else {
-        document.getElementById('txt-greeting').textContent = 'Good morning, Alex 👋';
-        document.getElementById('txt-sec-tag').textContent = 'KEY Bank 256-bit Secure';
         document.getElementById('txt-total-assets').textContent = 'Total Liquid Assets';
         document.getElementById('btn-qa-balance').textContent = 'View Balances';
         document.getElementById('btn-qa-dispute').textContent = 'Flagged Charge';
         document.getElementById('btn-qa-freeze').textContent = 'Card Controls';
         document.getElementById('btn-qa-fees').textContent = 'Fee Schedule';
-        
         document.getElementById('txt-chk-badge').textContent = 'Everyday Checking';
         document.getElementById('txt-chk-desc').textContent = '⚡ Available for immediate withdrawal';
         document.getElementById('txt-sav-badge').textContent = 'High-Yield Savings';
         document.getElementById('txt-sav-desc').textContent = '📈 +4.75% APY Active compound';
-        
         document.getElementById('txt-card-sec-title').textContent = 'Primary Payment Card & Controls';
         document.getElementById('btn-toggle-freeze').textContent = 'Freeze / Lock Card';
         document.getElementById('btn-travel-notice').textContent = 'Set Travel Notice';
         document.getElementById('btn-card-limits').textContent = 'Card & ATM Limits';
-        
         document.getElementById('txt-recent-title').textContent = 'Recent Activity';
         document.getElementById('txt-txn-count').textContent = 'Last 4 Transactions';
         document.getElementById('user-input').placeholder = 'Ask about balances, freeze card, dispute a charge...';
@@ -1464,15 +1771,15 @@
       await fetch('/api/reset');
       await refreshDashboardState();
       appendBotMessage(currentLang === 'km' 
-        ? "🔄 **ទិន្នន័យ Demo ត្រូវបានកំណត់ឡើងវិញ (Reset) ជោគជ័យ។** កាតទាំងអស់មានស្ថានភាពសកម្ម និងសំណុំរឿងតវ៉ាត្រូវបានសម្អាត។"
-        : "🔄 **Demo state has been reset to default.** All cards are Active and disputes cleared.");
+        ? "🔄 **ទិន្នន័យ Demo ត្រូវបានកំណត់ឡើងវិញ (Reset) ជោគជ័យ។**"
+        : "🔄 **Demo state has been reset to default.**");
     }
 
     function appendUserMessage(text) {
       const row = document.createElement('div');
       row.className = 'chat-row user';
       row.innerHTML = `
-        <div class="chat-avatar">AM</div>
+        <div class="chat-avatar">${currentUserKey === 'sophanith' ? 'SY' : 'AM'}</div>
         <div class="chat-bubble-card">${escapeHtml(text)}</div>
       `;
       chatStream.appendChild(row);
@@ -1589,7 +1896,7 @@
         const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, sessionId: 'demo-user-1', lang: currentLang })
+          body: JSON.stringify({ message: text, sessionId: 'demo-session-1', lang: currentLang, username: currentUserKey })
         });
         const data = await res.json();
         
@@ -1610,7 +1917,8 @@
       return text.replace(/[&<>"']/g, m => map[m]);
     }
 
-    // Initialize in Khmer
+    // Initialize
+    loadUsers();
     setLanguage('km');
   </script>
 </body>
