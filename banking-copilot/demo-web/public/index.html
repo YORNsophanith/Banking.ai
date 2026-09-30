@@ -6,7 +6,6 @@
   <title>KEY Bank — Enterprise Online Banking</title>
   
   <!-- Modern Google Fonts: Kantumruy Pro (Khmer) & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
 
@@ -28,7 +27,6 @@
       --danger: #dc2626;
       --danger-light: #fef2f2;
       --warning: #d97706;
-      --warning-light: #fffbeb;
 
       --bg-canvas: #f8fafc;
       --surface: #ffffff;
@@ -45,8 +43,8 @@
       --radius-full: 9999px;
 
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
       --shadow-xl: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
 
       --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -56,7 +54,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -88,7 +86,7 @@
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
       width: 100%;
-      max-width: 540px;
+      max-width: 520px;
       border-radius: var(--radius-lg);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -136,10 +134,7 @@
       transition: var(--transition);
     }
 
-    .auth-lang-btn.active {
-      background: var(--primary);
-      color: white;
-    }
+    .auth-lang-btn.active { background: var(--primary); color: white; }
 
     .auth-logo-badge {
       width: 48px;
@@ -173,34 +168,13 @@
       border-bottom: 3px solid transparent;
     }
 
-    .auth-tab-btn.active {
-      color: var(--primary);
-      background: white;
-      border-bottom-color: var(--primary);
-    }
+    .auth-tab-btn.active { color: var(--primary); background: white; border-bottom-color: var(--primary); }
 
-    .auth-body-container {
-      padding: 24px 28px;
-    }
+    .auth-body-container { padding: 24px 28px; }
+    .form-group-field { margin-bottom: 15px; }
+    .form-group-field label { display: block; font-size: 0.84rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
 
-    .form-group-field {
-      margin-bottom: 15px;
-    }
-
-    .form-group-field label {
-      display: block;
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 6px;
-    }
-
-    .input-with-icon {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
+    .input-with-icon { position: relative; display: flex; align-items: center; }
     .input-control-styled {
       width: 100%;
       padding: 11px 14px 11px 40px;
@@ -211,20 +185,8 @@
       transition: var(--transition);
       background: #f8fafc;
     }
-
-    .input-control-styled:focus {
-      background: white;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-subtle);
-    }
-
-    .input-icon-prefix {
-      position: absolute;
-      left: 12px;
-      font-size: 1.1rem;
-      color: #94a3b8;
-      pointer-events: none;
-    }
+    .input-control-styled:focus { background: white; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-subtle); }
+    .input-icon-prefix { position: absolute; left: 12px; font-size: 1.1rem; color: #94a3b8; pointer-events: none; }
 
     .auth-submit-btn {
       width: 100%;
@@ -241,11 +203,6 @@
       margin-top: 8px;
     }
 
-    .auth-submit-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(30, 64, 175, 0.4);
-    }
-
     .auth-alert-box {
       background: var(--danger-light);
       border: 1px solid #fecaca;
@@ -258,29 +215,9 @@
       display: none;
     }
 
-    .quick-autofill-box {
-      margin-top: 18px;
-      border-top: 1px solid var(--surface-border);
-      padding-top: 14px;
-    }
-
-    .autofill-header {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: #64748b;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .quick-user-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      max-height: 160px;
-      overflow-y: auto;
-    }
-
+    .quick-autofill-box { margin-top: 18px; border-top: 1px solid var(--surface-border); padding-top: 14px; }
+    .autofill-header { font-size: 0.76rem; font-weight: 700; color: #64748b; margin-bottom: 10px; text-transform: uppercase; }
+    .quick-user-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 160px; overflow-y: auto; }
     .user-pill-shortcut {
       background: #f8fafc;
       border: 1px solid var(--surface-border);
@@ -295,14 +232,9 @@
       align-items: center;
       gap: 6px;
     }
+    .user-pill-shortcut:hover { background: var(--primary-subtle); border-color: var(--primary-border); color: var(--primary); }
 
-    .user-pill-shortcut:hover {
-      background: var(--primary-subtle);
-      border-color: var(--primary-border);
-      color: var(--primary);
-    }
-
-    /* SIDEBAR & LAYOUT */
+    /* SIDEBAR */
     aside.sidebar {
       width: 260px;
       background: var(--sidebar-bg);
@@ -314,18 +246,8 @@
       z-index: 20;
     }
 
-    .sidebar-header {
-      padding: 22px 20px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .bank-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
+    .sidebar-header { padding: 22px 20px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+    .bank-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .brand-logo-icon {
       width: 40px;
       height: 40px;
@@ -338,39 +260,11 @@
       font-size: 1.35rem;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
     }
+    .brand-names h2 { font-size: 1.1rem; font-weight: 800; color: var(--sidebar-text-bright); }
+    .brand-names span { font-size: 0.7rem; color: #38bdf8; font-weight: 700; }
 
-    .brand-names h2 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--sidebar-text-bright);
-      letter-spacing: -0.3px;
-    }
-
-    .brand-names span {
-      font-size: 0.7rem;
-      color: #38bdf8;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .sidebar-menu {
-      padding: 16px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .menu-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: #64748b;
-      letter-spacing: 0.8px;
-      padding: 10px 12px 4px;
-      text-transform: uppercase;
-    }
-
+    .sidebar-menu { padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; overflow-y: auto; }
+    .menu-label { font-size: 0.68rem; font-weight: 700; color: #64748b; padding: 10px 12px 4px; text-transform: uppercase; }
     .nav-item {
       display: flex;
       align-items: center;
@@ -378,53 +272,18 @@
       padding: 10px 14px;
       border-radius: var(--radius-sm);
       color: var(--sidebar-text);
-      text-decoration: none;
       font-size: 0.86rem;
       font-weight: 600;
       transition: var(--transition);
       cursor: pointer;
-      user-select: none;
     }
+    .nav-item:hover { background: var(--sidebar-hover); color: var(--sidebar-text-bright); }
+    .nav-item.active { background: var(--sidebar-active); color: white; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4); }
+    .nav-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+    .nav-badge { margin-left: auto; background: var(--danger); color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: var(--radius-full); }
 
-    .nav-item:hover {
-      background: var(--sidebar-hover);
-      color: var(--sidebar-text-bright);
-    }
-
-    .nav-item.active {
-      background: var(--sidebar-active);
-      color: white;
-      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.4);
-    }
-
-    .nav-icon {
-      font-size: 1.1rem;
-      width: 20px;
-      text-align: center;
-    }
-
-    .nav-badge {
-      margin-left: auto;
-      background: var(--danger);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: var(--radius-full);
-    }
-
-    .sidebar-footer {
-      padding: 14px 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(0, 0, 0, 0.25);
-    }
-
-    .user-profile-widget {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .sidebar-footer { padding: 14px 16px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.25); }
+    .user-profile-widget { display: flex; align-items: center; gap: 10px; }
     .user-avatar-lg {
       width: 38px;
       height: 38px;
@@ -438,39 +297,12 @@
       border: 2px solid rgba(255, 255, 255, 0.25);
       flex-shrink: 0;
     }
-
-    .user-meta-info {
-      flex: 1;
-      overflow: hidden;
-    }
-
-    .user-name-title {
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: white;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .user-tier-badge {
-      font-size: 0.7rem;
-      color: #38bdf8;
-      font-weight: 600;
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .user-meta-info { flex: 1; overflow: hidden; }
+    .user-name-title { font-size: 0.86rem; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-tier-badge { font-size: 0.7rem; color: #38bdf8; font-weight: 600; }
 
     /* WORKSPACE */
-    .app-workspace {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
+    .app-workspace { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
     header.top-header {
       height: 64px;
       background: var(--surface);
@@ -482,19 +314,8 @@
       flex-shrink: 0;
       z-index: 10;
     }
-
-    .header-greeting {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .greeting-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
+    .header-greeting { display: flex; align-items: center; gap: 12px; }
+    .greeting-title { font-size: 1.1rem; font-weight: 800; color: var(--text-main); }
     .role-badge-pill {
       display: inline-flex;
       align-items: center;
@@ -507,13 +328,7 @@
       font-size: 0.74rem;
       font-weight: 700;
     }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .header-actions { display: flex; align-items: center; gap: 12px; }
     .logout-btn-styled {
       background: var(--danger-light);
       border: 1px solid #fecaca;
@@ -526,21 +341,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: var(--transition);
     }
-
-    .logout-btn-styled:hover {
-      background: #fee2e2;
-    }
-
-    .lang-switcher-pill {
-      display: flex;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: var(--radius-full);
-      padding: 3px;
-    }
-
+    .lang-switcher-pill { display: flex; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: var(--radius-full); padding: 3px; }
     .lang-toggle-btn {
       background: transparent;
       border: none;
@@ -550,95 +352,37 @@
       font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
-      transition: var(--transition);
       display: flex;
       align-items: center;
       gap: 4px;
     }
+    .lang-toggle-btn.active { background: var(--primary); color: white; box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3); }
 
-    .lang-toggle-btn.active {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
-    }
-
-    .view-content-wrapper {
-      flex: 1;
-      padding: 24px 28px;
-      overflow-y: auto;
-      display: none;
-    }
-
-    .view-content-wrapper.active {
-      display: block;
-      animation: fadeIn 0.25s ease-out;
-    }
+    .view-content-wrapper { flex: 1; padding: 24px 28px 100px; overflow-y: auto; display: none; }
+    .view-content-wrapper.active { display: block; animation: fadeIn 0.25s ease-out; }
 
     /* DASHBOARD */
-    .dashboard-split-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 24px;
-      height: 100%;
-    }
-
-    .banking-canvas {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
+    .dashboard-full-container { display: flex; flex-direction: column; gap: 22px; max-width: 1400px; margin: 0 auto; }
     .net-worth-banner {
       background: linear-gradient(135deg, #1e40af 0%, #091427 100%);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 24px 28px;
       color: white;
-      position: relative;
-      overflow: hidden;
       box-shadow: var(--shadow-lg);
     }
+    .banner-top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+    .banner-title-label { font-size: 0.8rem; color: #93c5fd; font-weight: 700; }
+    .banner-total-amount { font-size: 2.3rem; font-weight: 800; margin-top: 4px; color: #ffffff; }
 
-    .banner-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      position: relative;
-      z-index: 2;
-    }
-
-    .banner-title-label {
-      font-size: 0.76rem;
-      letter-spacing: 0.5px;
-      color: #93c5fd;
-      font-weight: 700;
-    }
-
-    .banner-total-amount {
-      font-size: 2.1rem;
-      font-weight: 800;
-      margin-top: 4px;
-      color: #ffffff;
-    }
-
-    .quick-transfer-bar {
-      display: flex;
-      gap: 8px;
-      margin-top: 18px;
-      position: relative;
-      z-index: 2;
-      flex-wrap: wrap;
-    }
-
+    .quick-transfer-bar { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
     .quick-action-pill {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
-      padding: 7px 14px;
+      padding: 8px 16px;
       border-radius: var(--radius-full);
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -646,252 +390,153 @@
       gap: 6px;
       transition: var(--transition);
     }
+    .quick-action-pill:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-1px); }
 
-    .quick-action-pill:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: translateY(-1px);
-    }
+    .accounts-overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .account-summary-card { background: var(--surface); border: 1px solid var(--surface-border); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-sm); }
+    .acc-header { display: flex; justify-content: space-between; align-items: center; }
+    .acc-badge { font-size: 0.74rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-full); }
+    .acc-badge.checking { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .acc-badge.savings { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .acc-balance-big { font-size: 1.7rem; font-weight: 800; color: var(--text-main); margin-top: 10px; }
 
-    .accounts-overview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .account-summary-card {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .acc-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .acc-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-    }
-
-    .acc-badge.checking {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-    }
-
-    .acc-badge.savings {
-      background: #ecfdf5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
-    }
-
-    .acc-balance-big {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-top: 8px;
-    }
-
-    .card-management-widget {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .card-widget-layout {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
+    .card-management-widget { background: var(--surface); border: 1px solid var(--surface-border); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-sm); }
+    .card-widget-layout { display: grid; grid-template-columns: 360px 1fr; gap: 24px; align-items: center; }
     .emv-card {
       background: linear-gradient(135deg, #091427 0%, #1e293b 50%, #0f172a 100%);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 20px;
       color: white;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.15);
       aspect-ratio: 1.58 / 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
+    .emv-top { display: flex; justify-content: space-between; align-items: center; }
+    .emv-chip-gold { width: 40px; height: 30px; background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); border-radius: 6px; }
+    .card-status-pill { font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-full); }
+    .card-status-pill.active { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); }
+    .card-status-pill.frozen { background: rgba(220, 38, 38, 0.3); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.5); }
+    .emv-number { font-family: monospace; font-size: 1.18rem; letter-spacing: 3px; color: #f8fafc; margin: 12px 0 6px; }
+    .emv-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
 
-    .emv-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .emv-chip-gold {
-      width: 38px;
-      height: 28px;
-      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-      border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .card-status-pill {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-      letter-spacing: 0.5px;
-    }
-
-    .card-status-pill.active {
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      border: 1px solid rgba(52, 211, 153, 0.4);
-    }
-
-    .card-status-pill.frozen {
-      background: rgba(220, 38, 38, 0.3);
-      color: #fca5a5;
-      border: 1px solid rgba(248, 113, 113, 0.5);
-    }
-
-    .emv-number {
-      font-family: monospace;
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-      color: #f8fafc;
-      margin: 10px 0 4px;
-    }
-
-    .emv-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .card-quick-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
+    .card-quick-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
     .card-control-btn {
       background: var(--surface-subtle);
       border: 1px solid var(--surface-border);
-      padding: 9px 12px;
+      padding: 14px 16px;
       border-radius: var(--radius-sm);
-      font-size: 0.8rem;
+      font-size: 0.84rem;
       font-weight: 600;
       color: var(--text-main);
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
+      gap: 8px;
       cursor: pointer;
       transition: var(--transition);
     }
+    .card-control-btn:hover { background: #e2e8f0; transform: translateY(-2px); }
 
-    .card-control-btn:hover {
-      background: #e2e8f0;
-    }
-
-    .transactions-panel {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .txn-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .txn-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
+    .transactions-panel { background: var(--surface); border: 1px solid var(--surface-border); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-sm); }
+    .txn-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .txn-list { display: flex; flex-direction: column; gap: 10px; }
     .txn-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 12px;
+      padding: 12px 16px;
       border-radius: var(--radius-sm);
       border: 1px solid #f1f5f9;
       background: var(--surface);
     }
-
-    .txn-item.flagged-suspect {
-      background: #fffbeb;
-      border-color: #fde68a;
-    }
-
-    .txn-left-col {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .txn-item.flagged-suspect { background: #fffbeb; border-color: #fde68a; }
+    .txn-left-col { display: flex; align-items: center; gap: 12px; }
     .txn-icon-box {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: #eff6ff;
       color: var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
-
-    .txn-merchant-name {
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .txn-subtext {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .txn-amount-val {
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-align: right;
-    }
-
+    .txn-merchant-name { font-size: 0.88rem; font-weight: 700; color: var(--text-main); }
+    .txn-subtext { font-size: 0.76rem; color: var(--text-muted); margin-top: 2px; }
+    .txn-amount-val { font-size: 0.95rem; font-weight: 700; text-align: right; }
     .txn-amount-val.negative { color: var(--danger); }
     .txn-amount-val.positive { color: var(--accent); }
 
-    /* COPILOT AI CHAT */
-    .copilot-container {
+    /* ==========================================================================
+       VICHHAI AI: FLOATING ACTION BUTTON & CHAT WINDOW
+       ========================================================================== */
+    .vichhai-floating-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 28px;
+      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 10px 25px -4px rgba(30, 64, 175, 0.5), 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      z-index: 999;
+      transition: var(--transition);
+      user-select: none;
+    }
+    .vichhai-floating-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 28px -4px rgba(30, 64, 175, 0.6); }
+    .vichhai-btn-avatar { font-size: 1.25rem; display: inline-flex; align-items: center; justify-content: center; }
+    .vichhai-live-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.4);
+      animation: pulse-ring 1.8s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 1; }
+    }
+
+    /* Floating Chat Popup Window */
+    .vichhai-chat-window {
+      position: fixed;
+      bottom: 84px;
+      right: 28px;
+      width: 410px;
+      max-width: calc(100vw - 36px);
+      height: 580px;
+      max-height: calc(100vh - 110px);
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-xl);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      height: 100%;
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .vichhai-chat-window.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
 
-    .copilot-top-bar {
+    .vichhai-chat-header {
       background: linear-gradient(135deg, #091427 0%, #1e293b 100%);
       color: white;
       padding: 14px 18px;
@@ -899,91 +544,46 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
     }
-
-    .copilot-brand-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .copilot-sparkle-logo {
-      width: 34px;
-      height: 34px;
+    .vichhai-header-left { display: flex; align-items: center; gap: 10px; }
+    .vichhai-avatar-badge {
+      width: 36px;
+      height: 36px;
       border-radius: var(--radius-md);
       background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
     }
-
-    .copilot-active-pill {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #93c5fd;
-      background: rgba(59, 130, 246, 0.2);
-      border: 1px solid rgba(147, 197, 253, 0.3);
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .pulse-dot {
-      width: 6px;
-      height: 6px;
+    .vichhai-header-title { font-size: 0.98rem; font-weight: 800; }
+    .vichhai-header-sub { font-size: 0.7rem; color: #94a3b8; }
+    .vichhai-close-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: white;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: #34d399;
-    }
-
-    .chat-messages-scroll {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      background: #f8fafc;
-    }
-
-    .chat-row {
-      display: flex;
-      gap: 10px;
-      max-width: 90%;
-    }
-
-    .chat-row.user {
-      align-self: flex-end;
-      flex-direction: row-reverse;
-    }
-
-    .chat-row.bot {
-      align-self: flex-start;
-    }
-
-    .chat-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      flex-shrink: 0;
+      transition: var(--transition);
     }
+    .vichhai-close-btn:hover { background: rgba(255, 255, 255, 0.25); }
 
-    .chat-row.bot .chat-avatar {
-      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
-      color: white;
-    }
-
-    .chat-row.user .chat-avatar {
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-      color: white;
-    }
+    .vichhai-chat-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: #f8fafc; }
+    .chat-row { display: flex; gap: 10px; max-width: 90%; }
+    .chat-row.user { align-self: flex-end; flex-direction: row-reverse; }
+    .chat-row.bot { align-self: flex-start; }
+    .chat-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .chat-row.bot .chat-avatar { background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%); color: white; }
+    .chat-row.user .chat-avatar { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; }
 
     .chat-bubble-card {
       background: white;
@@ -995,56 +595,14 @@
       color: var(--text-main);
       box-shadow: var(--shadow-sm);
     }
+    .chat-row.user .chat-bubble-card { background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%); color: white; border: none; border-radius: 14px 14px 4px 14px; }
 
-    .chat-row.user .chat-bubble-card {
-      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
-      color: white;
-      border: none;
-      border-radius: 14px 14px 4px 14px;
-    }
+    .reasoning-terminal { margin-top: 10px; background: #091427; border: 1px solid #1e293b; border-radius: var(--radius-sm); font-size: 0.74rem; color: #cbd5e1; overflow: hidden; }
+    .reasoning-header-bar { background: #111e38; padding: 6px 10px; font-weight: 700; color: #60a5fa; cursor: pointer; display: flex; justify-content: space-between; }
+    .reasoning-body { padding: 8px 10px; font-family: monospace; white-space: pre-wrap; }
 
-    .reasoning-terminal {
-      margin-top: 10px;
-      background: #091427;
-      border: 1px solid #1e293b;
-      border-radius: var(--radius-sm);
-      font-size: 0.74rem;
-      color: #cbd5e1;
-      overflow: hidden;
-    }
-
-    .reasoning-header-bar {
-      background: #111e38;
-      padding: 6px 10px;
-      font-weight: 700;
-      color: #60a5fa;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      user-select: none;
-    }
-
-    .reasoning-body {
-      padding: 8px 10px;
-      font-family: monospace;
-      white-space: pre-wrap;
-    }
-
-    .chat-embedded-action {
-      margin-top: 10px;
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
-      background: white;
-      padding: 12px;
-    }
-
-    .action-button-group {
-      display: flex;
-      gap: 6px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
+    .chat-embedded-action { margin-top: 10px; border: 1px solid var(--surface-border); border-radius: var(--radius-md); background: white; padding: 12px; }
+    .action-button-group { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
     .copilot-action-btn {
       background: var(--primary-subtle);
       color: var(--primary);
@@ -1056,20 +614,10 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
     .copilot-action-btn:hover { background: #dbeafe; }
     .copilot-action-btn.danger { background: var(--danger-light); color: var(--danger); border-color: #fecaca; }
 
-    .quick-chips-tray {
-      padding: 8px 14px;
-      background: var(--surface-subtle);
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      border-top: 1px solid var(--surface-border);
-      flex-shrink: 0;
-    }
-
+    .quick-chips-tray { padding: 8px 14px; background: var(--surface-subtle); display: flex; gap: 6px; overflow-x: auto; border-top: 1px solid var(--surface-border); flex-shrink: 0; }
     .copilot-chip {
       background: white;
       border: 1px solid var(--surface-border);
@@ -1082,99 +630,34 @@
       font-weight: 700;
       transition: var(--transition);
     }
-
     .copilot-chip:hover { background: var(--primary-subtle); border-color: #93c5fd; }
 
-    .chat-input-dock {
-      padding: 12px 16px;
-      background: white;
-      border-top: 1px solid var(--surface-border);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .copilot-text-input {
-      flex: 1;
-      padding: 10px 16px;
-      border: 1.5px solid var(--surface-border);
-      border-radius: var(--radius-full);
-      font-size: 0.86rem;
-      outline: none;
-      background: #f8fafc;
-    }
-
+    .chat-input-dock { padding: 12px 14px; background: white; border-top: 1px solid var(--surface-border); display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    .copilot-text-input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--surface-border); border-radius: var(--radius-full); font-size: 0.86rem; outline: none; background: #f8fafc; }
     .copilot-text-input:focus { background: white; border-color: var(--primary); }
-
     .copilot-send-button {
       background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
       color: white;
       border: none;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       flex-shrink: 0;
     }
 
     /* CARD PANELS & TABLES */
-    .section-card-panel {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 20px;
-    }
-
-    .section-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      border-bottom: 1px solid var(--surface-border);
-      padding-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .styled-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
-    .styled-table th {
-      background: var(--surface-subtle);
-      padding: 10px 14px;
-      text-align: left;
-      font-weight: 700;
-      color: var(--text-secondary);
-      border-bottom: 1.5px solid var(--surface-border);
-    }
-
-    .styled-table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #f1f5f9;
-      color: var(--text-main);
-    }
-
-    .styled-table tr:hover { background: #f8fafc; }
-
-    .form-grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+    .section-card-panel { background: var(--surface); border: 1px solid var(--surface-border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 20px; }
+    .section-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-bottom: 1px solid var(--surface-border); padding-bottom: 12px; }
+    .section-title { font-size: 1.15rem; font-weight: 800; color: var(--text-main); }
+    .styled-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .styled-table th { background: var(--surface-subtle); padding: 10px 14px; text-align: left; font-weight: 700; color: var(--text-secondary); border-bottom: 1.5px solid var(--surface-border); }
+    .styled-table td { padding: 12px 14px; border-bottom: 1px solid #f1f5f9; color: var(--text-main); }
+    .form-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     .btn-action-primary {
       background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
@@ -1185,68 +668,20 @@
       font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
-      transition: var(--transition);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-
-    .btn-action-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3); }
-
-    .success-toast-banner {
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
-      color: #047857;
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 0.84rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      display: none;
-    }
-
-    .user-directory-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    .user-profile-card {
-      background: white;
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-    }
-
-    .user-profile-card:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: var(--shadow-md); }
-
-    .token-display-box {
-      background: #091427;
-      border-radius: var(--radius-md);
-      padding: 24px;
-      text-align: center;
-      color: white;
-      margin-bottom: 20px;
-    }
-
-    .token-digits {
-      font-family: monospace;
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: 8px;
-      color: #38bdf8;
-      margin: 10px 0;
-    }
+    .success-toast-banner { background: #ecfdf5; border: 1px solid #a7f3d0; color: #047857; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.84rem; font-weight: 700; margin-bottom: 16px; display: none; }
+    .user-directory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .user-profile-card { background: white; border: 1px solid var(--surface-border); border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between; }
+    .token-display-box { background: #091427; border-radius: var(--radius-md); padding: 24px; text-align: center; color: white; margin-bottom: 20px; }
+    .token-digits { font-family: monospace; font-size: 2.8rem; font-weight: 800; letter-spacing: 8px; color: #38bdf8; margin: 10px 0; }
   </style>
 </head>
 <body>
 
-  <!-- AUTHENTICATION GATEWAY SCREEN -->
+  <!-- AUTHENTICATION GATEWAY -->
   <div id="auth-gateway-screen">
     <div class="auth-card-panel">
       <div class="auth-brand-header">
@@ -1457,143 +892,119 @@
 
     <!-- VIEW 1: DASHBOARD -->
     <div id="view-dashboard" class="view-content-wrapper active">
-      <div class="dashboard-split-grid">
-        <section class="banking-canvas">
-          <div class="net-worth-banner">
-            <div class="banner-top-row">
-              <div>
-                <div class="banner-title-label" id="txt-total-assets">ទ្រព្យសកម្មសរុប</div>
-                <div class="banner-total-amount" id="dash-total-net">$32,970.50</div>
-              </div>
-              <div>
-                <span style="background:rgba(255,255,255,0.15); font-size:0.75rem; padding:4px 10px; border-radius:20px;">
-                  ● KEY Core Live
-                </span>
-              </div>
+      <div class="dashboard-full-container">
+        
+        <div class="net-worth-banner">
+          <div class="banner-top-row">
+            <div>
+              <div class="banner-title-label" id="txt-total-assets">ទ្រព្យសកម្មសរុប</div>
+              <div class="banner-total-amount" id="dash-total-net">$32,970.50</div>
             </div>
-
-            <div class="quick-transfer-bar">
-              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'ពិនិត្យសមតុល្យគណនី' : 'Check my balances')">
-                <span>💳</span> <span id="btn-qa-balance">ពិនិត្យសមតុល្យ</span>
-              </button>
-              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'ហេតុអ្វីមានការកាត់ប្រាក់ ៣២៩ ដុល្លារនៅឡុងដ៍?' : 'Why was I charged $329 in London?')">
-                <span>🔍</span> <span id="btn-qa-dispute">ប្រតិបត្តិការសង្ស័យ</span>
-              </button>
-              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
-                <span>🔒</span> <span id="btn-qa-freeze">គ្រប់គ្រងកាត</span>
-              </button>
-              <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'តើថ្លៃផ្ទេរប្រាក់ទៅក្រៅប្រទេសប៉ុន្មាន?' : 'What are wire transfer fees?')">
-                <span>📄</span> <span id="btn-qa-fees">ថ្លៃសេវាធនាគារ</span>
-              </button>
+            <div>
+              <span style="background:rgba(255,255,255,0.15); font-size:0.75rem; padding:4px 10px; border-radius:20px;">
+                ● KEY Core Live
+              </span>
             </div>
           </div>
 
-          <div class="accounts-overview-grid">
-            <div class="account-summary-card">
-              <div class="acc-header">
-                <span class="acc-badge checking" id="txt-chk-badge">គណនីចរន្តទូទៅ</span>
-                <span style="font-size:0.74rem; color:#64748b;">•••• 9812</span>
-              </div>
-              <div class="acc-balance-big" id="chk-bal">$4,520.50</div>
-              <div style="font-size:0.75rem; color:#64748b; margin-top:8px;" id="txt-chk-desc">
-                ⚡ អាចដកប្រាក់ ឬទូទាត់បានភ្លាមៗ
-              </div>
-            </div>
+          <div class="quick-transfer-bar">
+            <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'ពិនិត្យសមតុល្យគណនី' : 'Check my balances')">
+              <span>💳</span> <span id="btn-qa-balance">ពិនិត្យសមតុល្យ</span>
+            </button>
+            <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'ហេតុអ្វីមានការកាត់ប្រាក់ ៣២៩ ដុល្លារនៅឡុងដ៍?' : 'Why was I charged $329 in London?')">
+              <span>🔍</span> <span id="btn-qa-dispute">ប្រតិបត្តិការសង្ស័យ</span>
+            </button>
+            <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
+              <span>🔒</span> <span id="btn-qa-freeze">គ្រប់គ្រងកាត</span>
+            </button>
+            <button class="quick-action-pill" onclick="sendPrompt(currentLang === 'km' ? 'តើថ្លៃផ្ទេរប្រាក់ទៅក្រៅប្រទេសប៉ុន្មាន?' : 'What are wire transfer fees?')">
+              <span>📄</span> <span id="btn-qa-fees">ថ្លៃសេវាធនាគារ</span>
+            </button>
+          </div>
+        </div>
 
-            <div class="account-summary-card">
-              <div class="acc-header">
-                <span class="acc-badge savings" id="txt-sav-badge">គណនីសន្សំការប្រាក់ខ្ពស់</span>
-                <span style="font-size:0.74rem; color:#059669; font-weight:700;">+4.75% APY</span>
-              </div>
-              <div class="acc-balance-big" id="sav-bal">$28,450.00</div>
-              <div style="font-size:0.75rem; color:#059669; margin-top:8px;" id="txt-sav-desc">
-                📈 ទទួលបានការប្រាក់ជាប្រចាំ
-              </div>
+        <div class="accounts-overview-grid">
+          <div class="account-summary-card">
+            <div class="acc-header">
+              <span class="acc-badge checking" id="txt-chk-badge">គណនីចរន្តទូទៅ</span>
+              <span style="font-size:0.74rem; color:#64748b;">•••• 9812</span>
+            </div>
+            <div class="acc-balance-big" id="chk-bal">$4,520.50</div>
+            <div style="font-size:0.75rem; color:#64748b; margin-top:8px;" id="txt-chk-desc">
+              ⚡ អាចដកប្រាក់ ឬទូទាត់បានភ្លាមៗ
             </div>
           </div>
 
-          <div class="card-management-widget">
-            <div style="font-size:0.86rem; font-weight:800; color:#0f172a; margin-bottom:14px;" id="txt-card-sec-title">
-              កាតទូទាត់ចម្បង និងការបញ្ជាសុវត្ថិភាព
+          <div class="account-summary-card">
+            <div class="acc-header">
+              <span class="acc-badge savings" id="txt-sav-badge">គណនីសន្សំការប្រាក់ខ្ពស់</span>
+              <span style="font-size:0.74rem; color:#059669; font-weight:700;">+4.75% APY</span>
             </div>
+            <div class="acc-balance-big" id="sav-bal">$28,450.00</div>
+            <div style="font-size:0.75rem; color:#059669; margin-top:8px;" id="txt-sav-desc">
+              📈 ទទួលបានការប្រាក់ជាប្រចាំ
+            </div>
+          </div>
+        </div>
 
-            <div class="card-widget-layout">
-              <div class="emv-card">
-                <div class="emv-top">
-                  <div class="emv-chip-gold"></div>
-                  <div class="card-status-pill active" id="card-status-badge">● សកម្ម</div>
-                </div>
-                <div class="emv-number">•••• •••• •••• 7711</div>
-                <div class="emv-bottom">
-                  <div>
-                    <div style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase;" id="lbl-cardholder">ម្ចាស់កាត</div>
-                    <div style="font-size:0.85rem; font-weight:700;" id="cardholder-name-display">MR. SOPHANITH YORN</div>
-                  </div>
-                  <div style="text-align: right;">
-                    <div style="font-size:0.65rem; color:#94a3b8;" id="lbl-travel-status">ស្ថានភាពធ្វើដំណើរ</div>
-                    <div style="font-size:0.75rem; font-weight:700;" id="card-travel-status">ភ្ជាប់គណនី (*9812)</div>
-                  </div>
-                </div>
+        <div class="card-management-widget">
+          <div style="font-size:0.9rem; font-weight:800; color:#0f172a; margin-bottom:16px;" id="txt-card-sec-title">
+            កាតទូទាត់ចម្បង និងការបញ្ជាសុវត្ថិភាព
+          </div>
+
+          <div class="card-widget-layout">
+            <div class="emv-card">
+              <div class="emv-top">
+                <div class="emv-chip-gold"></div>
+                <div class="card-status-pill active" id="card-status-badge">● សកម្ម</div>
               </div>
-
-              <div class="card-quick-actions">
-                <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
-                  <span>🔒 <strong id="btn-toggle-freeze">បង្កក ឬដោះសោកាត</strong></span>
-                  <span style="color:#2563eb;">→</span>
+              <div class="emv-number">•••• •••• •••• 7711</div>
+              <div class="emv-bottom">
+                <div>
+                  <div style="font-size:0.65rem; color:#94a3b8; text-transform:uppercase;" id="lbl-cardholder">ម្ចាស់កាត</div>
+                  <div style="font-size:0.85rem; font-weight:700;" id="cardholder-name-display">MR. SOPHANITH YORN</div>
                 </div>
-                <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'កំណត់ការជូនដំណឹងធ្វើដំណើរទៅប្រទេសជប៉ុន' : 'Set a travel notice for Japan')">
-                  <span>✈️ <strong id="btn-travel-notice">កំណត់ការធ្វើដំណើរ</strong></span>
-                  <span style="color:#2563eb;">→</span>
-                </div>
-                <div class="card-control-btn" onclick="switchMainView('view-cards')">
-                  <span>⚙️ <strong id="btn-more-card-opts">ការគ្រប់គ្រងលម្អិត</strong></span>
-                  <span style="color:#2563eb;">→</span>
+                <div style="text-align: right;">
+                  <div style="font-size:0.65rem; color:#94a3b8;" id="lbl-travel-status">ស្ថានភាពធ្វើដំណើរ</div>
+                  <div style="font-size:0.75rem; font-weight:700;" id="card-travel-status">ភ្ជាប់គណនី (*9812)</div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="transactions-panel">
-            <div class="txn-header-row">
-              <span style="font-size:0.86rem; font-weight:800; color:#0f172a;" id="txt-recent-title">សកម្មភាពប្រតិបត្តិការថ្មីៗ</span>
-              <span style="font-size:0.74rem; color:#64748b;" id="txt-txn-count">ប្រតិបត្តិការ ៤ ចុងក្រោយ</span>
-            </div>
-            <div class="txn-list" id="dashboard-txn-container"></div>
-          </div>
-        </section>
-
-        <!-- COPILOT PANEL -->
-        <section class="copilot-container">
-          <div class="copilot-top-bar">
-            <div class="copilot-brand-title">
-              <div class="copilot-sparkle-logo">✨</div>
-              <div>
-                <div style="font-size:0.95rem; font-weight:800;" id="copilot-title">ជំនួយការ AI ធនាគារ KEY Bank</div>
-                <div style="font-size:0.72rem; color:#94a3b8;" id="copilot-sub">Microsoft Copilot Studio Generative Agent</div>
+            <div class="card-quick-actions">
+              <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'សូមបង្កកកាត Visa របស់ខ្ញុំ' : 'Freeze my Visa card')">
+                <span style="font-size:1.3rem;">🔒</span>
+                <div>
+                  <strong id="btn-toggle-freeze" style="display:block; color:#0f172a;">បង្កក ឬដោះសោកាត</strong>
+                  <span style="font-size:0.72rem; color:#64748b;">Visa Platinum (*7711)</span>
+                </div>
               </div>
-            </div>
-            <div class="copilot-active-pill">
-              <span class="pulse-dot"></span> <span id="txt-agent-active">កំពុងដំណើរការ</span>
-            </div>
-          </div>
-
-          <div class="chat-messages-scroll" id="chat-stream">
-            <div class="chat-row bot" id="initial-welcome-msg">
-              <div class="chat-avatar">🤖</div>
-              <div class="chat-bubble-card" id="welcome-text">
-                <p><strong>សូមគោរពជម្រាបសួរ លោក យន សុផានីត!</strong></p>
-                <p style="margin-top:6px;">ខ្ញុំជា <strong>ជំនួយការ AI ស្វ័យប្រវត្តិនៃធនាគារ KEY Bank</strong>។ ខ្ញុំបានត្រៀមរួចរាល់ក្នុងការជួយលោកអ្នកលើការគ្រប់គ្រងគណនី, សវនកម្មប្រតិបត្តិការ, និងការបញ្ជាប្រព័ន្ធសុវត្ថិភាព។</p>
+              <div class="card-control-btn" onclick="sendPrompt(currentLang === 'km' ? 'កំណត់ការធ្វើដំណើរទៅប្រទេសជប៉ុន' : 'Set a travel notice for Japan')">
+                <span style="font-size:1.3rem;">✈️</span>
+                <div>
+                  <strong id="btn-travel-notice" style="display:block; color:#0f172a;">កំណត់ការធ្វើដំណើរ</strong>
+                  <span style="font-size:0.72rem; color:#64748b;">Travel Exemption</span>
+                </div>
+              </div>
+              <div class="card-control-btn" onclick="switchMainView('view-cards')">
+                <span style="font-size:1.3rem;">⚙️</span>
+                <div>
+                  <strong id="btn-more-card-opts" style="display:block; color:#0f172a;">ការគ្រប់គ្រងលម្អិត</strong>
+                  <span style="font-size:0.72rem; color:#64748b;">Limits & Details</span>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="quick-chips-tray" id="prompts-container"></div>
-
-          <div class="chat-input-dock">
-            <input type="text" id="user-input" class="copilot-text-input" placeholder="សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់..." onkeypress="handleKey(event)" />
-            <button class="copilot-send-button" onclick="submitMessage()">➤</button>
+        <div class="transactions-panel">
+          <div class="txn-header-row">
+            <span style="font-size:0.9rem; font-weight:800; color:#0f172a;" id="txt-recent-title">សកម្មភាពប្រតិបត្តិការថ្មីៗ</span>
+            <span style="font-size:0.76rem; color:#64748b;" id="txt-txn-count">ប្រតិបត្តិការ ៤ ចុងក្រោយ</span>
           </div>
-        </section>
+          <div class="txn-list" id="dashboard-txn-container"></div>
+        </div>
+
       </div>
     </div>
 
@@ -1824,29 +1235,76 @@
             <h4 style="margin-bottom:12px;" id="title-api-status">ស្ថានភាពតភ្ជាប់ Core Banking & AI Agent</h4>
             <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:var(--radius-sm); padding:14px; font-size:0.84rem; line-height:1.8;">
               <div>● <strong>Core Banking REST Gateway:</strong> <span style="color:#059669; font-weight:700;">ONLINE (HTTP 200)</span></div>
-              <div>● <strong>Copilot Studio AI Engine:</strong> <span style="color:#059669; font-weight:700;">ACTIVE</span></div>
+              <div>● <strong>Vichhai AI Engine:</strong> <span style="color:#059669; font-weight:700;">ACTIVE</span></div>
               <div>● <strong>Database Connection:</strong> <span style="color:#059669; font-weight:700;">SYNCED</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ==========================================================================
+         VICHHAI AI: FLOATING ACTION BUTTON (LAUNCHER)
+         ========================================================================== -->
+    <button class="vichhai-floating-btn" id="vichhai-launcher-btn" onclick="toggleVichhaiChat(event)">
+      <span class="vichhai-btn-avatar">🤖</span>
+      <span id="txt-vichhai-btn-label">Vichhai AI</span>
+      <span class="vichhai-live-pulse"></span>
+    </button>
+
+    <!-- ==========================================================================
+         VICHHAI AI: FLOATING POPUP CHAT WINDOW
+         ========================================================================== -->
+    <div class="vichhai-chat-window" id="vichhai-chat-modal" onclick="event.stopPropagation()">
+      <div class="vichhai-chat-header">
+        <div class="vichhai-header-left">
+          <div class="vichhai-avatar-badge">🤖</div>
+          <div>
+            <div class="vichhai-header-title">Vichhai AI</div>
+            <div class="vichhai-header-sub" id="txt-vichhai-sub">ជំនួយការ AI ធនាគារ KEY Bank</div>
+          </div>
+        </div>
+        <div class="vichhai-header-actions">
+          <button class="vichhai-close-btn" onclick="toggleVichhaiChat(event)" title="Close Chat">✕</button>
+        </div>
+      </div>
+
+      <div class="vichhai-chat-body" id="chat-stream">
+        <div class="chat-row bot" id="initial-welcome-msg">
+          <div class="chat-avatar">🤖</div>
+          <div class="chat-bubble-card" id="welcome-text">
+            <p><strong>សូមគោរពជម្រាបសួរ! ខ្ញុំជា Vichhai AI 🤖</strong></p>
+            <p style="margin-top:6px;">ខ្ញុំជាជំនួយការ AI ឆ្លាតវៃនៃធនាគារ KEY Bank។ តើខ្ញុំអាចជួយលោកអ្នកលើការងារធនាគារអ្វីខ្លះនៅថ្ងៃនេះ?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-chips-tray" id="prompts-container"></div>
+
+      <div class="chat-input-dock">
+        <input type="text" id="user-input" class="copilot-text-input" placeholder="សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់..." onkeypress="handleKey(event)" />
+        <button class="copilot-send-button" onclick="submitMessage()">➤</button>
+      </div>
+    </div>
+
   </div>
 
   <script>
     let currentLang = 'km';
     let activeAuthUser = null;
     let serverUsersList = [];
+    let isVichhaiOpen = false;
 
     const chatStream = document.getElementById('chat-stream');
     const userInput = document.getElementById('user-input');
+    const vichhaiModal = document.getElementById('vichhai-chat-modal');
 
     const PROMPTS = {
       km: [
         { label: "🔍 សាកសួរការកាត់ប្រាក់ ៣២៩$ នៅឡុងដ៍", text: "ហេតុអ្វីមានការកាត់ប្រាក់ ៣២៩ ដុល្លារនៅឡុងដ៍?" },
         { label: "🔒 បង្កកកាត Visa របស់ខ្ញុំភ្លាមៗ", text: "សូមបង្កកកាត Visa របស់ខ្ញុំភ្លាមៗ" },
         { label: "💳 ពិនិត្យសមតុល្យគណនី", text: "តើខ្ញុំមានសមតុល្យប្រាក់ប៉ុន្មានក្នុងគណនី?" },
-        { label: "✈️ កំណត់ការធ្វើដំណើរទៅជប៉ុន", text: "កំណត់ការជូនដំណឹងធ្វើដំណើរទៅប្រទេសជប៉ុន" },
+        { label: "✈️ កំណត់ការធ្វើដំណើរទៅជប៉ុន", text: "កំណត់ការធ្វើដំណើរទៅប្រទេសជប៉ុន" },
         { label: "📄 ថ្លៃសេវាផ្ទេរប្រាក់ទៅក្រៅប្រទេស", text: "តើថ្លៃផ្ទេរប្រាក់ទៅក្រៅប្រទេសប៉ុន្មាន?" }
       ],
       en: [
@@ -1857,6 +1315,25 @@
         { label: "📄 Wire transfer fee", text: "What is the international wire transfer fee?" }
       ]
     };
+
+    function toggleVichhaiChat(e) {
+      if (e) e.stopPropagation();
+      isVichhaiOpen = !isVichhaiOpen;
+      if (isVichhaiOpen) {
+        vichhaiModal.classList.add('open');
+        setTimeout(() => userInput.focus(), 150);
+      } else {
+        vichhaiModal.classList.remove('open');
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const launcher = document.getElementById('vichhai-launcher-btn');
+      if (isVichhaiOpen && !vichhaiModal.contains(e.target) && !launcher.contains(e.target)) {
+        isVichhaiOpen = false;
+        vichhaiModal.classList.remove('open');
+      }
+    });
 
     function switchMainView(viewId) {
       document.querySelectorAll('.view-content-wrapper').forEach(v => v.classList.remove('active'));
@@ -1989,6 +1466,7 @@
       document.getElementById('login-password').value = '';
       document.getElementById('auth-gateway-screen').style.display = 'flex';
       switchAuthTab('login');
+      if (isVichhaiOpen) toggleVichhaiChat();
     }
 
     function renderPrompts() {
@@ -1998,7 +1476,10 @@
         const btn = document.createElement('button');
         btn.className = 'copilot-chip';
         btn.textContent = p.label;
-        btn.onclick = () => sendPrompt(p.text);
+        btn.onclick = () => {
+          if (!isVichhaiOpen) toggleVichhaiChat();
+          sendPrompt(p.text);
+        };
         container.appendChild(btn);
       });
     }
@@ -2057,10 +1538,10 @@
         document.getElementById('btn-more-card-opts').textContent = 'ការគ្រប់គ្រងលម្អិត';
         document.getElementById('txt-recent-title').textContent = 'សកម្មភាពប្រតិបត្តិការថ្មីៗ';
         document.getElementById('txt-txn-count').textContent = 'ប្រតិបត្តិការ ៤ ចុងក្រោយ';
-        document.getElementById('copilot-title').textContent = 'ជំនួយការ AI ធនាគារ KEY Bank';
-        document.getElementById('copilot-sub').textContent = 'Microsoft Copilot Studio Generative Agent';
-        document.getElementById('txt-agent-active').textContent = 'កំពុងដំណើរការ';
-        document.getElementById('user-input').placeholder = 'សួរអំពីសមតុល្យ បង្កកកាត តវ៉ាលើការកាត់ប្រាក់...';
+
+        document.getElementById('txt-vichhai-btn-label').textContent = 'Vichhai AI';
+        document.getElementById('txt-vichhai-sub').textContent = 'ជំនួយការ AI ធនាគារ KEY Bank';
+        document.getElementById('user-input').placeholder = 'សួរ Vichhai AI អំពីសមតុល្យ បង្កកកាត...';
 
         document.getElementById('title-cards-page').textContent = 'ការគ្រប់គ្រងកាត និងគណនី';
         document.getElementById('btn-cards-freeze-action').textContent = 'បង្កក / ដោះសោកាត';
@@ -2112,7 +1593,7 @@
 
         document.getElementById('title-settings-page').textContent = 'ការកំណត់ប្រព័ន្ធទូទៅ';
         document.getElementById('title-pref-lang').textContent = 'ភាសាលំនាំដើម';
-        document.getElementById('title-api-status').textContent = 'ស្ថានភាពតភ្ជាប់ Core Banking & AI Agent';
+        document.getElementById('title-api-status').textContent = 'ស្ថានភាពតភ្ជាប់ Core Banking & Vichhai AI';
 
       } else {
         document.getElementById('auth-sub-title').textContent = 'Enterprise Online Banking Gateway';
@@ -2159,10 +1640,10 @@
         document.getElementById('btn-more-card-opts').textContent = 'Detailed Controls';
         document.getElementById('txt-recent-title').textContent = 'Recent Activity';
         document.getElementById('txt-txn-count').textContent = 'Last 4 Transactions';
-        document.getElementById('copilot-title').textContent = 'KEY Bank AI Copilot';
-        document.getElementById('copilot-sub').textContent = 'Microsoft Copilot Studio Generative Agent';
-        document.getElementById('txt-agent-active').textContent = 'Agent Active';
-        document.getElementById('user-input').placeholder = 'Ask about balances, freeze card, dispute a charge...';
+
+        document.getElementById('txt-vichhai-btn-label').textContent = 'Vichhai AI';
+        document.getElementById('txt-vichhai-sub').textContent = 'KEY Bank AI Assistant';
+        document.getElementById('user-input').placeholder = 'Ask Vichhai AI about balances, card controls...';
 
         document.getElementById('title-cards-page').textContent = 'Cards & Accounts Management';
         document.getElementById('btn-cards-freeze-action').textContent = 'Freeze / Unfreeze Card';
@@ -2214,7 +1695,7 @@
 
         document.getElementById('title-settings-page').textContent = 'General System Settings';
         document.getElementById('title-pref-lang').textContent = 'System Language';
-        document.getElementById('title-api-status').textContent = 'Core Banking & AI Agent Health';
+        document.getElementById('title-api-status').textContent = 'Core Banking & Vichhai AI Health';
       }
 
       if (activeAuthUser) {
@@ -2234,6 +1715,7 @@
     }
 
     function sendPrompt(text) {
+      if (!isVichhaiOpen) toggleVichhaiChat();
       userInput.value = text;
       submitMessage();
     }
@@ -2549,8 +2031,8 @@
       let reasoningHtml = '';
       if (thoughtProcess && thoughtProcess.length > 0) {
         const titleLabel = currentLang === 'km' 
-          ? `🧠 កំណត់ត្រាវិភាគ និងដំណើរការ Tool Calls របស់ភ្នាក់ងារ AI (${thoughtProcess.length} ជំហាន)` 
-          : `🧠 Agent Reasoning & Tool Execution Log (${thoughtProcess.length} Steps)`;
+          ? `🧠 កំណត់ត្រាវិភាគរបស់ Vichhai AI (${thoughtProcess.length} ជំហាន)` 
+          : `🧠 Vichhai AI Reasoning & Tool Log (${thoughtProcess.length} Steps)`;
         
         reasoningHtml = `
           <div class="reasoning-terminal">
@@ -2636,7 +2118,7 @@
       const typingRow = document.createElement('div');
       typingRow.className = 'chat-row bot';
       typingRow.id = 'typing-indicator';
-      const typingText = currentLang === 'km' ? 'ភ្នាក់ងារ AI កំពុងវិភាគ និងដំណើរការ Core APIs...' : 'Agent reasoning & executing tools...';
+      const typingText = currentLang === 'km' ? 'Vichhai AI កំពុងវិភាគ...' : 'Vichhai AI is reasoning...';
       typingRow.innerHTML = `<div class="chat-avatar">🤖</div><div class="chat-bubble-card" style="font-style:italic;color:#64748b;">${typingText}</div>`;
       chatStream.appendChild(typingRow);
       chatStream.scrollTop = chatStream.scrollHeight;
