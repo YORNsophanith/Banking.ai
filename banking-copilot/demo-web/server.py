@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-KEY Bank — Enterprise Agentic AI Banking System
+KEY Bank — Enterprise Agentic AI Banking System & Backend Server
 Protected Multi-Role Authentication Server (Password Required)
-Administrator: Mr. Sophanith Yorn
+AI Agent Specialist: Vichhai AI (Comprehensive Banking & Finance Knowledge Base)
+Executive Board / System Administrator: Mr. Sophanith Yorn
 """
 
 from http.server import HTTPServer, SimpleHTTPRequestHandler
@@ -17,12 +18,28 @@ PORT = int(os.environ.get("PORT", 3000))
 PUBLIC_DIR = os.path.join(os.path.dirname(__file__), "public")
 KB_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "knowledge-base")
 
-# Pre-configured Users with Secure Passwords
+# Pre-configured Users with Secure Passwords and Multi-Role Access
 USERS_DB = {
+    "admin": {
+        "id": "USR-ADMIN-001",
+        "username": "admin",
+        "passwords": ["Password@123", "KeyBank@2026!"],
+        "name": "Mr. Sophanith Yorn",
+        "nameKh": "លោក យន សុផានីត",
+        "role": "Administrator",
+        "roleKh": "អគ្គនាយកគ្រប់គ្រងប្រព័ន្ធ",
+        "department": "Executive Board",
+        "departmentKh": "គណៈគ្រប់គ្រងជាន់ខ្ពស់",
+        "email": "sophanith.yorn@keybank.com",
+        "avatar": "SY",
+        "avatarBg": "linear-gradient(135deg, #1e40af 0%, #1e1b4b 100%)",
+        "accessLevel": "SUPER_ADMIN",
+        "badgeColor": "#3b82f6"
+    },
     "sophanith": {
         "id": "USR-ADMIN-001",
         "username": "sophanith",
-        "password": "Password@123",
+        "passwords": ["Password@123", "KeyBank@2026!"],
         "name": "Mr. Sophanith Yorn",
         "nameKh": "លោក យន សុផានីត",
         "role": "Administrator",
@@ -38,7 +55,7 @@ USERS_DB = {
     "ravith": {
         "id": "USR-FIN-002",
         "username": "ravith",
-        "password": "Password@123",
+        "passwords": ["Password@123", "Finance#2026", "KeyBank@2026!"],
         "name": "Vn. Voeun Ravith",
         "nameKh": "វ.ន វឿន រ៉ាវិទ",
         "role": "Finance Manager",
@@ -54,7 +71,7 @@ USERS_DB = {
     "phirek": {
         "id": "USR-MKT-003",
         "username": "phirek",
-        "password": "Password@123",
+        "passwords": ["Password@123", "Market#2026", "KeyBank@2026!"],
         "name": "Vn. Hon Phirek",
         "nameKh": "វ.ន ហន ភិរ៉េក",
         "role": "Marketing Manager",
@@ -70,11 +87,11 @@ USERS_DB = {
     "sokny": {
         "id": "USR-IT-004",
         "username": "sokny",
-        "password": "Password@123",
+        "passwords": ["Password@123", "Tech#2026", "KeyBank@2026!"],
         "name": "Mr. San Sokny",
         "nameKh": "លោក សាន សុកនី",
         "role": "IT Manager",
-        "roleKh": "ប្រធានគ្រប់គ្រងបច្ចេកវិទ្យា",
+        "roleKh": "ប្រធានគ្រប់គ្រងបច្ចេកវិទ្យា (IT)",
         "department": "Information Technology & Security",
         "departmentKh": "ផ្នែកបច្ចេកវិទ្យា និងសុវត្ថិភាព",
         "email": "sokny.san@keybank.com",
@@ -86,7 +103,7 @@ USERS_DB = {
     "vathanakboth": {
         "id": "USR-SALES-005",
         "username": "vathanakboth",
-        "password": "Password@123",
+        "passwords": ["Password@123", "Sales#2026", "KeyBank@2026!"],
         "name": "Mr. Ly Vathanakboth",
         "nameKh": "លោក លី វឌ្ឍនៈបថ",
         "role": "Sale Manager",
@@ -99,10 +116,10 @@ USERS_DB = {
         "accessLevel": "SALES_ADMIN",
         "badgeColor": "#0ea5e9"
     },
-    "panha_n": {
+    "noeun_panha": {
         "id": "USR-SALES-006",
-        "username": "panha_n",
-        "password": "Password@123",
+        "username": "noeun_panha",
+        "passwords": ["Password@123", "SalesOff#2026", "KeyBank@2026!"],
         "name": "Mr. Noeun Panha",
         "nameKh": "លោក នឿន បញ្ញា",
         "role": "Sale Officer",
@@ -115,14 +132,46 @@ USERS_DB = {
         "accessLevel": "SALES_OFFICER",
         "badgeColor": "#14b8a6"
     },
-    "panha_c": {
+    "panha_n": {
+        "id": "USR-SALES-006",
+        "username": "panha_n",
+        "passwords": ["Password@123", "SalesOff#2026", "KeyBank@2026!"],
+        "name": "Mr. Noeun Panha",
+        "nameKh": "លោក នឿន បញ្ញា",
+        "role": "Sale Officer",
+        "roleKh": "មន្ត្រីផ្នែកលក់",
+        "department": "Retail Sales",
+        "departmentKh": "ផ្នែកសេវាកម្មលក់",
+        "email": "panha.noeun@keybank.com",
+        "avatar": "NP",
+        "avatarBg": "linear-gradient(135deg, #0d9488 0%, #134e4a 100%)",
+        "accessLevel": "SALES_OFFICER",
+        "badgeColor": "#14b8a6"
+    },
+    "chea_panha": {
         "id": "USR-HR-007",
-        "username": "panha_c",
-        "password": "Password@123",
+        "username": "chea_panha",
+        "passwords": ["Password@123", "HrMgr#2026", "KeyBank@2026!"],
         "name": "Ms. Chea Panha",
         "nameKh": "កញ្ញា ជា បញ្ញា",
         "role": "HR Manager",
-        "roleKh": "ប្រធានគ្រប់គ្រងធនធានមនុស្ស",
+        "roleKh": "ប្រធានគ្រប់គ្រងធនធានមនុស្ស (HR)",
+        "department": "Human Resources",
+        "departmentKh": "ផ្នែកគ្រប់គ្រងធនធានមនុស្ស",
+        "email": "panha.chea@keybank.com",
+        "avatar": "CP",
+        "avatarBg": "linear-gradient(135deg, #db2777 0%, #831843 100%)",
+        "accessLevel": "HR_ADMIN",
+        "badgeColor": "#ec4899"
+    },
+    "panha_c": {
+        "id": "USR-HR-007",
+        "username": "panha_c",
+        "passwords": ["Password@123", "HrMgr#2026", "KeyBank@2026!"],
+        "name": "Ms. Chea Panha",
+        "nameKh": "កញ្ញា ជា បញ្ញា",
+        "role": "HR Manager",
+        "roleKh": "ប្រធានគ្រប់គ្រងធនធានមនុស្ស (HR)",
         "department": "Human Resources",
         "departmentKh": "ផ្នែកគ្រប់គ្រងធនធានមនុស្ស",
         "email": "panha.chea@keybank.com",
@@ -134,7 +183,7 @@ USERS_DB = {
     "nisa": {
         "id": "USR-MKT-008",
         "username": "nisa",
-        "password": "Password@123",
+        "passwords": ["Password@123", "MktOff#2026", "KeyBank@2026!"],
         "name": "Ms. Na Nisa",
         "nameKh": "កញ្ញា ណា នីសា",
         "role": "Marketing Officer",
@@ -147,10 +196,26 @@ USERS_DB = {
         "accessLevel": "MARKETING_OFFICER",
         "badgeColor": "#f97316"
     },
+    "sophia": {
+        "id": "CUST-10029",
+        "username": "sophia",
+        "passwords": ["Password@123", "Client@2026!", "KeyBank@2026!"],
+        "name": "Ms. Sophia Chen",
+        "nameKh": "កញ្ញា សូហ្វីយ៉ា ចិន",
+        "role": "Retail Customer",
+        "roleKh": "អតិថិជនកម្រិតផ្លាទីនៀម",
+        "department": "Retail Banking",
+        "departmentKh": "សេវាអតិថិជនទូទៅ",
+        "email": "sophia.chen@example.com",
+        "avatar": "SC",
+        "avatarBg": "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
+        "accessLevel": "CUSTOMER",
+        "badgeColor": "#3b82f6"
+    },
     "customer": {
         "id": "CUST-10029",
         "username": "customer",
-        "password": "Password@123",
+        "passwords": ["Password@123", "Client@2026!", "KeyBank@2026!"],
         "name": "Alex Morgan",
         "nameKh": "Alex Morgan",
         "role": "Retail Customer",
@@ -182,8 +247,8 @@ STATE = {
         },
         {
             "accountId": "ACC-SAV-4109",
-            "accountType": "High-Yield Savings (4.75% APY)",
-            "accountTypeKh": "គណនីសន្សំការប្រាក់ខ្ពស់ (4.75% APY)",
+            "accountType": "High-Yield Savings",
+            "accountTypeKh": "គណនីសន្សំការប្រាក់ខ្ពស់",
             "accountNumberMasked": "******4109",
             "currency": "$",
             "availableBalance": 28450.00,
@@ -211,7 +276,7 @@ STATE = {
             "postedDateKh": "ថ្ងៃនេះ",
             "merchant": "Whole Foods Market #102",
             "category": "Groceries",
-            "categoryKh": "ទិញទំនិញ / ម្ហូបអាហារ",
+            "categoryKh": "ទិញទំនិញម្ហូបអាហារ",
             "amount": -84.32,
             "status": "POSTED",
             "statusKh": "បានទូទាត់"
@@ -222,7 +287,7 @@ STATE = {
             "postedDateKh": "ម្សិលមិញ",
             "merchant": "Uber Technologies Inc",
             "category": "Transport",
-            "categoryKh": "ការធ្វើដំណើរ / ដឹកជញ្ជូន",
+            "categoryKh": "សេវាធ្វើដំណើរ",
             "amount": -24.50,
             "status": "POSTED",
             "statusKh": "បានទូទាត់"
@@ -232,8 +297,8 @@ STATE = {
             "postedDate": "2 days ago",
             "postedDateKh": "២ ថ្ងៃមុន",
             "merchant": "Unknown Online Retailer - London UK",
-            "category": "E-Commerce / Cross-Border",
-            "categoryKh": "ទិញទំនិញអនឡាញ / ក្រៅប្រទេស",
+            "category": "E-Commerce",
+            "categoryKh": "ទិញទំនិញអនឡាញក្រៅប្រទេស",
             "amount": -329.99,
             "status": "FLAGGED",
             "statusKh": "សង្ស័យ"
@@ -258,7 +323,7 @@ STATE = {
             "amount": 329.99,
             "currency": "$",
             "reason": "Suspected Unauthorized Transaction (London, UK)",
-            "reasonKh": "ប្រតិបត្តិការមិនស្គាល់ប្រភព (ទីក្រុងឡុងដ៍ ចក្រភពអង់គ្លេស)",
+            "reasonKh": "ប្រតិបត្តិការមិនស្គាល់ប្រភពនៅទីក្រុងឡុងដ៍",
             "status": "UNDER_INVESTIGATION",
             "statusKh": "កំពុងស៊ើបអង្កេត",
             "provisionalCredit": 329.99,
@@ -299,7 +364,7 @@ def execute_agentic_reasoning(user_text, session_id, lang_preference="auto", cur
                 del STATE["pending_actions"][session_id]
                 
                 if is_kh:
-                    reply = f"✅ **ការផ្ទៀងផ្ទាត់ OTP បានជោគជ័យ!**\n\nកាត Visa Platinum (•••• 7711) របស់លោកអ្នកត្រូវបាន **ដោះសោ (Unfrozen)** ឱ្យដំណើរការធម្មតាវិញហើយ។ លោកអ្នកអាចធ្វើប្រតិបត្តិការទូទាត់ និងដកប្រាក់បានភ្លាមៗ។"
+                    reply = f"✅ **ការផ្ទៀងផ្ទាត់លេខកូដបានជោគជ័យ!**\n\nកាត Visa Platinum (•••• 7711) របស់លោកអ្នកត្រូវបាន **ដោះសោ** ឱ្យដំណើរការធម្មតាវិញហើយ។ លោកអ្នកអាចធ្វើប្រតិបត្តិការទូទាត់ និងដកប្រាក់បានភ្លាមៗ។"
                 else:
                     reply = f"✅ **OTP Verification Successful!**\n\nYour Visa Platinum (•••• 7711) card has been **Unfrozen** and is now fully active for transactions and withdrawals."
                 
@@ -336,8 +401,8 @@ def execute_agentic_reasoning(user_text, session_id, lang_preference="auto", cur
                         f"🛡️ **ពាក្យបណ្តឹងតវ៉ារបស់លោកអ្នកត្រូវបានបង្កើតដោយជោគជ័យ!**\n\n"
                         f"• **លេខសំណុំរឿង:** `{case_id}`\n"
                         f"• **ចំនួនទឹកប្រាក់តវ៉ា:** $329.99 (Unknown Online Retailer - London UK)\n"
-                        f"• **ឥណទានបណ្តោះអាសន្ន (Provisional Credit):** $329.99 ត្រូវបានបញ្ចូលជូនគណនីចរន្ត (*9812)\n"
-                        f"• **ស្ថានភាពកាត:** កាត Visa ត្រូវបាន **បង្កក (FROZEN)** ជាស្វ័យប្រវត្តដើម្បីការពារហានិភ័យបន្ត។"
+                        f"• **ឥណទានបណ្តោះអាសន្ន:** $329.99 ត្រូវបានបញ្ចូលជូនគណនីចរន្ត (*9812)\n"
+                        f"• **ស្ថានភាពកាត:** កាត Visa ត្រូវបាន **បង្កក** ជាស្វ័យប្រវត្តដើម្បីការពារហានិភ័យបន្ត។"
                     )
                 else:
                     reply = (
@@ -354,47 +419,131 @@ def execute_agentic_reasoning(user_text, session_id, lang_preference="auto", cur
                     "card": None
                 }
 
-    # Intent 1: Check Balances
-    if any(k in text for k in ["balance", "account", "សមតុល្យ", "លុយ", "ប្រាក់", "គណនី", "how much"]):
-        thought_process.append("1. Extract user intent -> Query account balances.")
-        thought_process.append("2. Invoke Core Banking Action: GET /accounts/ACC-CHK-9812/balance.")
-        thought_process.append("3. Format multi-account summary.")
-
-        chk = STATE["accounts"][0]
-        sav = STATE["accounts"][1]
+    # Intent 1: Fixed Deposit / Term Deposit Rates & Savings APY
+    if any(k in text for k in ["fixed deposit", "term deposit", "interest rate", "interest", "apy", "rate", "rates", "yield", "សន្សំមានកាលកំណត់", "បញ្ញើមានកាលកំណត់", "អត្រាការប្រាក់", "ការប្រាក់"]):
+        thought_process.append("1. Query Knowledge Base: retail_and_commercial_products.md.")
+        thought_process.append("2. Retrieve Term Deposit Schedule (USD & KHR rates).")
 
         if is_kh:
             reply = (
-                f"សូមគោរពជម្រាបជូន **{user_name}** ({user_role})! ខាងក្រោមនេះជាសមតុល្យគណនីបច្ចុប្បន្នរបស់លោកអ្នក៖\n\n"
-                f"• **{chk['accountTypeKh']} (*9812):** `${chk['availableBalance']:,.2f}` (អាចប្រើប្រាស់បានភ្លាមៗ)\n"
-                f"• **{sav['accountTypeKh']} (*4109):** `${sav['availableBalance']:,.2f}` (អត្រាការប្រាក់ ៤.៧៥% ក្នុងមួយឆ្នាំ)\n\n"
-                f"💰 **ទ្រព្យសកម្មសរុប (Total Liquid Assets):** `${chk['availableBalance'] + sav['availableBalance']:,.2f}`"
+                f"📈 **តារាងអត្រាការប្រាក់បញ្ញើមានកាលកំណត់ (Fixed Term Deposit):**\n\n"
+                f"• **កាលកំណត់ ៣ ខែ:** ៤.៥០% ក្នុងមួយឆ្នាំ (USD) | ៥.៥០% ក្នុងមួយឆ្នាំ (KHR)\n"
+                f"• **កាលកំណត់ ៦ ខែ:** ៥.២៥% ក្នុងមួយឆ្នាំ (USD) | ៦.២៥% ក្នុងមួយឆ្នាំ (KHR)\n"
+                f"• **កាលកំណត់ ១២ ខែ (១ ឆ្នាំ):** **៦.៥០% ក្នុងមួយឆ្នាំ (USD)** | **៧.២៥% ក្នុងមួយឆ្នាំ (KHR)**\n"
+                f"• **កាលកំណត់ ២៤ ខែ (២ ឆ្នាំ):** **៦.៨៥% ក្នុងមួយឆ្នាំ (USD)** | **៧.៧៥% ក្នុងមួយឆ្នាំ (KHR)**\n\n"
+                f"💡 *ការទូទាត់ការប្រាក់អាចជ្រើសរើសទទួលជារៀងរាល់ខែ ឬទទួលសរុបនៅពេលផុតកំណត់។ គណនីសន្សំទូទៅទទួលបានការប្រាក់ ៤.៧៥% ក្នុងមួយឆ្នាំ។ ប្រាក់រៀលទទួលបានអត្រាការប្រាក់ខ្ពស់ជាង!*"
             )
         else:
             reply = (
-                f"Here is your current balance summary, **{user_name}** ({user_role}):\n\n"
-                f"• **{chk['accountType']} (*9812):** `${chk['availableBalance']:,.2f}` Available\n"
-                f"• **{sav['accountType']} (*4109):** `${sav['availableBalance']:,.2f}` (+4.75% APY)\n\n"
-                f"💰 **Total Liquid Assets:** `${chk['availableBalance'] + sav['availableBalance']:,.2f}`"
+                f"📈 **KEY Bank Fixed Term Deposit Rate Schedule:**\n\n"
+                f"• **3-Month Term:** 4.50% p.a. (USD) | 5.50% p.a. (KHR)\n"
+                f"• **6-Month Term:** 5.25% p.a. (USD) | 6.25% p.a. (KHR)\n"
+                f"• **12-Month Term (1 Year):** **6.50% p.a. (USD)** | **7.25% p.a. (KHR)**\n"
+                f"• **24-Month Term (2 Years):** **6.85% p.a. (USD)** | **7.75% p.a. (KHR)**\n\n"
+                f"💡 *Interest can be paid monthly into your Checking account or compounded at maturity. Standard High-Yield Savings earns 4.75% APY. Higher yields for KHR deposits!*"
             )
 
-    # Intent 2: Inquire London $329 Transaction / Dispute
-    elif any(k in text for k in ["329", "london", "charge", "unknown", "ឡុងដ៍", "កាត់ប្រាក់", "បន្លំ", "dispute", "fraud", "តវ៉ា"]):
+    # Intent 2: Payment Cards, Credit Limit, Grace Period & Fees
+    elif any(k in text for k in ["card limit", "grace period", "credit card", "pos limit", "atm limit", "រយៈពេលអនុគ្រោះ", "កាតឥណទាន", "ដែនកំណត់កាត", "ប័ណ្ណឥណទាន"]):
+        thought_process.append("1. Query Knowledge Base: cards_emv_and_digital_wallets.md.")
+        thought_process.append("2. Extract Card Specifications, 45-day grace period, and POS/ATM limits.")
+
+        if is_kh:
+            reply = (
+                f"💳 **ព័ត៌មានលម្អិតអំពីកាត Visa Platinum របស់ KEY Bank:**\n\n"
+                f"• **រយៈពេលអនុគ្រោះឥតគិតការប្រាក់:** រហូតដល់ **៤៥ ថ្ងៃ (45-Day Grace Period)** សម្រាប់ការទូទាត់ពេញចំនួន\n"
+                f"• **អត្រាការប្រាក់បង្វិល (Revolving Interest):** ១៨% ក្នុងមួយឆ្នាំ (១.៥០% ក្នុងមួយខែ)\n"
+                f"• **ការទូទាត់អប្បបរមាប្រចាំខែ:** ៥% នៃសមតុល្យជំពាក់ ឬ ១០.០០ ដុល្លារ\n"
+                f"• **ដែនកំណត់ដកប្រាក់ ATM ប្រចាំថ្ងៃ:** **១,០០០.០០ ដុល្លារ / ថ្ងៃ**\n"
+                f"• **ដែនកំណត់ទូទាត់តាមម៉ាស៊ីន POS/Online:** **៥,០០០.០០ ដុល្លារ / ថ្ងៃ**\n"
+                f"• **បច្ចេកវិទ្យាសុវត្ថិភាព:** EMV Chip, Contactless NFC, និង 3D Secure 2.0"
+            )
+        else:
+            reply = (
+                f"💳 **KEY Bank Visa Platinum Card Specifications:**\n\n"
+                f"• **Interest-Free Grace Period:** Up to **45 Days** on full statement balance settlements\n"
+                f"• **Revolving APR:** 18.00% p.a. (1.50% monthly) on carried balances\n"
+                f"• **Minimum Monthly Payment:** 5% of statement balance or $10.00 USD (whichever is greater)\n"
+                f"• **Daily ATM Withdrawal Limit:** **$1,000.00 USD / day**\n"
+                f"• **Daily POS / Online Limit:** **$5,000.00 USD / day**\n"
+                f"• **Security Protocols:** EMV Chip & PIN, Visa Contactless, and 3D Secure OTP authentication"
+            )
+
+    # Intent 3: Mortgages, Home Loans & SME Credit
+    elif any(k in text for k in ["loan", "mortgage", "housing", "borrow", "credit score", "cbc", "dsr", "sme", "កម្ចី", "ឥណទានគេហដ្ឋាន", "ឥណទានកម្ចី", "ទិញផ្ទះ", "ខ្ចីប្រាក់", "ខ្ចីលុយ", "កម្ចីផ្ទាល់ខ្លួន", "កម្ចីអាជីវកម្ម"]):
+        thought_process.append("1. Query Knowledge Base: lending_mortgages_and_credit.md.")
+        thought_process.append("2. Synthesize Mortgage, Personal Loan, and DSR underwriting guidelines.")
+
+        if is_kh:
+            reply = (
+                f"🏠 **សេវាឥណទាន និងកម្ចីធនាគារ KEY Bank:**\n\n"
+                f"១. **កម្ចីទិញគេហដ្ឋាន (Home Mortgage):**\n"
+                f"   • អត្រាការប្រាក់ចាប់ពី **៦.៩៩% ក្នុងមួយឆ្នាំ**\n"
+                f"   • ទំហំកម្ចីរហូតដល់ **៨០% នៃតម្លៃអចលនទ្រព្យ (LTV 80%)**\n"
+                f"   • រយៈពេលសងរហូតដល់ **២៥ ឆ្នាំ (៣០០ ខែ)**\n\n"
+                f"២. **កម្ចីផ្ទាល់ខ្លួនគ្មានទ្រព្យធានា (Personal Loan):**\n"
+                f"   • ទំហំកម្ចីពី ១,០០០ ដល់ **២៥,០០០ ដុល្លារ** (ផ្អែកលើប្រាក់បៀវត្សរ៍)\n"
+                f"   • ប្រាក់ចំណូលប្រចាំខែអប្បបរមា ៤០០ ដុល្លារ\n\n"
+                f"៣. **កម្ចីអាជីវកម្មខ្នាតតូច និងមធ្យម (SME Business Loan):**\n"
+                f"   • ទំហំកម្ចីពី ១០,០០០ ដល់ **១,០០០,០០០ ដុល្លារ+** (ការប្រាក់ចាប់ពី ៧.៥០% ឡើងទៅ)\n\n"
+                f"📋 *លក្ខខណ្ឌតម្រូវ៖ អត្តសញ្ញាណប័ណ្ណ, សៀវភៅស្នាក់នៅ/គ្រួសារ, លិខិតបញ្ជាក់ប្រាក់ចំណូល ៦ ខែ, និងរបាយការណ៍ CBC ល្អ (DSR អតិបរមា ៥០%)។*"
+            )
+        else:
+            reply = (
+                f"🏠 **KEY Bank Lending & Financing Solutions:**\n\n"
+                f"1. **Home Mortgage Loans:**\n"
+                f"   • Interest rates starting at **6.99% p.a.**\n"
+                f"   • Loan-to-Value (LTV) up to **80%** of appraised property value\n"
+                f"   • Repayment tenure up to **25 Years (300 Months)**\n\n"
+                f"2. **Personal Unsecured Consumer Loans:**\n"
+                f"   • Borrow from $1,000 up to **$25,000 USD** (No collateral required)\n"
+                f"   • Minimum verified salary: $400/month\n\n"
+                f"3. **SME & Commercial Credit Facilities:**\n"
+                f"   • Working capital and term loans from $10,000 up to **$1,000,000 USD+** (from 7.50% p.a.)\n\n"
+                f"📋 *Eligibility: Valid ID/Passport, 6 months salary/business bank statements, and maximum Debt-Service Ratio (DSR) of 50%.*"
+            )
+
+    # Intent 4: Bakong KHQR, Wire Transfers & Remittance Fees
+    elif any(k in text for k in ["bakong", "khqr", "transfer fee", "wire", "swift", "remittance", "fee", "fees", "ថ្លៃផ្ទេរប្រាក់", "បាគង", "ថ្លៃសេវា", "សេវាផ្ទេរ"]):
+        thought_process.append("1. Query Knowledge Base: retail_and_commercial_products.md.")
+        thought_process.append("2. Extract Bakong KHQR, ACH, and SWIFT wire fee policies.")
+
+        if is_kh:
+            reply = (
+                f"💸 **គោលការណ៍ផ្ទេរប្រាក់ និងថ្លៃសេវាធនាគារ KEY Bank:**\n\n"
+                f"• **ការផ្ទេរប្រាក់ផ្ទៃក្នុង KEY Bank:** **ឥតគិតថ្លៃ (០.០០ ដុល្លារ)** ភ្លាមៗ ២៤/៧\n"
+                f"• **ការផ្ទេរប្រាក់តាម Bakong KHQR:** **ឥតគិតថ្លៃ (០.០០ ដុល្លារ)** ទៅកាន់គ្រប់ធនាគារក្នុងស្រុក\n"
+                f"• **ការផ្ទេរប្រាក់ទៅក្រៅប្រទេស (Outbound SWIFT Wire):** **២៥.០០ ដុល្លារ** ក្នុងមួយប្រតិបត្តិការ\n"
+                f"• **ការទទួលប្រាក់ពីក្រៅប្រទេស (Inbound SWIFT Wire):** **៥.០០ ដុល្លារ** ក្នុងមួយប្រតិបត្តិការ\n"
+                f"• **ដែនកំណត់ផ្ទេរប្រាក់ប្រចាំថ្ងៃ:** រហូតដល់ ១០,០០០ ដុល្លារ / ថ្ងៃ (ឬ ៥០,០០០ ដុល្លារសម្រាប់គណនីអាជីវកម្ម)"
+            )
+        else:
+            reply = (
+                f"💸 **KEY Bank Transfers & Remittance Schedule:**\n\n"
+                f"• **Internal KEY Bank Transfers:** **$0.00 (Free)** instant 24/7\n"
+                f"• **Bakong KHQR Interbank Transfers:** **$0.00 (Free)** to all participating local banks\n"
+                f"• **Outbound SWIFT International Wire:** **$25.00 flat fee** per transaction\n"
+                f"• **Inbound SWIFT Remittance:** **$5.00** processing fee\n"
+                f"• **Daily Retail Transfer Limit:** $10,000 USD / 40,000,000 KHR per day"
+            )
+
+    # Intent 5: Inquire London $329 Transaction / Dispute / Fraud
+    elif any(k in text for k in ["329", "london", "unauthorized", "suspicious", "charge", "unknown", "ឡុងដ៍", "កាត់ប្រាក់", "បន្លំ", "dispute", "fraud", "តវ៉ា", "មិនស្គាល់", "កាត់លុយខុស"]):
         thought_process.append("1. Detect transaction lookup request for $329.99 London charge.")
         thought_process.append("2. Execute Tool: GET /transactions?status=FLAGGED.")
         thought_process.append("3. Cross-reference Dispute Policy: Unrecognized foreign transaction -> Flag for fraud review.")
 
         if is_kh:
             reply = (
-                f"⚠️ **ការរកឃើញប្រតិបត្តិការសង្ស័យ (Flagged Transaction):**\n\n"
+                f"⚠️ **ការរកឃើញប្រតិបត្តិការសង្ស័យ:**\n\n"
                 f"យើងខ្ញុំបានរកឃើញប្រតិបត្តិការកាត់ប្រាក់ចំនួន **$329.99** កាលពី ២ ថ្ងៃមុន នៅហាង **Unknown Online Retailer** (London, United Kingdom)។\n\n"
-                f"ប្រសិនបើលោកអ្នកមិនបានធ្វើប្រតិបត្តិការនេះទេ សូមចុចប៊ូតុង **ដាក់ពាក្យតវ៉ា និងបង្កកកាត** ខាងក្រោមភ្លាមៗ។ ធនាគារ KEY Bank នឹងផ្តល់ **ឥណទានបណ្តោះអាសន្ន (Provisional Credit)** ជូនលោកអ្នកភ្លាមៗ។"
+                f"ប្រសិនបើលោកអ្នកមិនបានធ្វើប្រតិបត្តិការនេះទេ សូមចុចប៊ូតុង **ដាក់ពាក្យតវ៉ា និងបង្កកកាត** ខាងក្រោមភ្លាមៗ។ ធនាគារ KEY Bank នឹងផ្តល់ **ឥណទានបណ្តោះអាសន្ន** ជូនលោកអ្នកភ្លាមៗ។"
             )
             card_data = {
                 "type": "TransactionHighlight",
                 "merchant": "Unknown Online Retailer - London UK",
                 "amount": "-$329.99 USD",
-                "date": "២ ថ្ងៃមុន • Cross-Border",
+                "date": "២ ថ្ងៃមុន",
                 "btnText": "🚨 ដាក់ពាក្យតវ៉ា និងបង្កកកាត"
             }
         else:
@@ -411,60 +560,25 @@ def execute_agentic_reasoning(user_text, session_id, lang_preference="auto", cur
                 "btnText": "🚨 File Dispute & Freeze Card"
             }
 
-    # Intent 3: Freeze Card
-    elif any(k in text for k in ["freeze", "lock", "block", "បង្កក", "ចាក់សោរកាត", "បិទកាត"]):
-        thought_process.append("1. Extract card lock command -> CARD-VISA-7711.")
-        thought_process.append("2. Execute Core Action: POST /cards/CARD-VISA-7711/freeze.")
-        
-        STATE["cards"][0]["status"] = "FROZEN"
-        STATE["cards"][0]["statusKh"] = "បានបង្កក"
-
-        if is_kh:
-            reply = (
-                f"🔒 **កាតត្រូវបានបង្កកដោយជោគជ័យ (Card Frozen)!**\n\n"
-                f"កាត **Visa Platinum (•••• 7711)** របស់លោកអ្នកត្រូវបានចាក់សោរបង្កកជាបណ្តោះអាសន្ន។ រាល់ប្រតិបត្តិការទិញទំនិញតាមអនឡាញ និងការដកប្រាក់តាម ATM ត្រូវបានផ្អាកដើម្បីសុវត្ថិភាព។"
-            )
-            card_data = {
-                "type": "CardStatus",
-                "title": "Visa Platinum (•••• 7711)",
-                "status": "FROZEN",
-                "badge": "🔒 FROZEN",
-                "refCode": "FRZ-" + str(random.randint(10000, 99999)),
-                "unfreezeBtn": "🔓 ដោះសោកាតវិញ (ត្រូវការ OTP)"
-            }
-        else:
-            reply = (
-                f"🔒 **Card Successfully Frozen!**\n\n"
-                f"Your **Visa Platinum (•••• 7711)** has been temporarily locked. All point-of-sale authorizations, online purchases, and ATM withdrawals are now blocked."
-            )
-            card_data = {
-                "type": "CardStatus",
-                "title": "Visa Platinum (•••• 7711)",
-                "status": "FROZEN",
-                "badge": "🔒 FROZEN",
-                "refCode": "FRZ-" + str(random.randint(10000, 99999)),
-                "unfreezeBtn": "🔓 Unfreeze Card (Requires OTP)"
-            }
-
-    # Intent 4: Unfreeze Card (Requires Step-Up OTP)
-    elif any(k in text for k in ["unfreeze", "unlock", "ដោះសោ", "បើកកាត"]):
-        thought_process.append("1. Security Guardrail: Unfreezing payment card is HIGH RISK.")
-        thought_process.append("2. Trigger Step-Up MFA Challenge -> POST /auth/step-up/otp.")
+    # Intent 6: Unfreeze Card (Requires Step-Up OTP)
+    elif any(k in text for k in ["unfreeze", "unlock card", "unlock", "ដោះសោរ", "ដោះសោកាត", "បើកកាត"]):
+        thought_process.append("1. Extract unfreeze intent -> High-Risk Privileged Action.")
+        thought_process.append("2. Trigger Step-Up MFA Challenge -> POST /auth/step-up-challenge.")
         
         STATE["pending_actions"][session_id] = {
             "type": "UNFREEZE_CARD",
-            "cardId": "CARD-VISA-7711"
+            "initiated_at": datetime.now(timezone.utc).isoformat()
         }
 
         if is_kh:
             reply = (
-                f"🔐 **ទាមទារការផ្ទៀងផ្ទាត់សុវត្ថិភាព 2FA (Step-Up OTP):**\n\n"
-                f"ដើម្បីដោះសោកាត Visa Platinum (•••• 7711) សូមបញ្ចូលលេខកូដសម្ងាត់ ៦ ខ្ទង់ ដែលបានផ្ញើទៅកាន់ទូរស័ព្ទរបស់លោកអ្នក (+855 •• ••• 888)។\n\n"
-                f"*(សម្រាប់ Demo សាកល្បង លេខកូដគឺ: `123456`)*"
+                f"🔐 **តម្រូវឱ្យមានការផ្ទៀងផ្ទាត់សុវត្ថិភាព (MFA OTP)៖**\n\n"
+                f"ដើម្បីដោះសោកាត Visa Platinum (•••• 7711) សូមបញ្ចូលលេខកូដ ៦ ខ្ទង់ដែលបានផ្ញើទៅកាន់ទូរស័ព្ទរបស់លោកអ្នក (+855 •• ••• 888)។\n\n"
+                f"*(សម្រាប់គំរូសាកល្បងនេះ លេខកូដគឺ៖ `123456`)*"
             )
             card_data = {
                 "type": "OtpChallenge",
-                "title": "បញ្ចូលលេខកូដ OTP ៦ ខ្ទង់",
+                "title": "បញ្ចូលលេខកូដសុវត្ថិភាព ៦ ខ្ទង់",
                 "phone": "+855 •• ••• 888",
                 "btnText": "បញ្ចូលលេខកូដ: 123456"
             }
@@ -481,72 +595,149 @@ def execute_agentic_reasoning(user_text, session_id, lang_preference="auto", cur
                 "btnText": "Submit OTP: 123456"
             }
 
-    # Intent 5: Travel Notice
-    elif any(k in text for k in ["travel", "japan", "ធ្វើដំណើរ", "ជប៉ុន", "ក្រៅប្រទេស", "trip"]):
-        thought_process.append("1. Extract travel intent -> Destination: Japan.")
+    # Intent 7: Freeze Card
+    elif any(k in text for k in ["freeze", "lock card", "block card", "បង្កក", "ចាក់សោរកាត", "បិទកាត"]):
+        thought_process.append("1. Extract card lock command -> CARD-VISA-7711.")
+        thought_process.append("2. Execute Core Action: POST /cards/CARD-VISA-7711/freeze.")
+        
+        STATE["cards"][0]["status"] = "FROZEN"
+        STATE["cards"][0]["statusKh"] = "បានបង្កក"
+
+        if is_kh:
+            reply = (
+                f"🔒 **កាត Visa Platinum (•••• 7711) ត្រូវបានបង្កកដោយជោគជ័យ!**\n\n"
+                f"រាល់ការទូទាត់ និងដកប្រាក់តាមកាតត្រូវបានផ្អាកជាបណ្តោះអាសន្ន។ លោកអ្នកអាចដោះសោកាតវិញបានគ្រប់ពេលវេលា ដោយគ្រាន់តែបញ្ជាក់លេខកូដសុវត្ថិភាព OTP។"
+            )
+        else:
+            reply = (
+                f"🔒 **Visa Platinum (•••• 7711) has been successfully FROZEN!**\n\n"
+                f"All recurring debits, POS transactions, and ATM withdrawals are now blocked. You can unfreeze your card at any time via 2FA verification."
+            )
+
+    # Intent 8: Travel Notice
+    elif any(k in text for k in ["travel", "japan", "flight", "trip", "destination", "ធ្វើដំណើរ", "ជប៉ុន", "ក្រៅប្រទេស"]):
+        thought_process.append("1. Extract travel intent -> Set overseas destination exemption.")
         thought_process.append("2. Invoke Core Action: POST /cards/CARD-VISA-7711/travel-notice.")
         
-        STATE["cards"][0]["travelNotice"] = "Japan (Oct 2026)"
+        destination_name = "Japan (Oct 2026)"
+        if "japan" in text or "ជប៉ុន" in text:
+            destination_name = "Japan (Oct 2026)"
+        elif "usa" in text or "us" in text or "អាមេរិក" in text:
+            destination_name = "United States (Oct 2026)"
+        elif "singapore" in text or "សិង្ហបុរី" in text:
+            destination_name = "Singapore (Oct 2026)"
+        else:
+            destination_name = "International (Oct 2026)"
+
+        STATE["cards"][0]["travelNotice"] = destination_name
 
         if is_kh:
             reply = (
                 f"✈️ **ការកំណត់ការធ្វើដំណើរត្រូវបានរក្សាទុកដោយជោគជ័យ!**\n\n"
-                f"យើងខ្ញុំបានកត់ត្រាការជូនដំណឹងធ្វើដំណើរទៅកាន់ **ប្រទេសជប៉ុន (Japan)** សម្រាប់កាត Visa Platinum (•••• 7711) របស់លោកអ្នក។ ប្រតិបត្តិការទូទាត់នៅក្រៅប្រទេសនឹងមិនត្រូវបានរារាំងដោយប្រព័ន្ធសុវត្ថិភាពស្វ័យប្រវត្តិនោះទេ។"
+                f"យើងខ្ញុំបានកត់ត្រាការជូនដំណឹងធ្វើដំណើរទៅកាន់ **{destination_name}** សម្រាប់កាត Visa Platinum (•••• 7711) របស់លោកអ្នក។ ប្រតិបត្តិការទូទាត់នៅក្រៅប្រទេសនឹងមិនត្រូវបានរារាំងដោយប្រព័ន្ធសុវត្ថិភាពស្វ័យប្រវត្តិនោះទេ។"
             )
         else:
             reply = (
                 f"✈️ **Travel Notice Successfully Activated!**\n\n"
-                f"A travel exemption for **Japan (Oct 2026)** has been applied to your Visa Platinum (•••• 7711). Foreign card authorizations will proceed smoothly without automated fraud blocks."
+                f"A travel exemption for **{destination_name}** has been applied to your Visa Platinum (•••• 7711). Foreign card authorizations will proceed smoothly without automated fraud blocks."
             )
 
-    # Intent 6: Fees & Limits
-    elif any(k in text for k in ["fee", "limit", "wire", "ថ្លៃសេវា", "ដែនកំណត់", "ផ្ទេរប្រាក់"]):
-        thought_process.append("1. Query Knowledge Base: accounts_fees_and_limits.md & khmer_banking_policies.md.")
-        thought_process.append("2. Retrieve Fee Schedule & ATM withdrawal limits.")
+    # Intent 9: Recent Transactions & Activity
+    elif any(k in text for k in ["recent transactions", "transaction", "transactions", "activity", "statement", "history", "ប្រតិបត្តិការ", "ប្រវត្តិ", "ចុងក្រោយ", "ចំណាយ", "ទិញអីខ្លះ"]):
+        thought_process.append("1. Query Core Banking Action: GET /accounts/ACC-CHK-9812/transactions.")
+        thought_process.append("2. Format recent transaction statement list.")
+
+        txns = STATE["transactions"][:4]
+        if is_kh:
+            lines = [f"• **{t.get('merchant', 'Merchant')}**: `${abs(t['amount']):,.2f}` ({t.get('postedDateKh', t.get('postedDate'))}) — [{t.get('statusKh', t.get('status'))}]" for t in txns]
+            reply = (
+                f"📋 **ប្រតិបត្តិការថ្មីៗចុងក្រោយរបស់លោកអ្នក (*9812):**\n\n" +
+                "\n".join(lines) +
+                "\n\n💡 *ប្រសិនបើមានប្រតិបត្តិការណាមួយគួរឱ្យសង្ស័យ លោកអ្នកអាចប្រាប់ខ្ញុំដើម្បីដាក់ពាក្យតវ៉ាភ្លាមៗ។*"
+            )
+        else:
+            lines = [f"• **{t.get('merchant', 'Merchant')}**: `${abs(t['amount']):,.2f}` ({t.get('postedDate')}) — [{t.get('status')}]" for t in txns]
+            reply = (
+                f"📋 **Recent Account Transactions (*9812):**\n\n" +
+                "\n".join(lines) +
+                "\n\n💡 *If you see an unfamiliar charge, simply let me know to file an immediate dispute.*"
+            )
+
+    # Intent 10: Department / Manager Routing & Staff Escalations
+    elif any(k in text for k in ["manager", "director", "leadership", "contact", "executive", "it manager", "finance manager", "hr manager", "sale manager", "នាយក", "ប្រធាន", "បុគ្គលិក", "ទំនាក់ទំនង", "ថ្នាក់ដឹកនាំ", "សុផានីត", "sophanith"]):
+        thought_process.append("1. Query Knowledge Base: customer_service_sop_and_escalations.md.")
+        thought_process.append("2. Match departmental management directory.")
 
         if is_kh:
             reply = (
-                f"📄 **តារាងថ្លៃសេវា និងដែនកំណត់ធនាគារ KEY Bank:**\n\n"
-                f"• **ថ្លៃផ្ទេរប្រាក់ទៅក្រៅប្រទេស (Outbound Wire):** $25.00 USD ក្នុងមួយប្រតិបត្តិការ\n"
-                f"• **ការផ្ទេរប្រាក់ក្នុងស្រុក (Domestic Transfer):** $0.00 ឥតគិតថ្លៃ\n"
-                f"• **ដែនកំណត់ដកប្រាក់តាម ATM ប្រចាំថ្ងៃ:** $1,000 USD / ថ្ងៃ\n"
-                f"• **ដែនកំណត់ទូទាត់តាមកាត (POS / Online Purchase):** $5,000 USD / ថ្ងៃ\n"
-                f"• **កម្រៃសេវាប្តូរប្រាក់អន្តរជាតិ (Foreign Transaction Fee):** 0% សម្រាប់កាត Platinum"
+                f"👥 **បញ្ជីទំនាក់ទំនងថ្នាក់ដឹកនាំ និងនាយកដ្ឋាន KEY Bank:**\n\n"
+                f"• **អគ្គនាយកគ្រប់គ្រងប្រព័ន្ធ:** **លោក យន សុផានីត** (`sophanith.yorn@keybank.com`)\n"
+                f"• **ប្រធានគ្រប់គ្រងហិរញ្ញវត្ថុ:** **វ.ន វឿន រ៉ាវិទ** (`ravith.voeun@keybank.com`)\n"
+                f"• **ប្រធានគ្រប់គ្រងទីផ្សារ:** **វ.ន ហន ភិរ៉េក** (`phirek.hon@keybank.com`)\n"
+                f"• **ប្រធានគ្រប់គ្រងបច្ចេកវិទ្យា (IT):** **លោក សាន សុកនី** (`sokny.san@keybank.com`)\n"
+                f"• **ប្រធានគ្រប់គ្រងផ្នែកលក់:** **លោក លី វឌ្ឍនៈបថ** (`vathanakboth.ly@keybank.com`)\n"
+                f"• **ប្រធានគ្រប់គ្រងធនធានមនុស្ស (HR):** **កញ្ញា ជា បញ្ញា** (`panha.chea@keybank.com`)\n"
+                f"• **មន្ត្រីផ្នែកលក់ & ទីផ្សារ:** **លោក នឿន បញ្ញា** & **កញ្ញា ណា នីសា**"
             )
         else:
             reply = (
-                f"📄 **KEY Bank Schedule of Fees & Account Limits:**\n\n"
-                f"• **Outbound International Wire Transfer:** $25.00 flat fee\n"
-                f"• **Domestic KEY & ACH Transfers:** $0.00 (Free)\n"
-                f"• **Daily ATM Withdrawal Limit:** $1,000.00 / day\n"
-                f"• **Daily Point-of-Sale / Debit Limit:** $5,000.00 / day\n"
-                f"• **Foreign Currency Transaction Fee:** 0% (Platinum Benefit)"
+                f"👥 **KEY Bank Leadership & Escalation Directory:**\n\n"
+                f"• **Executive Administrator:** **Mr. Sophanith Yorn** (`sophanith.yorn@keybank.com`)\n"
+                f"• **Finance Manager:** **Vn. Voeun Ravith** (`ravith.voeun@keybank.com`)\n"
+                f"• **Marketing Manager:** **Vn. Hon Phirek** (`phirek.hon@keybank.com`)\n"
+                f"• **IT & Cyber Security Manager:** **Mr. San Sokny** (`sokny.san@keybank.com`)\n"
+                f"• **Sales Manager:** **Mr. Ly Vathanakboth** (`vathanakboth.ly@keybank.com`)\n"
+                f"• **HR Manager:** **Ms. Chea Panha** (`panha.chea@keybank.com`)\n"
+                f"• **Officers:** **Mr. Noeun Panha** (Sales) & **Ms. Na Nisa** (Marketing)"
+            )
+
+    # Intent 11: Check Balances & Accounts
+    elif any(k in text for k in ["balance", "balances", "how much money", "check account", "my account", "my money", "checking", "savings", "សមតុល្យ", "សមតុល្យគណនី", "ពិនិត្យគណនី", "មើលលុយ", "ពិនិត្យលុយ", "លុយសល់ប៉ុន្មាន", "គណនីរបស់ខ្ញុំ"]):
+        thought_process.append("1. Query Core Banking Action: GET /accounts/ACC-CHK-9812/balance.")
+        thought_process.append("2. Format multi-account summary.")
+
+        chk = STATE["accounts"][0]
+        sav = STATE["accounts"][1]
+
+        if is_kh:
+            reply = (
+                f"សូមគោរពជម្រាបជូន **{user_name}** ({user_role})! ខាងក្រោមនេះជាសមតុល្យគណនីបច្ចុប្បន្នរបស់លោកអ្នក៖\n\n"
+                f"• **{chk['accountTypeKh']} (*9812):** `${chk['availableBalance']:,.2f}` (អាចប្រើប្រាស់បានភ្លាមៗ)\n"
+                f"• **{sav['accountTypeKh']} (*4109):** `${sav['availableBalance']:,.2f}` (អត្រាការប្រាក់ ៤.៧៥% ក្នុងមួយឆ្នាំ)\n\n"
+                f"💰 **ទ្រព្យសកម្មសរុប:** `${chk['availableBalance'] + sav['availableBalance']:,.2f}`"
+            )
+        else:
+            reply = (
+                f"Here is your current balance summary, **{user_name}** ({user_role}):\n\n"
+                f"• **{chk['accountType']} (*9812):** `${chk['availableBalance']:,.2f}` Available\n"
+                f"• **{sav['accountType']} (*4109):** `${sav['availableBalance']:,.2f}` (+4.75% APY)\n\n"
+                f"💰 **Total Liquid Assets:** `${chk['availableBalance'] + sav['availableBalance']:,.2f}`"
             )
 
     # Default Fallback
     else:
         thought_process.append(f"1. Conversational inquiry analysis for {user_name}.")
-        thought_process.append("2. Synthesize role-aware response.")
+        thought_process.append("2. Synthesize comprehensive banking knowledge from Vichhai AI.")
 
         if is_kh:
             reply = (
-                f"សូមគោរពជម្រាបជូន **{user_name}** ({user_role})! ខ្ញុំជា **KEY Bank Copilot** ជំនួយការ AI ឆ្លាតវៃ។\n\n"
-                f"លោកអ្នកអាចសួរខ្ញុំអំពី៖\n"
-                f"• ពិនិត្យសមតុល្យគណនី\n"
-                f"• សាកសួរ ឬតវ៉ាលើប្រតិបត្តិការសង្ស័យ $329 នៅឡុងដ៍\n"
-                f"• បង្កក ឬដោះសោកាត Visa\n"
-                f"• កំណត់ការធ្វើដំណើរទៅក្រៅប្រទេស (Travel Notice)\n"
-                f"• សាកសួរព័ត៌មានថ្លៃសេវា និងដែនកំណត់ធនាគារ"
+                f"សូមគោរពជម្រាបជូន **{user_name}** ({user_role})! ខ្ញុំជា **Vichhai AI** ជំនួយការឆ្លាតវៃនៃធនាគារ KEY Bank។\n\n"
+                f"ខ្ញុំបានបណ្តុះបណ្តាលចំណេះដឹងពេញលេញលើសេវាធនាគារ និងហិរញ្ញវត្ថុ។ លោកអ្នកអាចសួរខ្ញុំអំពី៖\n"
+                f"• **គណនី និងការប្រាក់:** ពិនិត្យសមតុល្យ, អត្រាការប្រាក់សន្សំ ៤.៧៥% ឬបញ្ញើមានកាលកំណត់ ៧.២៥%\n"
+                f"• **សេវាឥណទាន និងកម្ចី:** កម្ចីទិញផ្ទះ (៦.៩៩%), កម្ចីផ្ទាល់ខ្លួន, ឬកម្ចីអាជីវកម្ម SME\n"
+                f"• **ការផ្ទេរប្រាក់ និងទូទាត់:** ផ្ទេរប្រាក់តាម Bakong KHQR, ថ្លៃផ្ទេរប្រាក់ SWIFT ទៅក្រៅប្រទេស\n"
+                f"• **ការគ្រប់គ្រងកាត និងសុវត្ថិភាព:** បង្កក ឬដោះសោកាត Visa, កំណត់ការធ្វើដំណើរ, ដោះស្រាយប្រតិបត្តិការសង្ស័យ\n"
+                f"• **ទំនាក់ទំនងថ្នាក់ដឹកនាំ:** ព័ត៌មានទំនាក់ទំនងប្រធានគ្រប់គ្រងតាមផ្នែកនីមួយៗ"
             )
         else:
             reply = (
-                f"Hello **{user_name}** ({user_role})! I am your **KEY Bank AI Copilot**.\n\n"
-                f"You can ask me to:\n"
-                f"• Check your live account balances\n"
-                f"• Inquire or dispute the flagged $329 London charge\n"
-                f"• Freeze or unfreeze your Visa Platinum card\n"
-                f"• Set international travel notices (e.g. Japan)\n"
-                f"• Review wire transfer fees and account limits"
+                f"Hello **{user_name}** ({user_role})! I am **Vichhai AI**, your intelligent banking & finance specialist at KEY Bank.\n\n"
+                f"I am fully equipped with real-world banking knowledge. You can ask me about:\n"
+                f"• **Accounts & Deposits:** Live balance checks, High-Yield Savings (4.75% APY), or Fixed Term Deposits (up to 7.25% p.a.)\n"
+                f"• **Lending & Mortgages:** Home loans (from 6.99% p.a.), Personal loans, or SME business credit lines\n"
+                f"• **Transfers & Payments:** Instant Bakong KHQR transfers, SWIFT international wire rules and fees\n"
+                f"• **Card Controls & Fraud:** Instant Visa freeze/unfreeze, travel notices, and unauthorized dispute resolution\n"
+                f"• **Bank Leadership:** Direct escalation routing to KEY Bank department managers"
             )
 
     return {
@@ -586,15 +777,19 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
 
         if parsed.path == "/api/users":
             safe_users = []
+            seen_ids = set()
             for u in USERS_DB.values():
-                safe_users.append({k: v for k, v in u.items() if k != "password"})
+                if u["id"] not in seen_ids:
+                    seen_ids.add(u["id"])
+                    safe_users.append({k: v for k, v in u.items() if k != "passwords"})
             self._send_json(200, {"status": "SUCCESS", "users": safe_users})
             return
 
-        if parsed.path == "/api/health":
+        if parsed.path == "/api/health" or parsed.path == "/healthz":
             self._send_json(200, {
                 "status": "UP",
                 "service": "KEY Bank Enterprise AI Demo",
+                "agent": "Vichhai AI",
                 "admin": "Mr. Sophanith Yorn",
                 "timestamp": datetime.now(timezone.utc).isoformat()
             })
@@ -618,15 +813,16 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
 
         # 1. STRICT USERNAME & PASSWORD LOGIN
         if parsed.path == "/api/login":
-            username = body.get("username", "").strip()
+            username = body.get("username", "").strip().lower()
             password = body.get("password", "").strip()
 
             user = USERS_DB.get(username)
-            if user and user.get("password") == password:
+            if user and (password in user.get("passwords", []) or password == user.get("password")):
                 STATE["activeUser"] = user
-                safe_user = {k: v for k, v in user.items() if k != "password"}
+                safe_user = {k: v for k, v in user.items() if k != "passwords"}
                 self._send_json(200, {
                     "status": "SUCCESS",
+                    "success": True,
                     "message": "Authentication successful",
                     "user": safe_user,
                     "token": f"KEY-JWT-{random.randint(100000, 999999)}-SECURE"
@@ -634,6 +830,7 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
             else:
                 self._send_json(401, {
                     "status": "ERROR",
+                    "success": False,
                     "message": "Invalid username or password. Please check your credentials."
                 })
             return
@@ -642,7 +839,7 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/api/register":
             name = body.get("name", "").strip()
             email = body.get("email", "").strip()
-            username = body.get("username", "").strip()
+            username = body.get("username", "").strip().lower()
             password = body.get("password", "").strip()
 
             if not username or not password or not name:
@@ -657,7 +854,7 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
             new_user = {
                 "id": new_id,
                 "username": username,
-                "password": password,
+                "passwords": [password],
                 "name": name,
                 "nameKh": name,
                 "role": "Retail Customer",
@@ -672,9 +869,10 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
             }
             USERS_DB[username] = new_user
             STATE["activeUser"] = new_user
-            safe_user = {k: v for k, v in new_user.items() if k != "password"}
+            safe_user = {k: v for k, v in new_user.items() if k != "passwords"}
             self._send_json(201, {
                 "status": "SUCCESS",
+                "success": True,
                 "message": "Registration successful",
                 "user": safe_user,
                 "token": f"KEY-JWT-{random.randint(100000, 999999)}-SECURE"
@@ -714,6 +912,7 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
 
             self._send_json(200, {
                 "status": "SUCCESS",
+                "success": True,
                 "message": "Transfer completed successfully",
                 "transactionId": txn_id,
                 "amount": amount,
@@ -723,8 +922,8 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
             })
             return
 
-        # 4. CARD ACTIONS
-        if parsed.path == "/api/card/freeze":
+        # 4. CARD FREEZE / UNFREEZE
+        if parsed.path in ["/api/card/freeze", "/api/cards/freeze"]:
             action = body.get("action", "toggle")
             card = STATE["cards"][0]
             if action == "freeze":
@@ -737,28 +936,38 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
                 card["status"] = "FROZEN" if card["status"] == "ACTIVE" else "ACTIVE"
                 card["statusKh"] = "បានបង្កក" if card["status"] == "FROZEN" else "សកម្ម"
 
-            self._send_json(200, {"status": "SUCCESS", "card": card})
+            self._send_json(200, {"status": "SUCCESS", "success": True, "card": card})
+            return
+
+        if parsed.path in ["/api/cards/unfreeze"]:
+            otp = body.get("otp", "").strip()
+            if otp in ["123456", "123 456"]:
+                STATE["cards"][0]["status"] = "ACTIVE"
+                STATE["cards"][0]["statusKh"] = "សកម្ម"
+                self._send_json(200, {"status": "SUCCESS", "success": True, "card": STATE["cards"][0]})
+            else:
+                self._send_json(400, {"status": "ERROR", "success": False, "message": "Invalid OTP code."})
             return
 
         # 5. TRAVEL NOTICE API
-        if parsed.path == "/api/card/travel":
+        if parsed.path in ["/api/card/travel", "/api/cards/travel-notice"]:
             destination = body.get("destination", "Overseas").strip()
             dates = body.get("dates", "Next 30 Days").strip()
             card = STATE["cards"][0]
             card["travelNotice"] = f"{destination} ({dates})"
-            self._send_json(200, {"status": "SUCCESS", "travelNotice": card["travelNotice"]})
+            self._send_json(200, {"status": "SUCCESS", "success": True, "travelNotice": card["travelNotice"]})
             return
 
         # 6. DISPUTE SUBMISSION API
-        if parsed.path == "/api/disputes/create":
-            merchant = body.get("merchant", "Suspicious Merchant")
-            amount = float(body.get("amount", 50.0))
-            reason = body.get("reason", "Unauthorized Transaction")
+        if parsed.path in ["/api/disputes/create", "/api/disputes"]:
+            merchant = body.get("merchant", "Unknown Online Retailer - London UK")
+            amount = float(body.get("amount", 329.99))
+            reason = body.get("reason", "Suspected Unauthorized Transaction")
             case_id = f"DSP-2026-{random.randint(1000, 9999)}"
 
             new_dispute = {
                 "caseId": case_id,
-                "transactionId": f"TXN-{random.randint(8000, 9999)}",
+                "transactionId": body.get("transactionId", f"TXN-{random.randint(8000, 9999)}"),
                 "merchant": merchant,
                 "amount": amount,
                 "currency": "$",
@@ -772,30 +981,32 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
                 "provisionalCreditStatusKh": "បានបញ្ចូលឥណទានបណ្តោះអាសន្ន"
             }
             STATE["disputes"].insert(0, new_dispute)
-            self._send_json(201, {"status": "SUCCESS", "dispute": new_dispute})
+            STATE["cards"][0]["status"] = "FROZEN"
+            STATE["cards"][0]["statusKh"] = "បានបង្កក"
+            self._send_json(201, {"status": "SUCCESS", "success": True, "dispute": new_dispute})
             return
 
         # 7. CHANGE PASSWORD API
         if parsed.path == "/api/security/password":
-            username = body.get("username", "")
-            old_pwd = body.get("oldPassword", "")
-            new_pwd = body.get("newPassword", "")
+            username = body.get("username", "").strip().lower()
+            old_pwd = body.get("oldPassword", "").strip()
+            new_pwd = body.get("newPassword", "").strip()
 
             user = USERS_DB.get(username)
-            if not user or user.get("password") != old_pwd:
+            if not user or old_pwd not in user.get("passwords", []):
                 self._send_json(400, {"status": "ERROR", "message": "Current password is incorrect."})
                 return
 
-            user["password"] = new_pwd
+            user["passwords"].append(new_pwd)
             self._send_json(200, {"status": "SUCCESS", "message": "Password updated successfully."})
             return
 
-        # 8. COPILOT CHAT
+        # 8. COPILOT CHAT (VICHHAI AI)
         if parsed.path == "/api/chat":
             user_msg = body.get("message", "")
             session_id = body.get("sessionId", "demo-session-1")
             lang = body.get("lang", "auto")
-            username = body.get("username")
+            username = body.get("username", body.get("user_id", "admin")).lower()
             user = USERS_DB.get(username, STATE["activeUser"] or USERS_DB["sophanith"])
             
             result = execute_agentic_reasoning(user_msg, session_id, lang, user)
@@ -807,4 +1018,8 @@ class DemoAppHandler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     server = HTTPServer(('0.0.0.0', PORT), DemoAppHandler)
     print(f"KEY Bank Enterprise Server running on http://0.0.0.0:{PORT}")
-    server.serve_forever()
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\n🛑 Shutting down server.")
+        server.server_close()
