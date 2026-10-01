@@ -554,11 +554,6 @@ def execute_agentic_reasoning(user_text, session_id, lang_preference="auto", cur
                     "card": None
                 }
 
-    # Optional Copilot Studio Direct Line Query
-    copilot_res = query_copilot_studio_direct_line(user_text, session_id, user_name)
-    if copilot_res:
-        return copilot_res
-
     # Intent 0: Direct Request to Speak to Human / Escalation
     if any(k in text for k in [
         "speak to human", "talk to agent", "human specialist", "real person", "representative", 
