@@ -1,2 +1,0 @@
-# Standard library is used; no external pip dependencies required.
-# This file satisfies Render / Heroku / Railway build requirements.
