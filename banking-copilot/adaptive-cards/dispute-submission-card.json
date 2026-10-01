@@ -1,0 +1,46 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "📋 Transaction Dispute Submitted",
+      "weight": "Bolder",
+      "size": "Large",
+      "color": "Accent"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Case ID:", "value": "${disputeCaseId}" },
+        { "title": "Status:", "value": "${status}" },
+        { "title": "Resolution ETA:", "value": "${estimatedResolutionDays} Business Days" },
+        { "title": "Provisional Credit:", "value": "${provisionalCreditEligible ? 'Eligible ($48h credit window)' : 'Pending Investigation'}" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "${message}",
+      "wrap": true,
+      "isSubtle": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Track Dispute Status",
+      "data": {
+        "action": "TRACK_CASE",
+        "caseId": "${disputeCaseId}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Return to Main Menu",
+      "data": {
+        "action": "MAIN_MENU"
+      }
+    }
+  ]
+}
