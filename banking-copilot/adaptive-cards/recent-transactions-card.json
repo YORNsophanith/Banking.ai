@@ -1,0 +1,55 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "📊 Recent Transactions",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Account ${accountId}",
+      "isSubtle": true,
+      "spacing": "None"
+    },
+    {
+      "type": "Table",
+      "columns": [
+        { "width": 2 },
+        { "width": 3 },
+        { "width": 2 }
+      ],
+      "rows": [
+        {
+          "type": "TableRow",
+          "cells": [
+            { "type": "TableCell", "items": [{ "type": "TextBlock", "text": "Date", "weight": "Bolder" }] },
+            { "type": "TableCell", "items": [{ "type": "TextBlock", "text": "Merchant", "weight": "Bolder" }] },
+            { "type": "TableCell", "items": [{ "type": "TextBlock", "text": "Amount", "weight": "Bolder", "horizontalAlignment": "Right" }] }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Dispute a Charge",
+      "data": {
+        "action": "INITIATE_DISPUTE",
+        "accountId": "${accountId}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Download Statement (PDF)",
+      "data": {
+        "action": "EXPORT_STATEMENT",
+        "accountId": "${accountId}"
+      }
+    }
+  ]
+}

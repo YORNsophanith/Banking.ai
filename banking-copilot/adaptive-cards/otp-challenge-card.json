@@ -1,0 +1,46 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "🔐 Step-Up Security Verification",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "For your protection, we sent a 6-digit verification code to your registered mobile ending in **${maskedDestination}**.",
+      "wrap": true
+    },
+    {
+      "type": "Input.Text",
+      "id": "userOtpCode",
+      "label": "Enter 6-Digit Passcode",
+      "placeholder": "123456",
+      "maxLength": 6,
+      "isRequired": true,
+      "errorMessage": "Please enter a valid 6-digit numeric passcode."
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Verify & Confirm",
+      "style": "positive",
+      "data": {
+        "action": "SUBMIT_OTP",
+        "challengeId": "${challengeId}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Resend Code",
+      "data": {
+        "action": "RESEND_OTP",
+        "challengeId": "${challengeId}"
+      }
+    }
+  ]
+}
